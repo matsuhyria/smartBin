@@ -17,7 +17,7 @@ The following sections will contain the required steps of the installation proce
 
 
 Open the Arduino IDE and navigate to Tools > Manage Libraries...
-Install the required libraries by searching for the library name (from the list Dependencies & Requirements point 4) in the search bar and clicking on the Install button.
+Install the required libraries by searching for the library name in the search bar and clicking on the Install button.
 It is recommended to download the latest version of the library.
 
 
@@ -30,10 +30,22 @@ Sample use cases will be documented here
 ## Contributing
 
 
+Contributing will be documented here
+
+
 ## Authors and acknowledgment
+
+
+Authors and acknowledgment will be documented here
 
 
 ## License
 
 
+License and use will be documented here
+
+
 ## Project status
+
+
+Open
