@@ -2,9 +2,9 @@
 
 
 ## Description
+**SmartBin+ is an intelligent waste monitor system designed to optimize waste management at fastfood restaurants. Reliable container fullness and humidity monitor, configurable location, promptly notification feature and fire detection capabilities: all-in-one!**
 
-
-SmartBin+ is a one-of-a-kind system for efficient waste monitoring that will surely change your life for good! With nothing less than a set of precise sensors and a high quality software, you will be able to transform a simple trash can into a masterpiece of high-end technology. Look into the future, the days where the current status of each bin equipped with our system can be easily checked through an application. There you will be able not only to see the level of fullness of the container, but also the humidity degree which allows you to judge when the waste needs to be removed. Of course, the bin could not be classified as a SmartBin+ unless we carefully implement a notification feature that will help you to be on time even if you don’t check your devices often. Moreover, the system can be well-integrated into the public space as it shows the status of the bin on the display and the level of fullness can also be determined by LED light indicators. The sound will remind you when it’s time to empty the SmartBin+. Important to mention is that the system will help to ensure fire safety by alarming you in case of a presence of flame in the container!
+Are you prepared to transform the way your restaurant handles waste? With nothing less than a set of precise sensors and a high quality desktop application, you will gain insights into your disposal stations' organization, keeping you informed about all container statuses. Within the application, you will not only have access to the current level of fullness of the bins, but also the humidity degrees which allow you to judge when the garbage needs to be removed. Of course, the bin system could not be classified as a SmartBin+ unless we carefully implement a notification feature that will help to rationalize waste management. Furthermore, our system enhances the quality of restaurant service by utilizing display status indicators and LED lights, benefiting both garbage collectors and restaurant clients. Last but not least, the system will help to ensure fire safety by alarming you in case of a presence of flame in the container!
 
 
 ## Installation
@@ -44,8 +44,3 @@ Authors and acknowledgment will be documented here
 
 License and use will be documented here
 
-
-## Project status
-
-
-Open
