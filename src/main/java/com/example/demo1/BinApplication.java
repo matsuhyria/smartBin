@@ -38,7 +38,10 @@ public class BinApplication extends Application {
     public void setUpConnection(){
         String broker = "tcp://test.mosquitto.org:1883";
         String clientId = "SmartBinPlusMain";
-        String subTopic = "SmartBin/WioTerminalHumidity";
+        String humidTopic = "Sensors/Humidity";
+        String ulsTopic = "Sensors/Ultrasonic";
+        float maxLength = 50;
+
         int qos = 1;
 
         try {
@@ -52,12 +55,23 @@ public class BinApplication extends Application {
 
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     Platform.runLater(() -> {
-                        System.out.println("Topic: " + topic);
-                        System.out.println("QoS: " + message.getQos());
+                        //System.out.println("Topic: " + topic);
+                        //System.out.println("QoS: " + message.getQos());
                         String msg = new String(message.getPayload());
-                        System.out.println("Message content: " + msg);
-                        contr.updateHumid(msg);
-                        contr.updateFull(msg);
+                        //System.out.println("Message content: " + msg);
+                        if(topic.equals(humidTopic)){
+                            contr.updateHumid(msg.substring(0,2));
+                        } else{
+                            float distance;
+                            if(Integer.parseInt(msg) > maxLength){
+                                distance = 0;
+                            } else {
+                                distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
+                            }
+                            System.out.println(distance);
+                            System.out.println(Integer.parseInt(msg));
+                            contr.updateFull(String.valueOf((int)distance));
+                        }
                     });
                 }
 
@@ -68,7 +82,8 @@ public class BinApplication extends Application {
 
             client.connect(options);
 
-            client.subscribe(subTopic, qos);
+            client.subscribe(humidTopic, qos);
+            client.subscribe(ulsTopic, qos);
 
             //client.disconnect();
             //client.close();
