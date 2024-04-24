@@ -28,11 +28,20 @@ public class BinApplication extends Application {
         Scene scene = new Scene(root);
         contr = fxmlLoader.getController();
 
-        stage.setTitle("First Demo");
+        stage.setTitle("Second Demo");
         stage.setScene(scene);
         stage.show();
 
         setUpConnection();
+
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("map.fxml"));
+        Parent root1 = loader.load();
+
+        Scene scene1 = new Scene(root1);
+        stage.setScene(scene1);
+        stage.show();
 
     }
     public void setUpConnection(){

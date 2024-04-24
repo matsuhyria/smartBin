@@ -151,7 +151,7 @@
                <graphic>
                   <ImageView fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@NotificationActive.png" />
+                        <Image url="@NotificationClosed.png" />
                      </image>
                   </ImageView>
                </graphic>

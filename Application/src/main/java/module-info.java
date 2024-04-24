@@ -3,6 +3,7 @@ module com.example.demo1 {
     requires javafx.fxml;
     requires org.eclipse.paho.client.mqttv3;
     requires java.persistence;
+    requires java.sql;
 
 
     opens com.example.demo1 to javafx.fxml;
