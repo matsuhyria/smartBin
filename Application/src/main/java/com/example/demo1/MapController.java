@@ -34,7 +34,6 @@ public class MapController {
 
     @FXML
     private void chooseNextPosition(MouseEvent event) throws IOException {
-        System.out.println(changeInProcess);
         if (changeInProcess) {
             double x = event.getX();
             double y = event.getY();
@@ -48,7 +47,6 @@ public class MapController {
 
     @FXML
     public void addBin() {
-        System.out.println("01");
         changeInProcess = true;
     }
 
@@ -93,7 +91,7 @@ public class MapController {
 
     public Circle getPointer(){
         Circle circle = new Circle();
-        circle.setRadius(10);
+        circle.setRadius(20);
         circle.setFill(Color.web("#A6CA82"));
         circle.setStroke(Color.web("#588889"));
         return circle;
