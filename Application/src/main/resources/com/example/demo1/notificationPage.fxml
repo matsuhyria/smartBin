@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.BinAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.NotificationController">
    <children>
       <Label layoutX="44.0" layoutY="24.0" prefHeight="119.0" prefWidth="414.0" text="SMARTBIN+" textFill="#638889">
          <font>
@@ -22,7 +22,7 @@
                <graphic>
                   <ImageView fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/NotificationActive.png" />
+                        <Image url="@NotificationActive.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -31,7 +31,7 @@
                <graphic>
                   <ImageView fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/OverviewClosed.png" />
+                        <Image url="@OverviewClosed.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -40,7 +40,7 @@
                <graphic>
                   <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/MapClosed.png" />
+                        <Image url="@MapClosed.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,16 +49,16 @@
                <graphic>
                   <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/StatisticsClosed.png" />
+                        <Image url="@StatisticsClosed.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </HBox>
-      <VBox layoutX="441.0" layoutY="174.0" prefHeight="859.0" prefWidth="1457.0">
+      <VBox fx:id="notificationList" layoutX="441.0" layoutY="174.0" prefHeight="859.0" prefWidth="1457.0">
          <children>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
+            <Label fx:id="testLabel" alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
                <font>
                   <Font size="79.0" />
                </font>
@@ -93,37 +93,37 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="163.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="282.0" layoutY="174.0">
          <image>
-            <Image url="@assets/bin.png" />
+            <Image url="@bin.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="293.0">
          <image>
-            <Image url="@assets/humidity.png" />
+            <Image url="@humidity.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="404.0">
          <image>
-            <Image url="@assets/bin.png" />
+            <Image url="@bin.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="516.0">
          <image>
-            <Image url="@assets/bin.png" />
+            <Image url="@bin.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="639.0">
          <image>
-            <Image url="@assets/humidity.png" />
+            <Image url="@humidity.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="745.0">
          <image>
-            <Image url="@assets/bin.png" />
+            <Image url="@bin.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="1086.0" fitWidth="1929.0" layoutX="-7.0" layoutY="-4.0">
          <image>
-            <Image url="@assets/back.png" />
+            <Image url="@back.png" />
          </image>
       </ImageView>
    </children>
