@@ -85,8 +85,8 @@ public class BinApplication extends Application {
             client.subscribe(humidTopic, qos);
             client.subscribe(ulsTopic, qos);
 
-            client.disconnect();
-            client.close();
+            //client.disconnect();
+            //client.close();
 
         } catch (MqttException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class BinApplication extends Application {
     }
 
 
-    // public static void main(String[] args) {
-    //     Application.launch();
-    // }
+    public static void main(String[] args) {
+        Application.launch();
+    }
 }
