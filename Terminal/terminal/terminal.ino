@@ -2,7 +2,10 @@
 #include "ultrasonic.hpp"
 #include "led_indicator.hpp"
 #include "MqttHandler.hpp"
+#include "buzzer.hpp"
 
+//buzzer
+#define BUZZER_PIN D0;
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -24,6 +27,7 @@ const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
+Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
@@ -36,6 +40,7 @@ void setup(){
   humidSensor.setup();
   led.setup();
   mqttHandler.setup();
+  buzzer.setup();
 }
 
 void loop(){
@@ -51,5 +56,6 @@ void loop(){
   std::string ultrasonicStr = std::to_string(distance);
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
+  notify(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }
