@@ -1,23 +1,36 @@
-build-job:
+image: ubuntu:latest
+
+before_script:
+  apt-get update
+  cd ~
+  curl -L https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh > install.sh
+  sh install.sh
+  export PATH=$PATH:~/bin
+
+  printf "board_manager:\n  additional_urls:\n    - https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json\n" > .arduino-cli.yaml
+  arduino-cli core update-index --config-file .arduino-cli.yaml
+  arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
+
+  arduino-cli lib install PubSubClient@2.8.0
+  arduino-cli lib install 'Seeed Arduino rpcWiFi'
+  cd Arduino/libraries
+
+  apt-get install git
+
+  git clone https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger.git
+  git clone https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor.git
+  git clone https://github.com/adafruit/Adafruit_NeoPixel.git
+
+
+stages:
+  - build
+
+compile:
   stage: build
+  tags:
+    - docker
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-
-test-job1:
-  stage: test
-  script:
-    - echo "This job tests something"
-
-test-job2:
-  stage: test
-  script:
-    - echo "This job tests something, but takes more time than test-job1."
-    - echo "After the echo commands complete, it runs the sleep command for 20 seconds"
-    - echo "which simulates a test that runs 20 seconds longer than test-job1"
-    - sleep 20
-
-deploy-prod:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
-  environment: production
+    - pwd                                    
+    - cd arduino_src                          
+    - arduino-cli lib list                    
+    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal Terminal/terminal.ino
