@@ -1,6 +1,6 @@
 image: ubuntu:latest
 variables:
-  INO_FILE: Terminal/terminal.ino
+  INO_FILE: terminal.ino
 
 before_script:
   - apt-get update
@@ -34,7 +34,7 @@ compile:
     - docker
   script:                                                       
     - arduino-cli lib list
-    - cd ${CI_PROJECT_DIR}
+    - cd ${CI_PROJECT_DIR}/Terminal
     - pwd
     - ls -l
     - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal $INO_FILE
