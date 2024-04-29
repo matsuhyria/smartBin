@@ -16,7 +16,7 @@ before_script:
   - arduino-cli lib install 'Seeed Arduino rpcWiFi'
   - cd Arduino/libraries
 
-  - apt-get install git
+  - apt-get install git -y
 
   - git clone https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger.git
   - git clone https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor.git
