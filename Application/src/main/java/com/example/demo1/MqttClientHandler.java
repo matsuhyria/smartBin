@@ -6,7 +6,7 @@ import org.eclipse.paho.client.mqttv3.*;
 public class MqttClientHandler {
 
     private static MqttClientHandler instance;
-
+    private BinAppController contr;
     private MqttClient client;
 
     String broker = "tcp://test.mosquitto.org:1883";
@@ -25,6 +25,9 @@ public class MqttClientHandler {
         } catch (MqttException e) {
             e.printStackTrace();
         }
+    }
+    public void setController(BinAppController contr) {
+        this.contr = contr;
     }
 
     public static MqttClientHandler getInstance() throws MqttException {
@@ -53,12 +56,9 @@ public class MqttClientHandler {
 
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Platform.runLater(() -> {
-                    //System.out.println("Topic: " + topic);
-                    //System.out.println("QoS: " + message.getQos());
                     String msg = new String(message.getPayload());
-                    //System.out.println("Message content: " + msg);
                     if(topic.equals(humidTopic)){
-                        //mainPageController.updateHumid(msg.substring(0,2));
+                        contr.updateHumid(msg.substring(0,2));
                     } else{
                         float distance;
                         if(Integer.parseInt(msg) > maxLength){
@@ -66,9 +66,7 @@ public class MqttClientHandler {
                         } else {
                             distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
                         }
-                        System.out.println(distance);
-                        System.out.println(Integer.parseInt(msg));
-                        //mainPageController.updateFull(String.valueOf((int)distance));
+                        contr.updateFull(String.valueOf((int)distance));
                     }
                 });
             }
@@ -78,7 +76,6 @@ public class MqttClientHandler {
             }
         });
     }
-
     public void disconnect() throws MqttException {
         client.disconnect();
     }
