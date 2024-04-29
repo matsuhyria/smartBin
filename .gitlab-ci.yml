@@ -37,4 +37,4 @@ compile:
     - cd ${CI_PROJECT_DIR}/Terminal
     - pwd
     - ls -l
-    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal $INO_FILE
+    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal
