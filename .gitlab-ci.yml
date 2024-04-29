@@ -31,7 +31,6 @@ compile:
   tags:
     - docker
   script:
-    - pwd                                    
-    - cd arduino_src                          
+    - pwd                                                           
     - arduino-cli lib list                    
     - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal Terminal/terminal.ino
