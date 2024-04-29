@@ -1,4 +1,6 @@
 image: ubuntu:latest
+variables:
+  INO_FILE: Terminal/terminal.ino
 
 before_script:
   - apt-get update
@@ -34,4 +36,5 @@ compile:
     - arduino-cli lib list
     - cd ${CI_PROJECT_DIR}
     - pwd
-    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal Terminal/terminal.ino
+    - ls -l
+    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal $INO_FILE
