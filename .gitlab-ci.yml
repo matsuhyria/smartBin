@@ -30,7 +30,8 @@ compile:
   stage: build
   tags:
     - docker
-  script:
-    - pwd                                                           
-    - arduino-cli lib list                    
-    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal "${CI_PROJECT_DIR}/Terminal/terminal.ino"
+  script:                                                       
+    - arduino-cli lib list
+    - cd ${CI_PROJECT_DIR}
+    - pwd
+    - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal Terminal/terminal.ino
