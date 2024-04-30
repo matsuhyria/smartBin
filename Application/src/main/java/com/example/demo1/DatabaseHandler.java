@@ -60,10 +60,12 @@ public class DatabaseHandler {
         return Arrays.copyOf(coordinates, index);
     }
 
-    public void deleteLocation(){
+    public void deleteLocation(double x, double y){
+        int id = getId(x, y);
         try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("DELETE FROM bin_locations");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM bin_locations WHERE id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,6 +83,24 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private int getId(double x, double y){
+        int id = -1;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT id FROM bin_locations WHERE x_coord = ? AND y_coord = ?");
+            statement.setDouble(1, x);
+            statement.setDouble(2, y);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
+            }
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
     public void closeConnection() {

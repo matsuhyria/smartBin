@@ -76,27 +76,36 @@ public class MapController {
         Label change = (Label) popOut.lookup("#changeLocation");
 
         change.setOnMouseClicked(event -> {
-            changeLocation();
+            try {
+                changeLocation(x, y);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         Label delete = (Label) popOut.lookup("#delete");
 
         delete.setOnMouseClicked(event -> {
-            deleteLocation();
+            try {
+                deleteLocation(x, y);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         pane.getChildren().add(popOut);
     }
 
-    public void changeLocation(){
-        deleteLocation();
+    public void changeLocation(double x, double y) throws IOException {
+        deleteLocation(x, y);
         addBin();
     }
 
-    public void deleteLocation(){
-        grid.getChildren().clear();
+    public void deleteLocation(double x, double y) throws IOException {
         pane.getChildren().clear();
-        DatabaseHandler.getInstance().deleteLocation();
+        DatabaseHandler.getInstance().deleteLocation(x, y);
+        grid.getChildren().clear();
+        initialize();
     }
 
     public Circle getPointer(){
