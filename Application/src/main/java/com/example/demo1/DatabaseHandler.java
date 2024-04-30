@@ -40,8 +40,8 @@ public class DatabaseHandler {
         return connection;
     }
 
-    public int[] getLocations(){
-        int[] coordinates = new int[MAX_BIN_COUNT * 2];
+    public double[] getLocations(){
+        double[] coordinates = new double[MAX_BIN_COUNT * 2];
         int index = 0;
         try {
             Statement statement = connection.createStatement();
@@ -50,12 +50,11 @@ public class DatabaseHandler {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                int x = resultSet.getInt("x_coord");
-                int y = resultSet.getInt("y_coord");
+                double x = resultSet.getDouble("x_coord");
+                double y = resultSet.getDouble("y_coord");
                 coordinates[index] = x;
-                index++;
-                coordinates[index] = y;
-                index++;
+                coordinates[index+1] = y;
+                index = index + 2;
             }
             resultSet.close();
             statement.close();
@@ -76,12 +75,12 @@ public class DatabaseHandler {
         }
     }
 
-    public void addLocation(int x, int y){
+    public void addLocation(double x, double y){
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO bin_locations (x_coord, y_coord) VALUES (?, ?)");
-            statement.setInt(1, x);
-            statement.setInt(2, y);
+            statement.setDouble(1, x);
+            statement.setDouble(2, y);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

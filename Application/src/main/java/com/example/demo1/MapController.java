@@ -14,18 +14,18 @@ import java.io.IOException;
 public class MapController {
     private boolean changeInProcess;
     @FXML
-    private GridPane grid;
+    private AnchorPane grid;
 
     @FXML
     private AnchorPane pane;
     @FXML
     private void initialize() throws IOException {
         changeInProcess = false;
-        int[] coordinates = DatabaseHandler.getInstance().getLocations();
+        double[] coordinates = DatabaseHandler.getInstance().getLocations();
         int index = 0;
         while (index < coordinates.length) {
-            int x = coordinates[index];
-            int y = coordinates[index + 1];
+            double x = coordinates[index];
+            double y = coordinates[index + 1];
             placePointer(x, y);
             index = index + 2;
 
@@ -37,10 +37,8 @@ public class MapController {
         if (changeInProcess) {
             double x = event.getX();
             double y = event.getY();
-            int row = BinUtil.getX(x);
-            int column = BinUtil.getY(y);
 
-            DatabaseHandler.getInstance().addLocation(column, row);
+            DatabaseHandler.getInstance().addLocation(x, y);
             initialize();
         }
     }
@@ -51,9 +49,13 @@ public class MapController {
     }
 
     @FXML
-    public void placePointer(int x, int y) throws IOException {
+    public void placePointer(double x, double y) throws IOException {
         Circle pointer = getPointer();
-        grid.add(pointer, x, y);
+        pointer.setLayoutX(x);
+        pointer.setLayoutY(y);
+        System.out.println(x);
+        System.out.println(y);
+        grid.getChildren().add(pointer);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("popOutLight.fxml"));
         AnchorPane popOut = loader.load();

@@ -1,20 +1,15 @@
 package com.example.demo1;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 
 public class BinApplication extends Application {
@@ -39,8 +34,10 @@ public class BinApplication extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("map.fxml"));
         Parent root1 = loader.load();
+        double width = 1280;
+        double height = 720;
 
-        Scene scene1 = new Scene(root1);
+        Scene scene1 = new Scene(new StackPane(root1), width, height);
         stage.setScene(scene1);
         stage.show();
 
