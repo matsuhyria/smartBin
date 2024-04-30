@@ -6,6 +6,7 @@
 
 //buzzer
 #define BUZZER_PIN D0
+//bool fire = false;
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -57,5 +58,6 @@ void loop(){
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
+  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }
