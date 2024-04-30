@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.NotificationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HeaderController">
    <children>
       <Label layoutX="44.0" layoutY="24.0" prefHeight="119.0" prefWidth="414.0" text="SMARTBIN+" textFill="#638889">
          <font>
@@ -18,16 +18,7 @@
       </Label>
       <HBox layoutX="1360.0" layoutY="33.0" prefHeight="88.0" prefWidth="383.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
-               <graphic>
-                  <ImageView fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@NotificationActive.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToMainPage" style="-fx-background-color: F9EFDB;">
+            <Button fx:id="mainPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
                   <ImageView fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -36,7 +27,16 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+            <Button fx:id="notificationPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+               <graphic>
+                  <ImageView fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@NotificationActive.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="mapPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
                   <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,7 +45,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+            <Button fx:id="statsPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
                   <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>

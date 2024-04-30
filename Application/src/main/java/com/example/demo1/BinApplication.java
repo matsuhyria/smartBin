@@ -23,17 +23,18 @@ public class BinApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        contr = fxmlLoader.getController();
+        // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
+        // Parent root = fxmlLoader.load();
+        // Scene scene = new Scene(root);
+        // // contr = fxmlLoader.getController();
 
-        stage.setTitle("First Demo");
-        stage.setScene(scene);
-        stage.show();
+        // stage.setTitle("First Demo");
+        // stage.setScene(scene);
+        // stage.show();
 
-        setUpConnection();
+        // setUpConnection();
 
+        SceneManager.getInstance().setStage(stage, 800, 600);
     }
     public void setUpConnection(){
         String broker = "tcp://test.mosquitto.org:1883";

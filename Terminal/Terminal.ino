@@ -27,7 +27,6 @@ const int port = 1883;
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
-// wifiManager wifiManager(ssid, password);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 
 void setup(){
