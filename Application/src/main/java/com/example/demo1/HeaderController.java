@@ -23,20 +23,4 @@ public class HeaderController {
         mapPage.setOnAction(event -> SceneManager.getInstance().switchToMapPage());
         statsPage.setOnAction(event -> SceneManager.getInstance().switchToStatsPage());
     }
-
-    // public void onMainPageButtonClicked(){
-    //     SceneManager.getInstance().switchToMainPage();
-    // }
-
-    // public void onNotificationPageButtonClicked(){
-    //     SceneManager.getInstance().switchToNotificationPage();
-    // }
-
-    // public void onMapPageButtonClicked(){
-    //     SceneManager.getInstance().switchToMapPage();
-    // }
-
-    // public void onStatsPageButtonClicked(){
-    //     SceneManager.getInstance().switchToStatsPage();
-    // }
 }
