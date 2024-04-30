@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HeaderController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.BinAppController">
    <children>
       <Label layoutX="44.0" layoutY="24.0" prefHeight="119.0" prefWidth="414.0" text="SMARTBIN+" textFill="#638889">
          <font>
@@ -18,113 +20,109 @@
       </Label>
       <HBox layoutX="1360.0" layoutY="33.0" prefHeight="88.0" prefWidth="383.0" spacing="10.0">
          <children>
-            <Button fx:id="mainPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
-               <graphic>
-                  <ImageView fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@OverviewClosed.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="notificationPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
                   <ImageView fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@NotificationActive.png" />
+                        <Image url="@../../../../../../../../../../Downloads/assets/NotificationActive.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="mapPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
-                  <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@MapClosed.png" />
+                        <Image url="@../../../../../../../../../../Downloads/assets/OverviewClosed.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="statsPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
                <graphic>
                   <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@StatisticsClosed.png" />
+                        <Image url="@../../../../../../../../../../Downloads/assets/MapClosed.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+               <graphic>
+                  <ImageView fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../Downloads/assets/StatisticsClosed.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </HBox>
-      <VBox fx:id="notificationList" layoutX="441.0" layoutY="174.0" prefHeight="859.0" prefWidth="1457.0">
-         <children>
-            <Label fx:id="testLabel" alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="Humidity in the  bin is high! Empty the bin!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="Humidity in the  bin is high! Empty the bin!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" prefHeight="115.0" prefWidth="1457.0" text="The bin is full!">
-               <font>
-                  <Font size="79.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="163.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="282.0" layoutY="174.0">
+      <ImageView fitHeight="1086.0" fitWidth="1940.0" layoutX="-18.0">
          <image>
-            <Image url="@bin.png" />
+            <Image url="@../../../../../../../../../../Downloads/assets/back.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="293.0">
-         <image>
-            <Image url="@humidity.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="404.0">
-         <image>
-            <Image url="@bin.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="516.0">
-         <image>
-            <Image url="@bin.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="639.0">
-         <image>
-            <Image url="@humidity.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="100.0" layoutX="289.0" layoutY="745.0">
-         <image>
-            <Image url="@bin.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="1086.0" fitWidth="1929.0" layoutX="-7.0" layoutY="-4.0">
-         <image>
-            <Image url="@back.png" />
-         </image>
-      </ImageView>
+      <ScrollPane hbarPolicy="NEVER" layoutX="289.0" layoutY="195.0" prefHeight="675.0" prefWidth="1288.0" style="-fx-background-color: #F9EFDB;">
+         <content>
+            <VBox prefHeight="695.0" prefWidth="1275.0" spacing="20.0" style="-fx-background-color: #F9EFDB;">
+               <children>
+                  <HBox prefHeight="75.0" prefWidth="1792.0" spacing="40.0">
+                     <children>
+                        <ImageView fitHeight="79.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../../Downloads/1.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="75.0" prefWidth="1719.0" style="-fx-background-color: #EBD9B4;" text="The bin is full!" textAlignment="CENTER">
+                           <font>
+                              <Font name="Aldrich Regular" size="40.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" left="60.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="75.0" prefWidth="831.0" style="-fx-background-color: #EBD9B4;" text="13:35">
+                           <font>
+                              <Font name="Aldrich Regular" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="79.0" prefWidth="1750.0" spacing="40.0">
+                     <children>
+                        <ImageView fitHeight="79.0" fitWidth="76.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../Downloads/2%20copy.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" prefHeight="79.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the  bin is high! Empty the bin!" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Aldrich Regular" size="40.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="15.0" left="60.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="79.0" prefWidth="376.0" style="-fx-background-color: #EBD9B4;" text="19:35">
+                           <font>
+                              <Font name="Aldrich Regular" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </ScrollPane>
    </children>
 </AnchorPane>
