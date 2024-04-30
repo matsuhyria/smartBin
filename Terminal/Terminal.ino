@@ -5,7 +5,7 @@
 #include "buzzer.hpp"
 
 //buzzer
-#define BUZZER_PIN D0;
+#define BUZZER_PIN D0
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -17,8 +17,8 @@
 const int PIXELS = 10;
 const int TURN_ON_DISTANCE_CM = 50;
 //wifi
-const char* ssid = "Galaxy S21";
-const char* password = "84491337";
+const char* ssid = "Yaroslav";
+const char* password = "12345678";
 //mqtt
 const char* ID = "Wio-Terminal-group11"; 
 const char* pubTopic1 = "Sensors/Humidity";
@@ -56,6 +56,6 @@ void loop(){
   std::string ultrasonicStr = std::to_string(distance);
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
-  notify(distance, TURN_ON_DISTANCE_CM * 0.2);
+  buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }

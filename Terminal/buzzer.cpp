@@ -18,6 +18,7 @@ void Buzzer::stopTone() {
 void Buzzer::notify(int distance, int threshold) {
     if (distance < threshold) {
         playTone(2000, 500);
-        delay(500);
+        delay(1000);
         stopTone();
     }
+}
