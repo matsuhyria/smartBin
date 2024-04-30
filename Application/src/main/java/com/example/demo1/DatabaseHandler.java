@@ -6,15 +6,12 @@ import java.util.Arrays;
 public class DatabaseHandler {
 
     private static DatabaseHandler instance;
-
     private static final String CONNECTION_NAME = "avian-cosmos-421323:europe-north1:smartbin";
     private static final String USERNAME = "postgres";
     private static final String USER_PASSWORD = "postgres";
     private static final String DATABASE_NAME = "postgres";
-
     private Connection connection;
     private static final int MAX_BIN_COUNT = 5;
-
     private DatabaseHandler() {
         try {
             String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
@@ -28,14 +25,12 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
-
     public static DatabaseHandler getInstance() {
         if (instance == null) {
             instance = new DatabaseHandler();
         }
         return instance;
     }
-
     public Connection getConnection() {
         return connection;
     }

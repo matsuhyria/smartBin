@@ -1,21 +1,28 @@
 package com.example.demo1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MapController {
+    private Stage stage = new Stage();
+    private Scene scene;
+    private Parent root;
     private boolean changeInProcess;
     @FXML
     private GridPane grid;
-
     @FXML
     private AnchorPane pane;
     @FXML
@@ -97,4 +104,14 @@ public class MapController {
         return circle;
     }
 
+    public void switchToMainPage(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    
 }

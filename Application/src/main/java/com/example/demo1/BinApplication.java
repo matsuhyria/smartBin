@@ -35,15 +35,6 @@ public class BinApplication extends Application {
 
         setUpConnection();
 
-
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("map.fxml"));
-        Parent root1 = loader.load();
-
-        Scene scene1 = new Scene(root1);
-        stage.setScene(scene1);
-        stage.show();
-
     }
 
     public void setUpConnection() {
