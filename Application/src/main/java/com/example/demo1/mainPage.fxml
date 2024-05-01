@@ -21,7 +21,7 @@
             <Font size="65.0" />
          </font>
       </Label>
-      <fx:include source="header.fxml"/>
+      <fx:include source="header.fxml" />
       <SplitPane dividerPositions="0.18181818181818182" layoutX="112.0" layoutY="252.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="321.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: D3BB88;">

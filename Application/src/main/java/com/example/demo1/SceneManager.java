@@ -32,11 +32,11 @@ public class SceneManager {
         stage.show();
     }
 
-    public void switchToMainPage(){
+    public void switchToMainPage() {
         stage.getScene().setRoot(mainPage);
     }
 
-    public void switchToNotificationPage(){
+    public void switchToNotificationPage() {
         stage.getScene().setRoot(notificationPage);
     }
 
