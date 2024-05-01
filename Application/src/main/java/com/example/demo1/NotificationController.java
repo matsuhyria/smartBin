@@ -1,7 +1,10 @@
 package com.example.demo1;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.Notifications;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +34,14 @@ public class NotificationController implements Initializable{
     public void addNotification(boolean isFullnessNotification, String message, String time) {
         HBox notification = formatNotification(isFullnessNotification, message, time);
         notificationList.getChildren().add(0, notification);
+        String title;
+        if(isFullnessNotification) {
+           title  = "Fullness Sensor";
+        } else {
+           title = "Humidity Sensor";
+        }
+        Notifications notification1 = Notifications.create().title(title).text(message);
+        notification1.showWarning();
     }
 
     private HBox formatNotification(boolean isFullness, String text, String currentTime){
