@@ -61,7 +61,7 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ![image](Resources/WT-GROVE.jpeg)
 
-![image](https://i.imgur.com/UyqEIch.jpeg)
+![image](Resources/WioT-Pinout.jpg)
 
 - For the Ultrasonic Ranger sensor:
 
@@ -123,15 +123,15 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ## Use Case Diagram
 
-[image](https://i.imgur.com/dJcSJtG.png)
+![image](<Resources/UseCaseExample%20(1).png>)
 
 ## UML Class Diagram
 
-[image](https://i.imgur.com/0YZCzjA.jpeg)
+![image](<Resources/UMLclassDiagram%20(1).jpg>)
 
 ## System Architecture
 
-[image](https://i.imgur.com/zLaVihX.jpeg)
+![image](Resources/updatedSysArchFinal__1_.jpg)
 
 ## Authors and acknowledgment
 
