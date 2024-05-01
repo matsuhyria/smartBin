@@ -70,23 +70,23 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 - For the Humidity & Temperature sensor:
 
-  - SIG connected to 18 (which is D3) on the Wio
+  - SIG connected to 16 (which is D2) on the Wio
   - GND can be connected to any GND port, VCC connected to either 2/4 (both 5V)
 
 - For the RGB LED bar:
 
-  - SIG connected to 5 (which is l2c1_SCL) on the Wio
+  - SIG connected to 5 (which is l2c1_SCL) on the Wio grove port 1
   - GND can be connected GND port in Grove port 1, VCC connected to 3v3 on Grove port 1
 
 - For the Speaker Actuator:
 
-  - SIG connected to 13 (which is D0) on the Wio
-  - GND can be connected to any GND port, VCC connected to either 2/4 (both 5V)
+  - SIG connected to 13 (which is D0) on the Wio Grove port 2
+  - GND can be connected to any GND port in Grove port 2, VCC connected to 3v3 on Grove port 2
 
 - For the Flame Sensor:
 
-  - SIG connected to N/A (which is N/A) on the Wio
-  - GND can be connected to any GND port, VCC connected to N/A
+  - SIG connected to - (which is -) on the Wio
+  - GND can be connected to any GND port, VCC connected to -
 
 ### Software Setup
 
