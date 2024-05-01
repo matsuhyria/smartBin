@@ -18,7 +18,7 @@ With built-in fire detection capabilities, safety is prioritized, providing imme
 
 In summary, our solution offers a data-driven approach to waste management in restaurants, streamlining operations and ensuring compliance with safety standards.
 
-## Components you need in order to use SmartBin+:
+## Components you need in order to use SmartBin+
 
 1.  [Wio Seeed Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html)
 2.  [Arduino IDE](https://www.arduino.cc/en/software)
@@ -51,16 +51,17 @@ In summary, our solution offers a data-driven approach to waste management in re
 
 ### Hardware Setup
 
-#### Arduino Wio Terminal:
+#### Arduino Wio Terminal
 
 Ensure you have the Wio Terminal, an Arduino compatible microcontroller, ready for use.
 
-#### Sensor Integration:
+#### Sensor Integration
 
 Connect the sensors to the Wio Terminal following the pin-out instructions:
 
-![image](replace)
-![image](replace)
+![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/WT-GROVE.jpeg?ref_type=heads">)
+
+![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/WioT-Pinout.jpg?ref_type=heads">)
 
 - For the Ultrasonic Ranger sensor:
 
@@ -87,38 +88,50 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
   - SIG connected to N/A (which is N/A) on the Wio
   - GND can be connected to any GND port, VCC connected to N/A
 
-### Software Setup:
+### Software Setup
 
-#### Arduino IDE:
+#### Arduino IDE
 
-Open the Arduino IDE and navigate to Tools > Manage Libraries...
-Install the required libraries by searching for the library name in the search bar in 'library' tab and clicking on the Install button.
-(Note: It is recommended to download the latest version of each library)
+1. Open the Arduino IDE and navigate to Tools > Manage Libraries...
+2. Install the required libraries by searching for the library name in the search bar in 'library' tab and clicking on the Install button.
+   (Note: It is recommended to download the latest version of each library)
 
-#### Code Integration:
+#### Code Integration
 
-Download our project repository and locate the Terminal.ino file containing the main code.
-Within the repository, you'll find two directories `Terminal` and `Application`, which are the directories for handling the Arduino Wio Terminal and the SmartBin+ desktop software respectively.
-Ensure to include the Secrets.h file with your WiFi credentials.
-Upload the Terminal.ino file to your Wio Terminal using the Arduino IDE.
+1. Download our project repository and locate the Terminal.ino file containing the main code.
+2. Within the repository, you'll find two directories `Terminal` and `Application`, which are the directories for handling the Arduino Wio Terminal and the SmartBin+ desktop software respectively.
+3. Ensure to include the Secrets.h file with your WiFi credentials.
+4. Upload the Terminal.ino file to your Wio Terminal using the Arduino IDE.
 
 ## Used Technologies
 
-GIT (GITLAB & GIT BASH)
-C++
-Java / JavaFX
-INTELLIJ IDE
-FIGMA
-GOOGLE DOCS
-TINKERCAD
-MIRO
-DRAW.IO
-WIO SEEED TERMINAL
-ULTRASONIC SENSOR
-HUMIDITY AND TEMPERATURE SENSOR
-FLAME SENSOR
-SPEAKER ACTUATOR
-RGB LED STICK
+- GIT (GITLAB & GIT BASH)
+- C++
+- Java / JavaFX
+- INTELLIJ IDE
+- FIGMA
+- GOOGLE DOCS
+- TINKERCAD
+- MIRO
+- DRAW.IO
+- WIO SEEED TERMINAL
+- ULTRASONIC SENSOR
+- HUMIDITY AND TEMPERATURE SENSOR
+- FLAME SENSOR
+- SPEAKER ACTUATOR
+- RGB LED STICK
+
+## Use Case Diagram
+
+![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/UseCaseExample%20(1).png?ref_type=heads">)
+
+## UML Class Diagram
+
+![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/UMLclassDiagram%20(1).jpg?ref_type=heads">)
+
+## System Architecture
+
+![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/updatedSysArchFinal__1_.jpg?ref_type=heads">)
 
 ## Authors and acknowledgment
 
@@ -126,11 +139,11 @@ Software Engineering and Management / DIT113 V24 Mini Project: System Developmen
 
 Developer Group 11
 
-Andre Ibrahim (gusibraan@student.gu.se)
-Maksym Matsuhyria (gusmaksyma@student.gu.se)
-Gulbadanbegim Muzaffarova (gusmuzgu@student.gu.se)
-Yaroslav Ursul (gusursya@student.gu.se)
-Victoria Yurevich (gusyurevi@student.gu.se)
+- Andre Ibrahim (gusibraan@student.gu.se)
+- Maksym Matsuhyria (gusmaksyma@student.gu.se)
+- Gulbadanbegim Muzaffarova (gusmuzgu@student.gu.se)
+- Yaroslav Ursul (gusursya@student.gu.se)
+- Victoria Yurevich (gusyurevi@student.gu.se)
 
 ## License
 
@@ -141,4 +154,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-See [Licence](replace) for full specification.
+See [Licence](https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/blob/main/License.md?ref_type=heads) for full specification.

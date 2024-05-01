@@ -3,6 +3,7 @@
 #include "led_indicator.hpp"
 #include "MqttHandler.hpp"
 #include "buzzer.hpp"
+#include "secrets.hpp"
 
 //buzzer
 #define BUZZER_PIN D0
@@ -18,8 +19,8 @@
 const int PIXELS = 10;
 const int TURN_ON_DISTANCE_CM = 50;
 //wifi
-const char* ssid = "Yaroslav";
-const char* password = "12345678";
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 //mqtt
 const char* ID = "Wio-Terminal-group11"; 
 const char* pubTopic1 = "Sensors/Humidity";
