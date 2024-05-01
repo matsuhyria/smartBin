@@ -59,9 +59,9 @@ Ensure you have the Wio Terminal, an Arduino compatible microcontroller, ready f
 
 Connect the sensors to the Wio Terminal following the pin-out instructions:
 
-![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/WT-GROVE.jpeg?ref_type=heads">)
+![image](<img src = "https://i.imgur.com/vs9vcwo.jpeg">)
 
-![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/WioT-Pinout.jpg?ref_type=heads">)
+![image](<img src = "https://i.imgur.com/UyqEIch.jpeg">)
 
 - For the Ultrasonic Ranger sensor:
 
@@ -123,15 +123,15 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ## Use Case Diagram
 
-![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/UseCaseExample%20(1).png?ref_type=heads">)
+![image](<img src = "https://i.imgur.com/dJcSJtG.png">)
 
 ## UML Class Diagram
 
-![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/UMLclassDiagram%20(1).jpg?ref_type=heads">)
+![image](<img src = "https://i.imgur.com/0YZCzjA.jpeg">)
 
 ## System Architecture
 
-![image](<img src = "https://git.chalmers.se/courses/dit113/2024/group-11/smartbin/-/raw/main/Resources/updatedSysArchFinal__1_.jpg?ref_type=heads">)
+![image](<img src = "https://i.imgur.com/zLaVihX.jpeg">)
 
 ## Authors and acknowledgment
 
