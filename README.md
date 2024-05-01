@@ -59,9 +59,9 @@ Ensure you have the Wio Terminal, an Arduino compatible microcontroller, ready f
 
 Connect the sensors to the Wio Terminal following the pin-out instructions:
 
-![image](<img src = "https://i.imgur.com/vs9vcwo.jpeg">)
+![image](Resources/WT-GROVE.jpeg)
 
-![image](<img src = "https://i.imgur.com/UyqEIch.jpeg">)
+![image](https://i.imgur.com/UyqEIch.jpeg)
 
 - For the Ultrasonic Ranger sensor:
 
@@ -123,15 +123,15 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ## Use Case Diagram
 
-![image](<img src = "https://i.imgur.com/dJcSJtG.png">)
+[image](https://i.imgur.com/dJcSJtG.png)
 
 ## UML Class Diagram
 
-![image](<img src = "https://i.imgur.com/0YZCzjA.jpeg">)
+[image](https://i.imgur.com/0YZCzjA.jpeg)
 
 ## System Architecture
 
-![image](<img src = "https://i.imgur.com/zLaVihX.jpeg">)
+[image](https://i.imgur.com/zLaVihX.jpeg)
 
 ## Authors and acknowledgment
 
