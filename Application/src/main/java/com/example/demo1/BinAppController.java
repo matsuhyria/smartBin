@@ -19,23 +19,13 @@ public class BinAppController {
     @FXML
     private Label bin1_full;
 
-    private Stage stage = new Stage();
-    private Scene scene;
-    private Parent root;
-
-    @FXML
-    private void initialize() {
-        // bin1_humid.setText("55");
-        // bin1_full.setText("11");
-    }
-
     @FXML
     public void updateHumid(String newValue) {
-        // bin1_humid.setText(newValue);
+        bin1_humid.setText(newValue);
     }
 
     @FXML
     public void updateFull(String newValue) {
-    //     bin1_full.setText(newValue);
+        bin1_full.setText(newValue);
     }
 }

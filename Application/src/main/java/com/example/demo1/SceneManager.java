@@ -12,6 +12,8 @@ public class SceneManager {
     private Stage stage;
     private Pane mainPage;
     private Pane notificationPage;
+    private NotificationController notificationController;
+    private BinAppController binController;
 
     private SceneManager() {}
 
@@ -26,8 +28,10 @@ public class SceneManager {
         this.stage = stage;
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
         mainPage = mainLoader.load();
+        binController = mainLoader.getController();
         FXMLLoader notificationLoader = new FXMLLoader(getClass().getResource("notificationPage.fxml"));
         notificationPage = notificationLoader.load();
+        notificationController = notificationLoader.getController();
         stage.setScene(new Scene(mainPage, height, width));
         stage.show();
     }
@@ -48,4 +52,11 @@ public class SceneManager {
         //TO-DO
     }
 
+    public BinAppController getBinController(){
+        return this.binController;
+    }
+
+    public NotificationController getNotificationController(){
+        return this.notificationController;
+    }
 }

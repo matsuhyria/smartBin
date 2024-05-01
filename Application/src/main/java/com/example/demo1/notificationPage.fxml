@@ -60,7 +60,7 @@
                               <Image url="@humidityBackground.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="BOTTOM_LEFT" prefHeight="79.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the  bin is high! Empty the bin!" textAlignment="RIGHT">
+                        <Label alignment="BOTTOM_LEFT" prefHeight="79.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the bin is high! Empty the bin!" textAlignment="RIGHT">
                            <font>
                               <Font name="Aldrich Regular" size="40.0" />
                            </font>
