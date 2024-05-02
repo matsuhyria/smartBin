@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -20,6 +21,7 @@ public class MapController {
     private Stage stage = new Stage();
     private Scene scene;
     private Parent root;
+    private int numOfBins;
     private boolean changeInProcess;
     @FXML
     private AnchorPane grid;
@@ -28,6 +30,7 @@ public class MapController {
     private AnchorPane pane;
     @FXML
     private void initialize() throws IOException {
+        numOfBins = 0;
         changeInProcess = false;
         double[] coordinates = DatabaseHandler.getInstance().getLocations();
         int index = 0;
@@ -54,23 +57,41 @@ public class MapController {
     @FXML
     public void addBin() {
         changeInProcess = true;
+        numOfBins++;
     }
 
     @FXML
     public void placePointer(double x, double y) throws IOException {
+        numOfBins++;
         Circle pointer = getPointer();
         pointer.setLayoutX(x);
         pointer.setLayoutY(y);
-        System.out.println(x);
-        System.out.println(y);
         grid.getChildren().add(pointer);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("popOutLight.fxml"));
-        AnchorPane popOut = loader.load();
+        FXMLLoader loader = new FXMLLoader();
+
+        AnchorPane popOut = loader.load(getClass().getResource("popOutLight.fxml").openStream());
         popOut.setVisible(false);
+        Label name = (Label) popOut.lookup("#name");
+
+        SplitPane infoPop;
+        if (numOfBins == 1) {
+            loader.setLocation(getClass().getResource("bin1.fxml"));
+            infoPop = loader.load(getClass().getResource("bin1.fxml"));
+            infoPop.setVisible(false);
+        } else {
+            loader.setLocation(getClass().getResource("binOther.fxml"));
+            infoPop = loader.load(getClass().getResource("binOther.fxml"));
+            infoPop.setVisible(false);
+            name.setText("OTHER BIN");
+        }
+
+        infoPop.setLayoutX(x + 40.0);
+        infoPop.setLayoutY(y + 40.0);
 
         pointer.setOnMouseClicked(event -> {
             popOut.setVisible(!popOut.isVisible());
+            infoPop.setVisible(!infoPop.isVisible());
         });
 
         Label change = (Label) popOut.lookup("#changeLocation");
@@ -94,6 +115,7 @@ public class MapController {
         });
 
         pane.getChildren().add(popOut);
+        grid.getChildren().add(infoPop);
     }
 
     public void changeLocation(double x, double y) throws IOException {
