@@ -18,9 +18,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MapController {
-    private Stage stage = new Stage();
-    private Scene scene;
-    private Parent root;
     private int numOfBins;
     private boolean changeInProcess;
     @FXML
@@ -140,9 +137,9 @@ public class MapController {
 
     public void switchToMainPage(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 

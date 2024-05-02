@@ -10,7 +10,7 @@
 
 <SplitPane xmlns:fx="http://javafx.com/fxml" dividerPositions="0.18181818181818182" layoutX="112.0" layoutY="252.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="321.0">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: D3BB88;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: D3BB88;-fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
             <children>
                 <Label layoutX="10.0" layoutY="-7.0" text="OTHER BIN" textFill="#638889">
                     <font>
@@ -19,7 +19,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="317.0" style="-fx-background-color: EBD9B4;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="317.0" style="-fx-background-color: EBD9B4;-fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
             <children>
                 <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>

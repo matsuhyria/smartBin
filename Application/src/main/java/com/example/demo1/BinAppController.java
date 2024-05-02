@@ -11,9 +11,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BinAppController {
-    private Stage stage = new Stage();
-    private Scene scene;
-    private Parent root;
 
     private CardController bin1;
 
@@ -30,9 +27,9 @@ public class BinAppController {
 
     public void switchToMapPage(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(getClass().getResource("map.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("map.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
