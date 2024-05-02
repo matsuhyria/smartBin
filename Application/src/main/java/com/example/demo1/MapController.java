@@ -1,11 +1,13 @@
 package com.example.demo1;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +40,22 @@ public class MapController {
             index = index + 2;
 
         }
+    }
+
+    @FXML
+    private void setupButtonHover1(Button button) {
+
+            button.setScaleX(1.1);
+            button.setScaleY(1.1);
+
+    }
+
+    @FXML
+    private void setupButtonHover2(Button button) {
+
+            button.setScaleX(1.0);
+            button.setScaleY(1.0);
+
     }
 
     @FXML
@@ -93,22 +111,42 @@ public class MapController {
 
         Label change = (Label) popOut.lookup("#changeLocation");
 
+        change.setOnMouseEntered(event -> {
+            change.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
+        });
+
+        change.setOnMouseExited(event -> {
+            change.setStyle("");
+        });
+
         change.setOnMouseClicked(event -> {
+            change.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
                 changeLocation(x, y);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            change.setStyle("");
         });
 
         Label delete = (Label) popOut.lookup("#delete");
 
+        delete.setOnMouseEntered(event -> {
+            delete.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
+        });
+
+        delete.setOnMouseExited(event -> {
+            delete.setStyle("");
+        });
+
         delete.setOnMouseClicked(event -> {
+            delete.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
                 deleteLocation(x, y);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            delete.setStyle("");
         });
 
         pane.getChildren().add(popOut);

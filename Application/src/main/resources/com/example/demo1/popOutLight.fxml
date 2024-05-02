@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: EBD9B4; -fx-border-color: A6CA82; -fx-border-style: solid; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: EBD9B4; -fx-border-color: A6CA82; -fx-border-style: solid; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="300.0" style="-fx-background-color: D3BB88; -fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
          <children>
-            <Label fx:id="name" layoutX="0.0" layoutY="0.0" prefHeight="53.0" prefWidth="300.0" text="BIN 1" textFill="#638889" alignment="CENTER">
+            <Label fx:id="name" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="53.0" prefWidth="300.0" text="BIN 1" textFill="#638889">
                <font>
                   <Font size="40.0" />
                </font>
@@ -19,11 +20,17 @@
          <font>
             <Font size="30.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
       <Label fx:id="delete" layoutX="14.0" layoutY="97.0" prefHeight="53.0" prefWidth="232.0" text="delete" textFill="#628585">
          <font>
             <Font size="30.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
    </children>
 </AnchorPane>
