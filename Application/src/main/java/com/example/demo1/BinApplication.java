@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -20,20 +22,19 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class BinApplication extends Application {
 
     BinAppController contr;
+    NotificationController notificationController; 
+
+    private static final float HUMIDITY_THRESHOLD = 60.0f;
+    private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
+    private static final float FULLNESS_THRESHOLD = 80.0f;
+    private static final String FULLNESS_NOTIFICATION = "Bin fullness level is greater than 80%!";
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        contr = fxmlLoader.getController();
-
-        stage.setTitle("First Demo");
-        stage.setScene(scene);
-        stage.show();
-
+        SceneManager.getInstance().setStage(stage, 800, 600);
+        contr = SceneManager.getInstance().getBinController();
         setUpConnection();
-
+        notificationController = SceneManager.getInstance().getNotificationController();
     }
     public void setUpConnection(){
         String broker = "tcp://test.mosquitto.org:1883";
@@ -58,9 +59,16 @@ public class BinApplication extends Application {
                         //System.out.println("Topic: " + topic);
                         //System.out.println("QoS: " + message.getQos());
                         String msg = new String(message.getPayload());
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                        String formattedTime = formatter.format(now);
                         //System.out.println("Message content: " + msg);
                         if(topic.equals(humidTopic)){
                             contr.updateHumid(msg.substring(0,2));
+                            float humidityLevel = Float.parseFloat(msg);
+                            if(humidityLevel > HUMIDITY_THRESHOLD){
+                                notificationController.addNotification(false, HUMIDITY_NOTIFICATION, formattedTime);
+                            }
                         } else{
                             float distance;
                             if(Integer.parseInt(msg) > maxLength){
@@ -71,6 +79,9 @@ public class BinApplication extends Application {
                             System.out.println(distance);
                             System.out.println(Integer.parseInt(msg));
                             contr.updateFull(String.valueOf((int)distance));
+                            if(distance > FULLNESS_THRESHOLD){
+                                notificationController.addNotification(true, FULLNESS_NOTIFICATION, formattedTime);
+                            }
                         }
                     });
                 }
