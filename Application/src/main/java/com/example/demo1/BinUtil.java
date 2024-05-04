@@ -1,25 +1,33 @@
 package com.example.demo1;
 
+
+
 public class BinUtil {
-    public static int getX(double x) {
-        int gridWidth = 24;
-        double cellWidth = 62.1;
+    public static double getX(double x) {
+        double gridStart = 0.0;
+        double gridEnd = 1450.0;
 
-        int col = (int) Math.floor((x - 241) / cellWidth);
+        double xLayout;
+        if (x < gridStart+gridEnd/2){
+            xLayout = x + 30.0;
+        } else {
+            xLayout = x - 360.0;
+        }
 
-        col = Math.max(0, Math.min(col, gridWidth - 1));
-
-        return col;
+        return xLayout;
     }
 
-    public static int getY(double y) {
-        int gridHeight = 11;
-        double cellHeight = 67.3;
+    public static double getY(double y) {
+        double gridStart = 0.0;
+        double gridEnd = 630.0;;
 
-        int row = (int) Math.floor((y - 305) / cellHeight);
+        double yLayout;
+        if (y < gridStart+gridEnd/2){
+            yLayout = y - 50.0;
+        } else {
+            yLayout = y - 270.0;
+        }
 
-        row = Math.max(0, Math.min(row, gridHeight - 1));
-
-        return row;
+        return yLayout;
     }
 }

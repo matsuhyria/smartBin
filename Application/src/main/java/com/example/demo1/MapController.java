@@ -100,9 +100,11 @@ public class MapController {
             infoPop.setVisible(false);
             name.setText("OTHER BIN");
         }
+        double xCoordLayout = BinUtil.getX(x);
+        double yCoordLayout = BinUtil.getY(y);
 
-        infoPop.setLayoutX(x + 40.0);
-        infoPop.setLayoutY(y + 40.0);
+        infoPop.setLayoutX(xCoordLayout);
+        infoPop.setLayoutY(yCoordLayout);
 
         pointer.setOnMouseClicked(event -> {
             popOut.setVisible(!popOut.isVisible());
