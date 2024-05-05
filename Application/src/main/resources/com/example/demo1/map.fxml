@@ -75,7 +75,7 @@
       </HBox>
       <AnchorPane fx:id="pane" layoutX="1677.0" layoutY="559.0" prefHeight="314.0" prefWidth="236.0" />
       <AnchorPane fx:id="grid" layoutX="243.0" layoutY="242.0" onMouseClicked="#chooseNextPosition" prefHeight="629.0" prefWidth="1429.0" />
-      <Button layoutX="1677.0" layoutY="818.0" mnemonicParsing="false" onMouseClicked="#addBin" style="-fx-background-color: 0000;">
+      <Button fx:id="add" onMouseEntered="#highlightAdd" onMouseExited="#deHighlightAdd" layoutX="1677.0" layoutY="818.0" mnemonicParsing="false" onMouseClicked="#addBin" style="-fx-background-color: 0000;">
          <graphic>
             <ImageView fitHeight="181.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
                <image>

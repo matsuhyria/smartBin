@@ -10,9 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -27,6 +27,9 @@ public class MapController {
 
     @FXML
     private AnchorPane pane;
+
+    @FXML
+    private Button add;
     @FXML
     private void initialize() throws IOException {
         numOfBins = 0;
@@ -40,6 +43,18 @@ public class MapController {
             index = index + 2;
 
         }
+    }
+
+    @FXML
+    private void highlightAdd (){
+        ColorAdjust effect = new ColorAdjust();
+        effect.setBrightness(0.2);
+        add.setEffect(effect);
+    }
+
+    @FXML
+    private void deHighlightAdd (){
+        add.setEffect(null);
     }
 
     @FXML
