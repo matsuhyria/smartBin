@@ -1,7 +1,6 @@
 #ifndef indicat_h
 #define indicat_h
 #include <Adafruit_NeoPixel.h>
-#include <Math.h>
 
 class LedIndicator{
   public:

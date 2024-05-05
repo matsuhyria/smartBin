@@ -3,11 +3,20 @@ package com.example.demo1;
 import javafx.application.Platform;
 import org.eclipse.paho.client.mqttv3.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class MqttClientHandler {
 
     private static MqttClientHandler instance;
     private BinAppController contr;
     private MqttClient client;
+    NotificationController notificationController;
+
+    private static final float HUMIDITY_THRESHOLD = 60.0f;
+    private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
+    private static final float FULLNESS_THRESHOLD = 80.0f;
+    private static final String FULLNESS_NOTIFICATION = "Bin fullness level is greater than 80%!";
 
     String broker = "tcp://test.mosquitto.org:1883";
     String clientId = "SmartBinPlusMain";
@@ -25,6 +34,7 @@ public class MqttClientHandler {
         } catch (MqttException e) {
             e.printStackTrace();
         }
+        this.notificationController = SceneManager.getInstance().getNotificationController();
     }
     public void setController(BinAppController contr) {
         this.contr = contr;
@@ -57,8 +67,15 @@ public class MqttClientHandler {
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Platform.runLater(() -> {
                     String msg = new String(message.getPayload());
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    String formattedTime = formatter.format(now);
                     if(topic.equals(humidTopic)){
                         contr.updateHumid(msg.substring(0,2));
+                        float humidityLevel = Float.parseFloat(msg);
+                        if(humidityLevel > HUMIDITY_THRESHOLD){
+                            notificationController.addNotification(false, HUMIDITY_NOTIFICATION, formattedTime);
+                        }
                     } else{
                         float distance;
                         if(Integer.parseInt(msg) > maxLength){
@@ -67,6 +84,9 @@ public class MqttClientHandler {
                             distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
                         }
                         contr.updateFull(String.valueOf((int)distance));
+                        if(distance > FULLNESS_THRESHOLD){
+                            notificationController.addNotification(true, FULLNESS_NOTIFICATION, formattedTime);
+                        }
                     }
                 });
             }
