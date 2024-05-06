@@ -3,7 +3,10 @@
 #include "led_indicator.hpp"
 #include "MqttHandler.hpp"
 #include "buzzer.hpp"
-#include "secrets.hpp"
+#include "secrets_template.hpp"
+#include "TFT_eSPI.h"
+#include "ui.hpp"
+
 
 //buzzer
 #define BUZZER_PIN D0
@@ -29,6 +32,9 @@ const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
+TFT_eSPI tft;
+UserInterface ui(tft);
+
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
@@ -38,6 +44,7 @@ MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 void setup(){
   Serial.begin(115200);
   while (!Serial);
+  ui.setup();
   humidSensor.setup();
   led.setup();
   mqttHandler.setup();
@@ -58,6 +65,10 @@ void loop(){
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
+
+  ui.updateHumidity(humidity);
+  ui.updateDistance(distance);
+
   //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }
