@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox layoutX="1360.0" layoutY="33.0" prefHeight="88.0" prefWidth="383.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HeaderController">
+   <children>
+      <Button fx:id="mainPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+         <graphic>
+            <ImageView fx:id="mainPageImage" fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@OverviewClosed.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="notificationPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+         <graphic>
+            <ImageView fx:id="notificationPageImage" fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@NotificationClosed.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="mapPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+         <graphic>
+            <ImageView fx:id="mapPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@MapClosed.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="statsPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+         <graphic>
+            <ImageView fx:id="statsPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@StatisticsClosed.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</HBox>

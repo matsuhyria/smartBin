@@ -22,3 +22,11 @@ void Buzzer::notify(int distance, int threshold) {
         stopTone();
     }
 }
+
+/*void Buzzer::alarm(bool fire) { //alarm sound skeleton
+    if (fire) {
+        playTone(2000, 100);
+        delay(1000);
+        stopTone();
+    }
+}*/

@@ -7,6 +7,7 @@
 #include "TFT_eSPI.h"
 #include "ui.hpp"
 
+
 //buzzer
 #define BUZZER_PIN D0
 //bool fire = false;
@@ -32,9 +33,8 @@ const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
 TFT_eSPI tft;
-
-
 UserInterface ui(tft);
+
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
@@ -68,6 +68,7 @@ void loop(){
 
   ui.updateHumidity(humidity);
   ui.updateDistance(distance);
+
   //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }

@@ -1,7 +1,7 @@
 #ifndef SECRETS_H_TEMPLATE
 #define SECRETS_H_TEMPLATE
 
-#define WIFI_SSID "Yaroslav"
-#define WIFI_PASSWORD "12345678"
+#define WIFI_SSID "YOUR_WIFI"
+#define WIFI_PASSWORD "YOUR_PASSWORD"
 
 #endif
