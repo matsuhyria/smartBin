@@ -1,6 +1,5 @@
 package com.example.demo1;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,29 +49,29 @@ public class HeaderController implements Initializable{
     }
 
     private void switchToMainPage(){
-        deactivateImage(currentActiveImageView);
         SceneManager.getInstance().switchToMainPage();
+        deactivateImage(currentActiveImageView);
         currentActiveImageView = mainPageImage;
         setImage(mainPageImage, ImagePath.OVERVIEW_ACTIVE);
     }
 
     private void switchToNotificationPage(){
-        deactivateImage(currentActiveImageView);
         SceneManager.getInstance().switchToNotificationPage();
+        deactivateImage(currentActiveImageView);
         currentActiveImageView = notificationPageImage;
         setImage(notificationPageImage, ImagePath.NOTIFICATION_ACTIVE);
     }
 
     private void switchToMapPage(){
-        deactivateImage(currentActiveImageView);
         SceneManager.getInstance().switchToMapPage();
+        deactivateImage(currentActiveImageView);
         currentActiveImageView = mapPageImage;
         setImage(mapPageImage, ImagePath.MAP_ACTIVE);
     }
 
     private void switchToStatsPage(){
-        deactivateImage(currentActiveImageView);
         SceneManager.getInstance().switchToStatsPage();
+        deactivateImage(currentActiveImageView);
         currentActiveImageView = statsPageImage;
         setImage(statsPageImage, ImagePath.STATISTICS_ACTIVE);
     }

@@ -12,6 +12,7 @@ public class SceneManager {
     private Stage stage;
     private Pane mainPage;
     private Pane notificationPage;
+    private Pane mapPage;
     private NotificationController notificationController;
     private BinAppController binController;
 
@@ -32,6 +33,8 @@ public class SceneManager {
         FXMLLoader notificationLoader = new FXMLLoader(getClass().getResource("notificationPage.fxml"));
         notificationPage = notificationLoader.load();
         notificationController = notificationLoader.getController();
+        FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("map.fxml"));
+        mapPage = mapLoader.load();
         stage.setScene(new Scene(mainPage, height, width));
         stage.show();
     }
@@ -45,7 +48,7 @@ public class SceneManager {
     }
 
     public void switchToMapPage(){
-        //TO-DO
+        stage.getScene().setRoot(mapPage);
     }
 
     public void switchToStatsPage(){
