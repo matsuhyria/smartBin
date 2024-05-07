@@ -7,10 +7,9 @@
 #include "TFT_eSPI.h"
 #include "ui.hpp"
 
-
-//buzzer
+#define FLAME_PIN D6 
 #define BUZZER_PIN D0
-//bool fire = false;
+
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -33,8 +32,8 @@ const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
 TFT_eSPI tft;
-UserInterface ui(tft);
 
+UserInterface ui(tft);
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
@@ -42,8 +41,12 @@ LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 
 void setup(){
-  Serial.begin(115200);
+  Serial.begin(115200); //you need to open Serial Monitor for program to start
   while (!Serial);
+
+  //flame sensor
+  pinMode(FLAME_PIN, INPUT);
+
   ui.setup();
   humidSensor.setup();
   led.setup();
@@ -65,10 +68,22 @@ void loop(){
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
+  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
 
   ui.updateHumidity(humidity);
   ui.updateDistance(distance);
+  
+  //test case to check the flame sensor
+  if(isFlameDetected())
+  tft.fillScreen(TFT_RED);
+  else tft.fillScreen(TFT_GREEN);
 
-  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
+}
+
+boolean isFlameDetected()
+{
+    if(digitalRead(FLAME_PIN))
+    return false;
+    else return true;
 }
