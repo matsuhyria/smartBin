@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 public class SceneManager {
     private static SceneManager instance;
     private Stage stage;
+    private final Pane currentScene = new Pane();
     private Pane mainPage;
     private Pane notificationPage;
     private Pane mapPage;
+    private Pane header;
     private NotificationController notificationController;
     private BinAppController binController;
 
@@ -27,6 +29,8 @@ public class SceneManager {
 
     public void setStage(Stage stage, int height, int width) throws IOException{
         this.stage = stage;
+        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("header.fxml"));
+        header = headerLoader.load();
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
         mainPage = mainLoader.load();
         binController = mainLoader.getController();
@@ -35,20 +39,27 @@ public class SceneManager {
         notificationController = notificationLoader.getController();
         FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("map.fxml"));
         mapPage = mapLoader.load();
-        stage.setScene(new Scene(mainPage, height, width));
+        currentScene.getChildren().addAll(mainPage, header);
+        stage.setScene(new Scene(currentScene, height, width));
         stage.show();
     }
 
     public void switchToMainPage() {
-        stage.getScene().setRoot(mainPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(mainPage, header);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToNotificationPage() {
-        stage.getScene().setRoot(notificationPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(notificationPage, header);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToMapPage(){
-        stage.getScene().setRoot(mapPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(mapPage, header);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToStatsPage(){
