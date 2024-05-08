@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -15,8 +16,9 @@ public class SceneManager {
     private Pane notificationPage;
     private Pane mapPage;
     private Pane header;
+    private SplitPane binCard;
     private NotificationController notificationController;
-    private BinAppController binController;
+    private CardController binCardController;
 
     private SceneManager() {}
 
@@ -33,20 +35,22 @@ public class SceneManager {
         header = headerLoader.load();
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
         mainPage = mainLoader.load();
-        binController = mainLoader.getController();
+        FXMLLoader binCardLoader = new FXMLLoader(getClass().getResource("bin1.fxml"));
+        binCard = binCardLoader.load();
+        binCardController = binCardLoader.getController();
         FXMLLoader notificationLoader = new FXMLLoader(getClass().getResource("notificationPage.fxml"));
         notificationPage = notificationLoader.load();
         notificationController = notificationLoader.getController();
         FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("map.fxml"));
         mapPage = mapLoader.load();
-        currentScene.getChildren().addAll(mainPage, header);
+        currentScene.getChildren().addAll(mainPage, header, binCard);
         stage.setScene(new Scene(currentScene, height, width));
         stage.show();
     }
 
     public void switchToMainPage() {
         currentScene.getChildren().clear();
-        currentScene.getChildren().addAll(mainPage, header);
+        currentScene.getChildren().addAll(mainPage, header, binCard);
         stage.getScene().setRoot(currentScene);
     }
 
@@ -66,8 +70,8 @@ public class SceneManager {
         //TO-DO
     }
 
-    public BinAppController getBinController(){
-        return this.binController;
+    public CardController getBinCardController(){
+        return this.binCardController;
     }
 
     public NotificationController getNotificationController(){
