@@ -21,7 +21,7 @@
             <Font size="65.0" />
          </font>
       </Label>
-      <fx:include source="header.fxml" />
+      <!-- <fx:include source="header.fxml" /> -->
       <AnchorPane fx:id="pane" layoutX="1677.0" layoutY="559.0" prefHeight="314.0" prefWidth="236.0" />
       <AnchorPane fx:id="grid" layoutX="243.0" layoutY="242.0" onMouseClicked="#chooseNextPosition" prefHeight="629.0" prefWidth="1429.0" />
       <Button fx:id="add" onMouseEntered="#highlightAdd" onMouseExited="#deHighlightAdd" layoutX="1677.0" layoutY="818.0" mnemonicParsing="false" onMouseClicked="#addBin" style="-fx-background-color: 0000;">
