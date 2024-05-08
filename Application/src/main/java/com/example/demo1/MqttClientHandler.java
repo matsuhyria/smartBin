@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class MqttClientHandler {
 
     private static MqttClientHandler instance;
-    private BinAppController contr;
+    private CardController cardController;
     private MqttClient client;
     NotificationController notificationController;
 
@@ -35,9 +35,7 @@ public class MqttClientHandler {
             e.printStackTrace();
         }
         this.notificationController = SceneManager.getInstance().getNotificationController();
-    }
-    public void setController(BinAppController contr) {
-        this.contr = contr;
+        this.cardController = SceneManager.getInstance().getBinCardController();
     }
 
     public static MqttClientHandler getInstance() throws MqttException {
@@ -71,7 +69,7 @@ public class MqttClientHandler {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                     String formattedTime = formatter.format(now);
                     if(topic.equals(humidTopic)){
-                        contr.updateHumid(msg.substring(0,2));
+                        cardController.updateHumid(msg.substring(0,2));
                         float humidityLevel = Float.parseFloat(msg);
                         if(humidityLevel > HUMIDITY_THRESHOLD){
                             notificationController.addNotification(false, HUMIDITY_NOTIFICATION, formattedTime);
@@ -83,7 +81,7 @@ public class MqttClientHandler {
                         } else {
                             distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
                         }
-                        contr.updateFull(String.valueOf((int)distance));
+                        cardController.updateFull(String.valueOf((int)distance));
                         if(distance > FULLNESS_THRESHOLD){
                             notificationController.addNotification(true, FULLNESS_NOTIFICATION, formattedTime);
                         }

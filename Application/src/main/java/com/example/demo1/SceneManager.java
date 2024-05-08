@@ -4,17 +4,21 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SceneManager {
     private static SceneManager instance;
     private Stage stage;
+    private final Pane currentScene = new Pane();
     private Pane mainPage;
     private Pane notificationPage;
     private Pane mapPage;
+    private Pane header;
+    private SplitPane binCard;
     private NotificationController notificationController;
-    private BinAppController binController;
+    private CardController binCardController;
 
     private SceneManager() {}
 
@@ -27,36 +31,47 @@ public class SceneManager {
 
     public void setStage(Stage stage, int height, int width) throws IOException{
         this.stage = stage;
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
+        FXMLLoader headerLoader = new FXMLLoader(FXMLpath.HEADER.getFxmlPath());
+        header = headerLoader.load();
+        FXMLLoader mainLoader = new FXMLLoader(FXMLpath.MAIN_PAGE.getFxmlPath());
         mainPage = mainLoader.load();
-        binController = mainLoader.getController();
-        FXMLLoader notificationLoader = new FXMLLoader(getClass().getResource("notificationPage.fxml"));
+        FXMLLoader binCardLoader = new FXMLLoader(FXMLpath.BIN_CARD.getFxmlPath());
+        binCard = binCardLoader.load();
+        binCardController = binCardLoader.getController();
+        FXMLLoader notificationLoader = new FXMLLoader(FXMLpath.NOTIFICATION_PAGE.getFxmlPath());
         notificationPage = notificationLoader.load();
         notificationController = notificationLoader.getController();
-        FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("map.fxml"));
+        FXMLLoader mapLoader = new FXMLLoader(FXMLpath.MAP_PAGE.getFxmlPath());
         mapPage = mapLoader.load();
-        stage.setScene(new Scene(mainPage, height, width));
+        currentScene.getChildren().addAll(mainPage, header, binCard);
+        stage.setScene(new Scene(currentScene, height, width));
         stage.show();
     }
 
     public void switchToMainPage() {
-        stage.getScene().setRoot(mainPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(mainPage, header, binCard);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToNotificationPage() {
-        stage.getScene().setRoot(notificationPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(notificationPage, header);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToMapPage(){
-        stage.getScene().setRoot(mapPage);
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(mapPage, header);
+        stage.getScene().setRoot(currentScene);
     }
 
     public void switchToStatsPage(){
         //TO-DO
     }
 
-    public BinAppController getBinController(){
-        return this.binController;
+    public CardController getBinCardController(){
+        return this.binCardController;
     }
 
     public NotificationController getNotificationController(){
