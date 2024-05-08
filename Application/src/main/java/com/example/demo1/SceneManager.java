@@ -31,17 +31,17 @@ public class SceneManager {
 
     public void setStage(Stage stage, int height, int width) throws IOException{
         this.stage = stage;
-        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("header.fxml"));
+        FXMLLoader headerLoader = new FXMLLoader(FXMLpath.HEADER.getFxmlPath());
         header = headerLoader.load();
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(FXMLpath.MAIN_PAGE.getFxmlPath());
         mainPage = mainLoader.load();
-        FXMLLoader binCardLoader = new FXMLLoader(getClass().getResource("bin1.fxml"));
+        FXMLLoader binCardLoader = new FXMLLoader(FXMLpath.BIN_CARD.getFxmlPath());
         binCard = binCardLoader.load();
         binCardController = binCardLoader.getController();
-        FXMLLoader notificationLoader = new FXMLLoader(getClass().getResource("notificationPage.fxml"));
+        FXMLLoader notificationLoader = new FXMLLoader(FXMLpath.NOTIFICATION_PAGE.getFxmlPath());
         notificationPage = notificationLoader.load();
         notificationController = notificationLoader.getController();
-        FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("map.fxml"));
+        FXMLLoader mapLoader = new FXMLLoader(FXMLpath.MAP_PAGE.getFxmlPath());
         mapPage = mapLoader.load();
         currentScene.getChildren().addAll(mainPage, header, binCard);
         stage.setScene(new Scene(currentScene, height, width));
