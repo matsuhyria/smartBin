@@ -27,6 +27,7 @@ const char* password = WIFI_PASSWORD;
 const char* ID = "Wio-Terminal-group11"; 
 const char* pubTopic1 = "Sensors/Humidity";
 const char* pubTopic2 = "Sensors/Ultrasonic";
+const char* pubTopic3 = "Sensors/Flame";
 const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
@@ -70,19 +71,22 @@ void loop(){
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
   //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
 
-  ui.updateHumidity(humidity);
-  ui.updateDistance(distance);
-  
-  //test case to check the flame sensor
-  if(isFlameDetected())
-  tft.fillScreen(TFT_RED);
-  else tft.fillScreen(TFT_GREEN);
+  if(!isFlameDetected()){
+    tft.fillScreen(TFT_BLACK);
+    ui.updateHumidity(humidity);
+    ui.updateDistance(distance);
+  }else{
+    tft.fillScreen(TFT_RED);
+    ui.updateHumidity(humidity);
+    ui.updateDistance(distance);
+    const char* flamePayload = "Alarm";
+    mqttHandler.publish(pubTopic3, flamePayload);
+  }
 
   delay(500);
 }
 
-boolean isFlameDetected()
-{
+boolean isFlameDetected(){
     if(digitalRead(FLAME_PIN))
     return false;
     else return true;
