@@ -45,12 +45,24 @@ void setup(){
   Serial.begin(115200);
   while (!Serial);
 
+  //button
+  pinMode(WIO_5S_PRESS, INPUT_PULLUP);
   ui.showWelcomeScreen();
-  
-  humidSensor.setup();
-  led.setup();
-  mqttHandler.setup();
-  buzzer.setup();
+
+  // Wait for button press to continue
+  while (true){
+    if (digitalRead(WIO_5S_PRESS) == LOW){
+      humidSensor.setup();
+      led.setup();
+      buzzer.setup();
+      tft.fillScreen(TFT_BLACK);
+      tft.setCursor(70, 100);
+      tft.println("Connection ...");
+
+      mqttHandler.setup();
+      break;
+    } 
+  }
 }
 
 void loop(){
