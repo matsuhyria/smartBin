@@ -6,6 +6,8 @@ public:
     void setup();
     void updateHumidity(float humidity);
     void updateDistance(int distance);
+    void showWelcomeScreen();
+    void clearScreen();
 
 private:
     TFT_eSPI& _tft;

@@ -44,7 +44,9 @@ MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 void setup(){
   Serial.begin(115200);
   while (!Serial);
-  ui.setup();
+
+  ui.showWelcomeScreen();
+  
   humidSensor.setup();
   led.setup();
   mqttHandler.setup();
