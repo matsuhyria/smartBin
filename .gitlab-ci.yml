@@ -1,40 +1,66 @@
-image: ubuntu:latest
-variables:
-  INO_FILE: terminal.ino
-
-before_script:
-  - apt-get update
-  - apt-get install curl -y
-  - cd ~
-  - curl -L https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh > install.sh
-  - sh install.sh
-  - export PATH=$PATH:~/bin
-
-  - printf "board_manager:\n  additional_urls:\n    - https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json\n" > .arduino-cli.yaml
-  - arduino-cli core update-index --config-file .arduino-cli.yaml
-  - arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
-
-  - arduino-cli lib install PubSubClient@2.8.0
-  - arduino-cli lib install 'Seeed Arduino rpcWiFi'
-  - cd Arduino/libraries
-
-  - apt-get install git -y
-
-  - git clone https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger.git
-  - git clone https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor.git
-  - git clone https://github.com/adafruit/Adafruit_NeoPixel.git
-
-
 stages:
-  - build
+  - terminal-build
+  - java-build
 
-compile:
-  stage: build
+# This stage downloads all necessary libraries\dependencies for wio-terminal code and compiles it
+terminal-build:
   tags:
     - docker
-  script:                                                       
+  image: ubuntu:24.04
+  stage: terminal-build
+  script:
+    # Updating package lists before downloading
+    - apt-get update
+
+    # Installing cURL for transfering data over URL(to download scripts)
+    - apt-get install curl -y
+
+    - cd ~
+
+    # Donwloading arduino-cli installation script and saving it as install.sh in current working directory
+    - curl -L https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh > install.sh
+
+    # Running the script
+    - sh install.sh
+
+    # Since the arduino-cli is installed into current working directory/bin, we can just add it to PATH environment variable
+    # It basically tells the bash shell where to look for that program
+    # This allows you to use commands like arduino-cli from any directory without needing to specify the full path
+    - export PATH=$PATH:~/bin
+
+    # This part was copied from https://codeblog.dotsandbrackets.com/gitlab-ci-esp32-arduino/ | Credits to Pasha Klimenkov
+    # What it does is it configures arduino package manager to support downloading Seeed Studio boards
+    - printf "board_manager:\n  additional_urls:\n    - https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json\n" > .arduino-cli.yaml
+    - arduino-cli core update-index --config-file .arduino-cli.yaml
+    - arduino-cli core install Seeeduino:samd --config-file .arduino-cli.yaml
+
+    # Installing necessary libraries using arduino package manager
+    - arduino-cli lib install PubSubClient@2.8.0
+    - arduino-cli lib install 'Seeed Arduino rpcWiFi'
+    - cd Arduino/libraries
+
+    # Installing git to get other dependencies that are not found using arduino package manager
+    - apt-get install git -y
+    
+    # Installing necessary libraries by cloning them from github
+    - git clone https://github.com/Seeed-Studio/Seeed_Arduino_UltrasonicRanger.git
+    - git clone https://github.com/Seeed-Studio/Grove_Temperature_And_Humidity_Sensor.git
+    - git clone https://github.com/adafruit/Adafruit_NeoPixel.git                                           
     - arduino-cli lib list
     - cd ${CI_PROJECT_DIR}/Terminal
     - pwd
     - ls -l
     - arduino-cli compile --fqbn Seeeduino:samd:seeed_wio_terminal
+
+java-build:
+  tags:
+    - docker
+  image: maven:3.9.6-eclipse-temurin-21
+  stage: java-build
+  script:
+    - cd ${CI_PROJECT_DIR}/Application
+    - pwd
+    - ls -l
+
+    # Build java application using maven project management tool
+    - mvn package
