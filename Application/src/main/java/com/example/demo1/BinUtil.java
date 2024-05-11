@@ -1,7 +1,5 @@
 package com.example.demo1;
 
-
-
 public class BinUtil {
     public static double getX(double x) {
         double gridStart = 0.0;
