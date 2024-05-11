@@ -58,22 +58,6 @@ public class MapController {
     }
 
     @FXML
-    private void setupButtonHover1(Button button) {
-
-            button.setScaleX(1.1);
-            button.setScaleY(1.1);
-
-    }
-
-    @FXML
-    private void setupButtonHover2(Button button) {
-
-            button.setScaleX(1.0);
-            button.setScaleY(1.0);
-
-    }
-
-    @FXML
     private void chooseNextPosition(MouseEvent event) throws IOException {
         if (changeInProcess) {
             double x = event.getX();
@@ -90,6 +74,86 @@ public class MapController {
         numOfBins++;
     }
 
+    //@FXML
+//    public void placePointer(double x, double y) throws IOException {
+//        numOfBins++;
+//        Circle pointer = getPointer();
+//        pointer.setLayoutX(x);
+//        pointer.setLayoutY(y);
+//        grid.getChildren().add(pointer);
+//
+//        FXMLLoader loader = new FXMLLoader();
+//
+//        AnchorPane popOut = loader.load(getClass().getResource("popOutLight.fxml").openStream());
+//        popOut.setVisible(false);
+//        Label name = (Label) popOut.lookup("#name");
+//
+//        SplitPane infoPop;
+//        if (numOfBins == 1) {
+//            loader.setLocation(getClass().getResource("bin1.fxml"));
+//            infoPop = loader.load(getClass().getResource("bin1.fxml"));
+//            infoPop.setVisible(false);
+//        } else {
+//            loader.setLocation(getClass().getResource("binOther.fxml"));
+//            infoPop = loader.load(getClass().getResource("binOther.fxml"));
+//            infoPop.setVisible(false);
+//            name.setText("OTHER BIN");
+//        }
+//        double xCoordLayout = BinUtil.getX(x);
+//        double yCoordLayout = BinUtil.getY(y);
+//
+//        infoPop.setLayoutX(xCoordLayout);
+//        infoPop.setLayoutY(yCoordLayout);
+//
+//        pointer.setOnMouseClicked(event -> {
+//            popOut.setVisible(!popOut.isVisible());
+//            infoPop.setVisible(!infoPop.isVisible());
+//        });
+//
+//        Label change = (Label) popOut.lookup("#changeLocation");
+//
+//        change.setOnMouseEntered(event -> {
+//            change.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
+//        });
+//
+//        change.setOnMouseExited(event -> {
+//            change.setStyle("");
+//        });
+//
+//        change.setOnMouseClicked(event -> {
+//            change.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
+//            try {
+//                changeLocation(x, y);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            change.setStyle("");
+//        });
+//
+//        Label delete = (Label) popOut.lookup("#delete");
+//
+//        delete.setOnMouseEntered(event -> {
+//            delete.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
+//        });
+//
+//        delete.setOnMouseExited(event -> {
+//            delete.setStyle("");
+//        });
+//
+//        delete.setOnMouseClicked(event -> {
+//            delete.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
+//            try {
+//                deleteLocation(x, y);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            delete.setStyle("");
+//        });
+//
+//        pane.getChildren().add(popOut);
+//        grid.getChildren().add(infoPop);
+//    }
+
     @FXML
     public void placePointer(double x, double y) throws IOException {
         numOfBins++;
@@ -98,44 +162,61 @@ public class MapController {
         pointer.setLayoutY(y);
         grid.getChildren().add(pointer);
 
-        FXMLLoader loader = new FXMLLoader();
-
-        AnchorPane popOut = loader.load(getClass().getResource("popOutLight.fxml").openStream());
+        AnchorPane popOut = loadPopOutLight();
         popOut.setVisible(false);
-        Label name = (Label) popOut.lookup("#name");
 
-        SplitPane infoPop;
-        if (numOfBins == 1) {
-            loader.setLocation(getClass().getResource("bin1.fxml"));
-            infoPop = loader.load(getClass().getResource("bin1.fxml"));
-            infoPop.setVisible(false);
-        } else {
-            loader.setLocation(getClass().getResource("binOther.fxml"));
-            infoPop = loader.load(getClass().getResource("binOther.fxml"));
-            infoPop.setVisible(false);
-            name.setText("OTHER BIN");
-        }
+        SplitPane infoPop = loadBinInfo(numOfBins);
+        infoPop.setVisible(false);
+
         double xCoordLayout = BinUtil.getX(x);
         double yCoordLayout = BinUtil.getY(y);
-
         infoPop.setLayoutX(xCoordLayout);
         infoPop.setLayoutY(yCoordLayout);
 
+        setPointerClickBehavior(pointer, popOut, infoPop);
+        setChangeLocationBehavior(popOut, x, y);
+        setDeleteLocationBehavior(popOut, x, y);
+
+        pane.getChildren().add(popOut);
+        grid.getChildren().add(infoPop);
+    }
+
+    private AnchorPane loadPopOutLight() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("popOutLight.fxml"));
+        AnchorPane popOut = loader.load();
+        Label name = (Label) popOut.lookup("#name");
+        if (name != null) {
+            name.setText(numOfBins == 1 ? "Bin 1" : "OTHER BIN");
+        }
+        return popOut;
+    }
+
+    private SplitPane loadBinInfo(int numOfBins) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        SplitPane infoPop;
+        if (numOfBins == 1) {
+            infoPop = loader.load(getClass().getResource("bin1.fxml"));
+        } else {
+            infoPop = loader.load(getClass().getResource("binOther.fxml"));
+            Label name = (Label) infoPop.lookup("#name");
+            if (name != null) {
+                name.setText("OTHER BIN");
+            }
+        }
+        return infoPop;
+    }
+
+    private void setPointerClickBehavior(Circle pointer, AnchorPane popOut, SplitPane infoPop) {
         pointer.setOnMouseClicked(event -> {
             popOut.setVisible(!popOut.isVisible());
             infoPop.setVisible(!infoPop.isVisible());
         });
+    }
 
+    private void setChangeLocationBehavior(AnchorPane popOut, double x, double y) {
         Label change = (Label) popOut.lookup("#changeLocation");
-
-        change.setOnMouseEntered(event -> {
-            change.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
-        });
-
-        change.setOnMouseExited(event -> {
-            change.setStyle("");
-        });
-
+        change.setOnMouseEntered(event -> change.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;"));
+        change.setOnMouseExited(event -> change.setStyle(""));
         change.setOnMouseClicked(event -> {
             change.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
@@ -145,17 +226,12 @@ public class MapController {
             }
             change.setStyle("");
         });
+    }
 
+    private void setDeleteLocationBehavior(AnchorPane popOut, double x, double y) {
         Label delete = (Label) popOut.lookup("#delete");
-
-        delete.setOnMouseEntered(event -> {
-            delete.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;");
-        });
-
-        delete.setOnMouseExited(event -> {
-            delete.setStyle("");
-        });
-
+        delete.setOnMouseEntered(event -> delete.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;"));
+        delete.setOnMouseExited(event -> delete.setStyle(""));
         delete.setOnMouseClicked(event -> {
             delete.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
@@ -165,9 +241,6 @@ public class MapController {
             }
             delete.setStyle("");
         });
-
-        pane.getChildren().add(popOut);
-        grid.getChildren().add(infoPop);
     }
 
     public void changeLocation(double x, double y) throws IOException {
