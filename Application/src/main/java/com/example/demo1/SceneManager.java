@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class SceneManager {
     private static SceneManager instance;
     private Stage stage;
-    private final Pane currentScene = new Pane();
+    private final Pane currentPane = new Pane();
     private Pane mainPage;
     private Pane notificationPage;
     private Pane mapPage;
@@ -30,7 +30,11 @@ public class SceneManager {
     }
 
     public void setStage(Stage stage, int height, int width) throws IOException{
-        this.stage = stage;
+        if(stage != null){
+            this.stage = stage;
+        } else{
+            throw new IllegalArgumentException("Stage cannot be null");
+        }
         FXMLLoader headerLoader = new FXMLLoader(FXMLpath.HEADER.getFxmlPath());
         header = headerLoader.load();
         FXMLLoader mainLoader = new FXMLLoader(FXMLpath.MAIN_PAGE.getFxmlPath());
@@ -43,27 +47,27 @@ public class SceneManager {
         notificationController = notificationLoader.getController();
         FXMLLoader mapLoader = new FXMLLoader(FXMLpath.MAP_PAGE.getFxmlPath());
         mapPage = mapLoader.load();
-        currentScene.getChildren().addAll(mainPage, header, binCard);
-        stage.setScene(new Scene(currentScene, height, width));
+        currentPane.getChildren().addAll(mainPage, header, binCard);
+        stage.setScene(new Scene(currentPane, height, width));
         stage.show();
     }
 
     public void switchToMainPage() {
-        currentScene.getChildren().clear();
-        currentScene.getChildren().addAll(mainPage, header, binCard);
-        stage.getScene().setRoot(currentScene);
+        currentPane.getChildren().clear();
+        currentPane.getChildren().addAll(mainPage, header, binCard);
+        stage.getScene().setRoot(currentPane);
     }
 
     public void switchToNotificationPage() {
-        currentScene.getChildren().clear();
-        currentScene.getChildren().addAll(notificationPage, header);
-        stage.getScene().setRoot(currentScene);
+        currentPane.getChildren().clear();
+        currentPane.getChildren().addAll(notificationPage, header);
+        stage.getScene().setRoot(currentPane);
     }
 
     public void switchToMapPage(){
-        currentScene.getChildren().clear();
-        currentScene.getChildren().addAll(mapPage, header);
-        stage.getScene().setRoot(currentScene);
+        currentPane.getChildren().clear();
+        currentPane.getChildren().addAll(mapPage, header);
+        stage.getScene().setRoot(currentPane);
     }
 
     public void switchToStatsPage(){
@@ -76,5 +80,9 @@ public class SceneManager {
 
     public NotificationController getNotificationController(){
         return this.notificationController;
+    }
+
+    public Pane getCurrentPane(){
+        return currentPane;
     }
 }
