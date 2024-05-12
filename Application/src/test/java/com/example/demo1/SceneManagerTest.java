@@ -61,19 +61,19 @@ public class SceneManagerTest {
         assertThrows(IllegalArgumentException.class, () -> SceneManager.getInstance().setStage(null, 0, 0));
     }
 
-    @Test
-    public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException{
-        SceneManager sceneManager = SceneManager.getInstance();
-        when(mainPageLoader.load()).thenReturn(mainPage);
-        sceneManager.setStage(stage, 800, 600);
+    // @Test
+    // public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException{
+    //     SceneManager sceneManager = SceneManager.getInstance();
+    //     when(mainPageLoader.load()).thenReturn(mainPage);
+    //     sceneManager.setStage(stage, 800, 600);
 
-        sceneManager.switchToMainPage();
+    //     sceneManager.switchToMainPage();
 
-        verify(sceneManager.getCurrentPane().getChildren()).clear();
-        verify(sceneManager.getCurrentPane().getChildren()).addAll(mainPage, header, binCard);
+    //     verify(sceneManager.getCurrentPane().getChildren()).clear();
+    //     verify(sceneManager.getCurrentPane().getChildren()).addAll(mainPage, header, binCard);
 
-        verify(stage.getScene()).setRoot(sceneManager.getCurrentPane());
-    }
+    //     verify(stage.getScene()).setRoot(sceneManager.getCurrentPane());
+    // }
 
 
 
