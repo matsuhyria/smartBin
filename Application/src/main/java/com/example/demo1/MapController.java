@@ -1,12 +1,7 @@
 package com.example.demo1;
 
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -15,19 +10,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MapController {
     private int numOfBins;
     private boolean changeInProcess;
+
     @FXML
     private AnchorPane grid;
-
     @FXML
     private AnchorPane pane;
-
     @FXML
     private Button add;
     @FXML
@@ -183,4 +176,11 @@ public class MapController {
         return circle;
     }
 
+    public int getNumOfBins() {
+        return numOfBins;
+    }
+
+    public boolean isChangeInProcess() {
+        return changeInProcess;
+    }
 }
