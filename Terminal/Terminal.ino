@@ -4,13 +4,11 @@
 #include "MqttHandler.hpp"
 #include "buzzer.hpp"
 #include "secrets_template.hpp"
-#include "TFT_eSPI.h"
 #include "ui.hpp"
 
 
 //buzzer
 #define BUZZER_PIN D0
-//bool fire = false;
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -33,8 +31,8 @@ const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
 TFT_eSPI tft;
-UserInterface ui(tft);
 
+UserInterface ui(tft);
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
@@ -63,6 +61,10 @@ void setup(){
       break;
     } 
   }
+
+  ui.showHeader();
+  ui.distanceHeader();
+  ui.humidityHeader();
 }
 
 void loop(){
@@ -83,6 +85,5 @@ void loop(){
   ui.updateHumidity(humidity);
   ui.updateDistance(distance);
 
-  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }

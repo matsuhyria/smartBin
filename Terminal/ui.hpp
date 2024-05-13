@@ -8,6 +8,9 @@ public:
     void updateDistance(int distance);
     void showWelcomeScreen();
     void clearScreen();
+    void showHeader();
+    void distanceHeader();
+    void humidityHeader();
 
 private:
     TFT_eSPI& _tft;
