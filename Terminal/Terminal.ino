@@ -4,8 +4,8 @@
 #include "MqttHandler.hpp"
 #include "buzzer.hpp"
 #include "secrets_template.hpp"
-#include "TFT_eSPI.h"
 #include "ui.hpp"
+#include "flame_detector.hpp"
 
 #define FLAME_PIN D6 
 #define BUZZER_PIN D0
@@ -40,14 +40,13 @@ Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
+FlameDetector flameDetector(FLAME_PIN);
 
 void setup(){
   Serial.begin(115200); //you need to open Serial Monitor for program to start
   while (!Serial);
 
-  //flame sensor
-  pinMode(FLAME_PIN, INPUT);
-
+  flameDetector.setup();
   ui.setup();
   humidSensor.setup();
   led.setup();
@@ -69,9 +68,9 @@ void loop(){
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
-  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
+  
 
-  if(!isFlameDetected()){
+  if(!flameDetector.detect()){
     tft.fillScreen(TFT_BLACK);
     ui.updateHumidity(humidity);
     ui.updateDistance(distance);
@@ -81,13 +80,8 @@ void loop(){
     ui.updateDistance(distance);
     const char* flamePayload = "Alarm";
     mqttHandler.publish(pubTopic3, flamePayload);
+    buzzer.alarm();
   }
 
   delay(500);
-}
-
-boolean isFlameDetected(){
-    if(digitalRead(FLAME_PIN))
-    return false;
-    else return true;
 }
