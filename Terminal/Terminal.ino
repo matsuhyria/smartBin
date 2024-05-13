@@ -4,13 +4,12 @@
 #include "MqttHandler.hpp"
 #include "buzzer.hpp"
 #include "secrets_template.hpp"
-#include "TFT_eSPI.h"
 #include "ui.hpp"
+#include "flame_detector.hpp"
 
-
-//buzzer
+#define FLAME_PIN D6 
 #define BUZZER_PIN D0
-//bool fire = false;
+
 //Humidity
 #define DHT_PIN D2
 #define DHT_TYPE DHT11
@@ -28,22 +27,26 @@ const char* password = WIFI_PASSWORD;
 const char* ID = "Wio-Terminal-group11"; 
 const char* pubTopic1 = "Sensors/Humidity";
 const char* pubTopic2 = "Sensors/Ultrasonic";
+const char* pubTopic3 = "Sensors/Flame";
 const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
 TFT_eSPI tft;
-UserInterface ui(tft);
 
+UserInterface ui(tft);
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
+FlameDetector flameDetector(FLAME_PIN);
 
 void setup(){
-  Serial.begin(115200);
+  Serial.begin(115200); //you need to open Serial Monitor for program to start
   while (!Serial);
+
+  flameDetector.setup();
   ui.setup();
   humidSensor.setup();
   led.setup();
@@ -65,10 +68,20 @@ void loop(){
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
+  
 
-  ui.updateHumidity(humidity);
-  ui.updateDistance(distance);
+  if(!flameDetector.detect()){
+    tft.fillScreen(TFT_BLACK);
+    ui.updateHumidity(humidity);
+    ui.updateDistance(distance);
+  }else{
+    tft.fillScreen(TFT_RED);
+    ui.updateHumidity(humidity);
+    ui.updateDistance(distance);
+    const char* flamePayload = "Alarm";
+    mqttHandler.publish(pubTopic3, flamePayload);
+    buzzer.alarm();
+  }
 
-  //buzzer.alarm(distance, TURN_ON_DISTANCE_CM * 0.2);
   delay(500);
 }
