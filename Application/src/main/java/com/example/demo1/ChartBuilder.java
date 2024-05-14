@@ -1,50 +1,61 @@
 package com.example.demo1;
 
 import javafx.scene.Node;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class ChartBuilder {
     public Pane buildHumidityChart() {
         // Create axes
-        NumberAxis humidityAxis = new NumberAxis(0, 100, 10);
-        humidityAxis.setLabel("Percentage (%)");
-        NumberAxis timeAxis = new NumberAxis(6, 24, 1);
-        timeAxis.setLabel("Time");
+        NumberAxis timeAxis = new NumberAxis();
+        timeAxis.setLabel("Levels in %");
+        CategoryAxis humidityAxis = new CategoryAxis();
+        humidityAxis.setLabel("time (hours)");
 
-        timeAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(timeAxis) {
-            @Override
-            public String toString(Number object) {
-                int hour = object.intValue();
-                return String.format("%02d:00", hour);
-            }
-        });
+//        timeAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(timeAxis) {
+//            @Override
+//            public String toString(Number object) {
+//                int hour = object.intValue();
+//                return String.format("%02d:00", hour);
+//            }
+//        });
 
         // Create the area chart
-        AreaChart<Number, Number> areaChart = new AreaChart<>(timeAxis, humidityAxis);
-        areaChart.setTitle("Humidity Level");
+        BarChart<String, Number> barChart = new BarChart<>(humidityAxis, timeAxis);
+        barChart.setTitle("Fill & Humidity Levels");
 
         // Create sample data
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>(6, 20));
-        series.getData().add(new XYChart.Data<>(9, 40));
-        series.getData().add(new XYChart.Data<>(12, 60));
-        series.getData().add(new XYChart.Data<>(15, 80));
-        series.getData().add(new XYChart.Data<>(18, 70));
-        series.getData().add(new XYChart.Data<>(21, 50));
-        series.getData().add(new XYChart.Data<>(24, 30));
+        XYChart.Series<String, Number> fullness = new XYChart.Series<>();
+        fullness.setName("Fullness");
+        fullness.getData().add(new XYChart.Data<>("06.00", 20));
+        fullness.getData().add(new XYChart.Data<>("09.00", 40));
+        fullness.getData().add(new XYChart.Data<>("12.00", 60));
+        fullness.getData().add(new XYChart.Data<>("15.00", 80));
+        fullness.getData().add(new XYChart.Data<>("18.00", 70));
+        fullness.getData().add(new XYChart.Data<>("21.00", 50));
+        fullness.getData().add(new XYChart.Data<>("24.00", 30));
+
+        // Create sample data
+        XYChart.Series<String, Number> humidity = new XYChart.Series<>();
+        humidity.setName("Humidity");
+        humidity.getData().add(new XYChart.Data<>("06.00", 60));
+        humidity.getData().add(new XYChart.Data<>("09.00", 23));
+        humidity.getData().add(new XYChart.Data<>("12.00", 34));
+        humidity.getData().add(new XYChart.Data<>("15.00", 80));
+        humidity.getData().add(new XYChart.Data<>("18.00", 78));
+        humidity.getData().add(new XYChart.Data<>("21.00", 36));
+        humidity.getData().add(new XYChart.Data<>("24.00", 12));
 
         // Add data to the chart
-        areaChart.getData().add(series);
+        barChart.getData().add(fullness);
+        barChart.getData().add(humidity);
 
         String css = getClass().getResource("chartStyle.css").toExternalForm();
-        areaChart.getStylesheets().add(css);
+        barChart.getStylesheets().add(css);
 
         // Create a Pane to hold the chart
-        StackPane chartPane = new StackPane(areaChart);
+        StackPane chartPane = new StackPane(barChart);
         chartPane.setPrefSize(800, 600);
 
         return chartPane;
