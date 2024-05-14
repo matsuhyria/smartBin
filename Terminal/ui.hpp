@@ -11,6 +11,8 @@ public:
     void showHeader();
     void distanceHeader();
     void humidityHeader();
+    void showConnectionTitle();
+    void showConnectionLoop();
 
 private:
     TFT_eSPI& _tft;

@@ -45,7 +45,6 @@ void setup(){
 
   //button
   pinMode(WIO_5S_PRESS, INPUT_PULLUP);
-  
   ui.showWelcomeScreen();
 
   // Wait for button press to continue
@@ -54,11 +53,10 @@ void setup(){
       humidSensor.setup();
       led.setup();
       buzzer.setup();
-      tft.fillScreen(TFT_BLACK);
-      tft.setCursor(70, 100);
-      tft.println("Connection ...");
+      ui.showConnectionTitle();
+      //delay(20000);
 
-      //mqttHandler.setup();
+      mqttHandler.setup();
       break;
     } 
   }
@@ -70,7 +68,7 @@ void setup(){
 }
 
 void loop(){
- //mqttHandler.loop();
+ mqttHandler.loop();
   float humidity = humidSensor.read();
   Serial.println(humidity);
   int distance = ulsSensor.measureDistance();
@@ -78,10 +76,10 @@ void loop(){
   led.turnOn(distance);
   std::string humidityStr = std::to_string(humidity);
   const char* humidityPayload = humidityStr.c_str();
-  //mqttHandler.publish(pubTopic1, humidityPayload);
+  mqttHandler.publish(pubTopic1, humidityPayload);
   std::string ultrasonicStr = std::to_string(distance);
   const char* ultrasonicPayload = ultrasonicStr.c_str();
-  //mqttHandler.publish(pubTopic2, ultrasonicPayload);
+  mqttHandler.publish(pubTopic2, ultrasonicPayload);
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
 
   ui.updateHumidity(humidity);
