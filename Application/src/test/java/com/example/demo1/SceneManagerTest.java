@@ -1,51 +1,34 @@
 package com.example.demo1;
 
+import static org.junit.Assert.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import static org.mockito.Mockito.*;
-
 import java.io.IOException;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.testfx.api.FxRobot;
+import org.testfx.framework.junit.ApplicationTest;
 
-@ExtendWith(MockitoExtension.class)
-public class SceneManagerTest {
-    
-    @Mock
-    public FXMLLoader mainPageLoader;
+import com.kenai.jffi.Platform;
 
-    @Mock
-    private AnchorPane mainPage;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-    @Mock
-    private HBox header;
+public class SceneManagerTest extends ApplicationTest {
 
-    @Mock 
-    private SplitPane binCard;
+    private final SceneManager sceneManager = SceneManager.getInstance();
+    private Pane currentPane = sceneManager.getCurrentPane();
 
-    @Mock
-    private Stage stage;
+    // @Override
+    // public void start(Stage stage) throws IOException {
+    //     sceneManager.setStage(stage, 1920, 1080);
+    //     stage.show();
+    //     stage.toFront();
+    // }
 
-
-
-    // Singleton test
     @Test
     public void testGetInstance_shouldReturnSameInstance() {
         SceneManager firstInstance = SceneManager.getInstance();
@@ -61,21 +44,26 @@ public class SceneManagerTest {
         assertThrows(IllegalArgumentException.class, () -> SceneManager.getInstance().setStage(null, 0, 0));
     }
 
-    // @Test
-    // public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException{
-    //     SceneManager sceneManager = SceneManager.getInstance();
-    //     when(mainPageLoader.load()).thenReturn(mainPage);
-    //     sceneManager.setStage(stage, 800, 600);
+    @Test
+    public void testHeaderHasButtons_shouldEqualFour(){
+        Pane header = sceneManager.getHeader();
+        assertEquals(4, header.getChildren().size());
+    }
 
-    //     sceneManager.switchToMainPage();
+    @Test
+    public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException {
+        
+        Stage stage = new Stage();
+        sceneManager.setStage(stage, 1920, 1080);
+        stage.show();
+        stage.toFront();
+        Pane header = sceneManager.getHeader();
+        ImageView button = from(header).lookup("#mainPageImage").query();
 
-    //     verify(sceneManager.getCurrentPane().getChildren()).clear();
-    //     verify(sceneManager.getCurrentPane().getChildren()).addAll(mainPage, header, binCard);
+        new FxRobot().clickOn(button);
 
-    //     verify(stage.getScene()).setRoot(sceneManager.getCurrentPane());
-    // }
+        sleep(100);
 
-
-
-
+        assertNotSame(currentPane.getChildren(), button.getScene().getRoot());
+    }
 }
