@@ -8,6 +8,7 @@ public:
     void playTone(int frequency, int duration);
     void stopTone();
     void notify(int distance, int threshold);
+    void alarm();
 
 private:
     int _pin;
