@@ -8,7 +8,6 @@
     -fx-text-fill: #344955;
     -fx-font-size: 2.6em;
 }
-
 .axis-label {
     -fx-text-fill: #344955;
     -fx-font-size: 1.6em;
@@ -28,9 +27,16 @@
 .axis .axis-minor-tick-mark {
     -fx-stroke: #344955;
 }
+.chart-vertical-axis .axis-line,
+.chart-horizontal-axis .axis-line {
+    -fx-stroke: #1f6cff;
+}
 .chart-series-area-fill{
     -fx-fill: rgba(177, 229, 187, 0.56);
 }
 .chart-series-area-line{
     -fx-stroke: rgb(211, 246, 219);
+}
+.chart-symbol {
+    -fx-background-color: #1a7dff, white;
 }

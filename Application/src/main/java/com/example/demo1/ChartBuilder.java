@@ -1,9 +1,11 @@
 package com.example.demo1;
 
+import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class ChartBuilder {
     public Pane buildHumidityChart() {
@@ -38,8 +40,12 @@ public class ChartBuilder {
         // Add data to the chart
         areaChart.getData().add(series);
 
+        String css = getClass().getResource("chartStyle.css").toExternalForm();
+        areaChart.getStylesheets().add(css);
+
         // Create a Pane to hold the chart
-        Pane chartPane = new Pane(areaChart);
+        StackPane chartPane = new StackPane(areaChart);
+        chartPane.setPrefSize(800, 600);
 
         return chartPane;
     }

@@ -12,6 +12,7 @@ public class DatabaseHandler {
     private static final String DATABASE_NAME = "postgres";
     private Connection connection;
     private static final int MAX_BIN_COUNT = 5;
+
     private DatabaseHandler() {
         try {
             String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
@@ -24,6 +25,7 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
     public static DatabaseHandler getInstance() {
         if (instance == null) {

@@ -74,7 +74,6 @@ public class SceneManager {
         ChartBuilder chart = new ChartBuilder();
         statPage.getChildren().add(chart.buildHumidityChart());
         currentScene.getChildren().addAll(statPage, header);
-        currentScene.getStylesheets().add(getClass().getResource("chartStyle.css").toExternalForm());
         stage.getScene().setRoot(currentScene);
     }
 
