@@ -111,4 +111,23 @@ public class DataManager {
         }
         return dataPoints;
     }
+
+    public List<BinDataPoint> getWeeklyData(){
+        List<BinDataPoint> dataPoints = new ArrayList<>();
+
+        String query = "SELECT day_of_week, AVG(avg_humidity) AS avg_humidity, AVG(avg_fullness_level) AS avg_fullness_level FROM daily_bin_summary GROUP BY day_of_week";
+        try (Connection connection = databaseHandler.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String time = resultSet.getString("day_of_week");
+                float humidity = resultSet.getFloat("avg_humidity");
+                float fullness = resultSet.getFloat("avg_fullness_level");
+                dataPoints.add(new BinDataPoint(time, humidity, fullness));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataPoints;
+    }
 }

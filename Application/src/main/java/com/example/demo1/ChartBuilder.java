@@ -19,7 +19,7 @@ public class ChartBuilder {
 
 
         BarChart<String, Number> barChart = new BarChart<>(timeAxis, humidityAxis);
-        barChart.setTitle("Fill & Humidity Levels");
+        barChart.setTitle("Daily Fill & Humidity Levels");
 
         XYChart.Series<String, Number> fullness = new XYChart.Series<>();
         fullness.setName("Fullness");
@@ -50,9 +50,42 @@ public class ChartBuilder {
         return chartPane;
     }
 
-    public Pane buildWeeklyChart() {
-        //return buildDailyChart();
-        return new Pane();
+    public Pane buildWeeklyChart(List<BinDataPoint> dataPoints) {
+        // Create axes
+        NumberAxis humidityAxis = new NumberAxis();
+        humidityAxis.setLabel("Levels in %");
+        CategoryAxis dayAxis = new CategoryAxis();
+        dayAxis.setLabel("Day of the week");
+
+
+        BarChart<String, Number> barChart = new BarChart<>(dayAxis, humidityAxis);
+        barChart.setTitle("Weekly Fill & Humidity Levels");
+
+        XYChart.Series<String, Number> fullness = new XYChart.Series<>();
+        fullness.setName("Fullness");
+
+        XYChart.Series<String, Number> humidity = new XYChart.Series<>();
+        humidity.setName("Humidity");
+
+        // Populate the series with data points
+        for (BinDataPoint dataPoint : dataPoints) {
+            String time = dataPoint.getTime();
+            fullness.getData().add(new XYChart.Data<>(time, dataPoint.getFullness()));
+            humidity.getData().add(new XYChart.Data<>(time, dataPoint.getHumidity()));
+        }
+
+
+        barChart.getData().add(fullness);
+        barChart.getData().add(humidity);
+
+        String css = getClass().getResource("chartStyle.css").toExternalForm();
+        barChart.getStylesheets().add(css);
+
+        // Create a Pane to hold the chart
+        StackPane chartPane = new StackPane(barChart);
+        chartPane.setPrefSize(800, 600);
+
+        return chartPane;
     }
 
 }

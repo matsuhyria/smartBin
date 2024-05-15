@@ -56,7 +56,7 @@ public class StatisticsController {
 
     @FXML
     private void showWeekly() {
-        Pane weeklyChart = chartBuilder.buildWeeklyChart();
+        Pane weeklyChart = chartBuilder.buildWeeklyChart(dataManager.getWeeklyData());
 
         chartPane.getChildren().clear();
         chartPane.getChildren().add(weeklyChart);
