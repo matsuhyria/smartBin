@@ -24,12 +24,13 @@ In summary, SmartBin+ transforms waste management in fast food restaurants, offe
     - [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor), by Adafruit Industries
     - [DHT sensor library](https://github.com/adafruit/DHT-sensor-library), by Adafruit Industries
     - [PubSubClient](https://pubsubclient.knolleary.net/), by Nick O'Leary
-    - [Seeed_Arduino_FS](https://github.com/Seeed-Studio/Seeed_Arduino_FS), by Seeed Studio -[Seeed_Arduino_RTC](https://github.com/Seeed-Studio/Seeed_Arduino_RTC), by Seeed Studio
+    - [Seeed_Arduino_RTC](https://github.com/Seeed-Studio/Seeed_Arduino_RTC), by Seeed Studio
     - [Seeed_Arduino_SFUD](https://github.com/Seeed-Studio/Seeed_Arduino_SFUD), by Seeed Studio
     - [Seeed_Arduino_rpcUnified](https://github.com/Seeed-Studio/Seeed_Arduino_rpcUnified), by Seeed Studio
     - [Seeed_Arduino_rpcWiFi](https://github.com/Seeed-Studio/Seeed_Arduino_rpcWiFi), by Seeed Studio
     - [Seeed_Arduino_mbedtls](https://github.com/Seeed-Studio/Seeed_Arduino_mbedtls), by Seeed Studio
     - [Ultrasonic](https://github.com/ErickSimoes/Ultrasonic), by Erick Simoes
+    - [FreeRTOS](https://github.com/feilipu/Arduino_FreeRTOS_Library), by feilipu
 
 4.  Wio Terminal Grove Sensors:
 
