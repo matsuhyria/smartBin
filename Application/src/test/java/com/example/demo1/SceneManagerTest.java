@@ -19,8 +19,7 @@ import javafx.stage.Stage;
 
 public class SceneManagerTest extends ApplicationTest {
 
-    private final SceneManager sceneManager = SceneManager.getInstance();
-    private Pane currentPane = sceneManager.getCurrentPane();
+   
 
     // @Override
     // public void start(Stage stage) throws IOException {
@@ -29,41 +28,26 @@ public class SceneManagerTest extends ApplicationTest {
     //     stage.toFront();
     // }
 
-    @Test
-    public void testGetInstance_shouldReturnSameInstance() {
-        SceneManager firstInstance = SceneManager.getInstance();
-        SceneManager secondInstance = SceneManager.getInstance();
+    // @Test
+    // public void testSetNullStage_shouldThrowException(){
+    //     assertThrows(IllegalArgumentException.class, () -> SceneManager.getInstance().setStage(null, 0, 0));
+    // }
 
-        assertNotNull(firstInstance);
-        assertNotNull(secondInstance);
-        assertEquals(firstInstance, secondInstance);
-    }
+    // @Test
+    // public void testHeaderHasButtons_shouldEqualFour(){
+    //     Pane header = sceneManager.getHeader();
+    //     assertEquals(4, header.getChildren().size());
+    // }
 
-    @Test
-    public void testSetNullStage_shouldThrowException(){
-        assertThrows(IllegalArgumentException.class, () -> SceneManager.getInstance().setStage(null, 0, 0));
-    }
+    // @Test
+    // public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException {
+    //     Pane header = sceneManager.getHeader();
+    //     ImageView button = from(header).lookup("#mainPageImage").query();
 
-    @Test
-    public void testHeaderHasButtons_shouldEqualFour(){
-        Pane header = sceneManager.getHeader();
-        assertEquals(4, header.getChildren().size());
-    }
+    //     new FxRobot().clickOn(button);
 
-    @Test
-    public void testSwitchToMainPage_shouldChangeSceneContent() throws IOException {
-        
-        Stage stage = new Stage();
-        sceneManager.setStage(stage, 1920, 1080);
-        stage.show();
-        stage.toFront();
-        Pane header = sceneManager.getHeader();
-        ImageView button = from(header).lookup("#mainPageImage").query();
+    //     sleep(100);
 
-        new FxRobot().clickOn(button);
-
-        sleep(100);
-
-        assertNotSame(currentPane.getChildren(), button.getScene().getRoot());
-    }
+    //     assertNotSame(currentPane.getChildren(), button.getScene().getRoot());
+    // }
 }

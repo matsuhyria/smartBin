@@ -37,6 +37,11 @@ public class HeaderController implements Initializable{
     private ImageView currentActiveImageView;
 
     private static final Map<ImagePath, Image> imageCache = new HashMap<>();
+    private final SceneSwitcher sceneSwitcher;
+
+    public HeaderController(SceneSwitcher sceneSwitcher){
+        this.sceneSwitcher = sceneSwitcher;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,28 +54,28 @@ public class HeaderController implements Initializable{
     }
 
     private void switchToMainPage(){
-        SceneManager.getInstance().switchToMainPage();
+        sceneSwitcher.switchToMainPage();
         deactivateImage(currentActiveImageView);
         currentActiveImageView = mainPageImage;
         setImage(mainPageImage, ImagePath.OVERVIEW_ACTIVE);
     }
 
     private void switchToNotificationPage(){
-        SceneManager.getInstance().switchToNotificationPage();
+        sceneSwitcher.switchToNotificationPage();
         deactivateImage(currentActiveImageView);
         currentActiveImageView = notificationPageImage;
         setImage(notificationPageImage, ImagePath.NOTIFICATION_ACTIVE);
     }
 
     private void switchToMapPage(){
-        SceneManager.getInstance().switchToMapPage();
+        sceneSwitcher.switchToMapPage();
         deactivateImage(currentActiveImageView);
         currentActiveImageView = mapPageImage;
         setImage(mapPageImage, ImagePath.MAP_ACTIVE);
     }
 
     private void switchToStatsPage(){
-        SceneManager.getInstance().switchToStatsPage();
+        sceneSwitcher.switchToStatsPage();
         deactivateImage(currentActiveImageView);
         currentActiveImageView = statsPageImage;
         setImage(statsPageImage, ImagePath.STATISTICS_ACTIVE);
@@ -91,7 +96,7 @@ public class HeaderController implements Initializable{
     private void setImage(ImageView imageView, ImagePath image) {
         Image pic = imageCache.get(image);
         if (pic == null) {
-            pic = new Image(getClass().getResourceAsStream(image.getPath()));
+            pic = new Image(image.getPath().toString());
             imageCache.put(image, pic);
         }
         imageView.setImage(pic);

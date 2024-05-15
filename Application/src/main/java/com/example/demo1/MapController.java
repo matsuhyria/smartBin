@@ -2,20 +2,25 @@ package com.example.demo1;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 public class MapController {
     private int numOfBins;
     private boolean changeInProcess;
+    private CardController cardController;
 
     @FXML
     private AnchorPane grid;
@@ -34,8 +39,11 @@ public class MapController {
             double y = coordinates[index + 1];
             placePointer(x, y);
             index = index + 2;
-
         }
+    }
+
+    public MapController(CardController cController){
+        cardController = cController;
     }
 
     @FXML
@@ -78,7 +86,7 @@ public class MapController {
         AnchorPane popOut = loadPopOutLight();
         popOut.setVisible(false);
 
-        SplitPane infoPop = loadBinInfo(numOfBins);
+        Pane infoPop = loadBinInfo(numOfBins);
         infoPop.setVisible(false);
 
         double xCoordLayout = BinUtil.getX(x);
@@ -104,13 +112,13 @@ public class MapController {
         return popOut;
     }
 
-    private SplitPane loadBinInfo(int numOfBins) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        SplitPane infoPop;
+    private Pane loadBinInfo(int numOfBins) throws IOException {
+
+        Pane infoPop;
         if (numOfBins == 1) {
-            infoPop = loader.load(getClass().getResource("bin1.fxml"));
+            infoPop = Util.load(FXMLpath.BIN_CARD, cardController);
         } else {
-            infoPop = loader.load(getClass().getResource("binOther.fxml"));
+            infoPop = Util.load(FXMLpath.BIN_CARD_OTHER);
             Label name = (Label) infoPop.lookup("#name");
             if (name != null) {
                 name.setText("OTHER BIN");
@@ -119,7 +127,7 @@ public class MapController {
         return infoPop;
     }
 
-    private void setPointerClickBehavior(Circle pointer, AnchorPane popOut, SplitPane infoPop) {
+    private void setPointerClickBehavior(Circle pointer, AnchorPane popOut, Pane infoPop) {
         pointer.setOnMouseClicked(event -> {
             popOut.setVisible(!popOut.isVisible());
             infoPop.setVisible(!infoPop.isVisible());

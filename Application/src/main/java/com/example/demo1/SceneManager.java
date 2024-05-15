@@ -1,6 +1,8 @@
 package com.example.demo1;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,25 +10,20 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class SceneManager {
-    private static SceneManager instance;
+public class SceneManager implements SceneSwitcher{
     private Stage stage;
-    private final Pane currentPane = new Pane();
-    private Pane mainPage;
-    private Pane notificationPage;
-    private Pane mapPage;
-    private Pane header;
-    private SplitPane binCard;
+    private final Pane rootPane = new Pane();
+    private final Map<FXMLpath, Pane> sceneCache = new HashMap<>();
     private NotificationController notificationController;
-    private CardController binCardController;
+    private CardController cardController;
+    private HeaderController headerController;
+    private MapController mapController;
 
-    private SceneManager() {}
-
-    public static SceneManager getInstance(){
-        if(instance == null){
-            instance = new SceneManager();
-        }
-        return instance;
+    public SceneManager(NotificationController nController, CardController cController, MapController mController) {
+        notificationController = nController;
+        cardController = cController;
+        mapController = mController;
+        headerController = new HeaderController(this);
     }
 
     public void setStage(Stage stage, int height, int width) throws IOException{
@@ -35,54 +32,73 @@ public class SceneManager {
         } else{
             throw new IllegalArgumentException("Stage cannot be null");
         }
-        FXMLLoader headerLoader = new FXMLLoader(FXMLpath.HEADER.getFxmlPath());
-        header = headerLoader.load();
-        FXMLLoader mainLoader = new FXMLLoader(FXMLpath.MAIN_PAGE.getFxmlPath());
-        mainPage = mainLoader.load();
-        FXMLLoader binCardLoader = new FXMLLoader(FXMLpath.BIN_CARD.getFxmlPath());
-        binCard = binCardLoader.load();
-        binCardController = binCardLoader.getController();
-        FXMLLoader notificationLoader = new FXMLLoader(FXMLpath.NOTIFICATION_PAGE.getFxmlPath());
-        notificationPage = notificationLoader.load();
-        notificationController = notificationLoader.getController();
-        FXMLLoader mapLoader = new FXMLLoader(FXMLpath.MAP_PAGE.getFxmlPath());
-        mapPage = mapLoader.load();
-        currentPane.getChildren().addAll(mainPage, header, binCard);
-        stage.setScene(new Scene(currentPane, height, width));
-        stage.show();
+        
+        initializeSceneCache();
+
+        rootPane.getChildren().addAll(sceneCache.get(FXMLpath.MAIN_PAGE), sceneCache.get(FXMLpath.HEADER), sceneCache.get(FXMLpath.BIN_CARD));
+        stage.setScene(new Scene(rootPane, height, width));
     }
 
+    @Override
     public void switchToMainPage() {
-        currentPane.getChildren().clear();
-        currentPane.getChildren().addAll(mainPage, header, binCard);
-        stage.getScene().setRoot(currentPane);
+        switchScene(FXMLpath.MAIN_PAGE);
     }
 
+    @Override
     public void switchToNotificationPage() {
-        currentPane.getChildren().clear();
-        currentPane.getChildren().addAll(notificationPage, header);
-        stage.getScene().setRoot(currentPane);
+        switchScene(FXMLpath.NOTIFICATION_PAGE);
     }
 
+    @Override
     public void switchToMapPage(){
-        currentPane.getChildren().clear();
-        currentPane.getChildren().addAll(mapPage, header);
-        stage.getScene().setRoot(currentPane);
+        switchScene(FXMLpath.MAP_PAGE);
     }
 
+    @Override
     public void switchToStatsPage(){
         //TO-DO
     }
 
-    public CardController getBinCardController(){
-        return this.binCardController;
+    private void switchScene(FXMLpath path) {
+        Pane pane = sceneCache.get(path);
+        if (pane == null) {
+          throw new IllegalStateException("Scene with path " + path + " not found in sceneCache");
+        }
+        rootPane.getChildren().clear();
+        if (path == FXMLpath.MAIN_PAGE) {
+            rootPane.getChildren().addAll(pane, sceneCache.get(FXMLpath.HEADER), sceneCache.get(FXMLpath.BIN_CARD));
+        } else {
+            rootPane.getChildren().addAll(pane, sceneCache.get(FXMLpath.HEADER));
+        }
+        stage.getScene().setRoot(rootPane);
     }
 
-    public NotificationController getNotificationController(){
-        return this.notificationController;
+    private void initializeSceneCache() throws IOException{
+        Pane header = Util.load(FXMLpath.HEADER, headerController);
+        sceneCache.put(FXMLpath.HEADER, header);
+
+        Pane mainPage = Util.load(FXMLpath.MAIN_PAGE);
+        sceneCache.put(FXMLpath.MAIN_PAGE, mainPage);
+        
+        Pane binCard = Util.load(FXMLpath.BIN_CARD, cardController);
+        sceneCache.put(FXMLpath.BIN_CARD, binCard);
+
+        Pane notificationPage = Util.load(FXMLpath.NOTIFICATION_PAGE, notificationController);
+        sceneCache.put(FXMLpath.NOTIFICATION_PAGE, notificationPage);
+
+        Pane mapPage = Util.load(FXMLpath.MAP_PAGE, mapController);
+        sceneCache.put(FXMLpath.MAP_PAGE, mapPage);
     }
 
     public Pane getCurrentPane(){
-        return currentPane;
+        return rootPane;
+    }
+
+    public Pane getHeader() {
+        return sceneCache.get(FXMLpath.HEADER);
+    }
+
+    public Pane getBinCard(){
+        return sceneCache.get(FXMLpath.BIN_CARD);
     }
 }

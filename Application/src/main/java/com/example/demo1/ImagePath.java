@@ -1,5 +1,7 @@
 package com.example.demo1;
 
+import java.net.URL;
+
 public enum ImagePath {
     
     OVERVIEW_ACTIVE("OverviewActive.png"),
@@ -18,7 +20,7 @@ public enum ImagePath {
         this.path = path;
     }
 
-    public String getPath() {
-        return path;
+    public URL getPath() {
+        return getClass().getResource(path);
     }
 }

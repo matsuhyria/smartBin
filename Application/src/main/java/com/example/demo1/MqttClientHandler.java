@@ -5,43 +5,36 @@ import org.eclipse.paho.client.mqttv3.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MqttClientHandler {
 
-    private static MqttClientHandler instance;
-    private CardController cardController;
+    private static final MqttClientHandler instance = new MqttClientHandler();
     private MqttClient client;
-    NotificationController notificationController;
+    private final List<MQTTDataObserver> mqttDataObservers = new ArrayList<>();
+    private final List<MQTTAlarmObserver> mqttAlarmObservers = new ArrayList<>();
 
-    private static final float HUMIDITY_THRESHOLD = 60.0f;
-    private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
-    private static final float FULLNESS_THRESHOLD = 80.0f;
-    private static final String FULLNESS_NOTIFICATION = "Bin fullness level is greater than 80%!";
+    public static final String broker = "tcp://test.mosquitto.org:1883";
+    public static final String clientId = "SmartBinPlusMain";
+    public static final String HUMIDITY_TOPIC = "Sensors/Humidity";
+    public static final String ULS_TOPIC = "Sensors/Ultrasonic";
+    public static final String ALARM_TOPIC = "Sensors/Flame";
+    public static final float BIN_MAX_LENGTH = 50;
+    public static final int qos = 1;
 
-    String broker = "tcp://test.mosquitto.org:1883";
-    String clientId = "SmartBinPlusMain";
-    String humidTopic = "Sensors/Humidity";
-    String ulsTopic = "Sensors/Ultrasonic";
-    float maxLength = 50;
-    int qos = 1;
-
-    private MqttClientHandler() throws MqttException {
-        this.client = new MqttClient(broker, clientId);
+    private MqttClientHandler() { 
         try {
+            this.client = new MqttClient(broker, clientId);
             setCallback();
             connect();
             subscribe();
         } catch (MqttException e) {
             e.printStackTrace();
         }
-        this.notificationController = SceneManager.getInstance().getNotificationController();
-        this.cardController = SceneManager.getInstance().getBinCardController();
     }
 
-    public static MqttClientHandler getInstance() throws MqttException {
-        if (instance == null) {
-            instance = new MqttClientHandler();
-        }
+    public static MqttClientHandler getInstance() {
         return instance;
     }
 
@@ -51,9 +44,9 @@ public class MqttClientHandler {
     }
 
     public void subscribe() throws MqttException {
-        client.subscribe(humidTopic, qos);
-        client.subscribe(ulsTopic, qos);
-
+        client.subscribe(HUMIDITY_TOPIC, qos);
+        client.subscribe(ULS_TOPIC, qos);
+        client.subscribe(ALARM_TOPIC, qos);
     }
 
     public void setCallback() {
@@ -65,30 +58,18 @@ public class MqttClientHandler {
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Platform.runLater(() -> {
                     String msg = new String(message.getPayload());
-                    LocalDateTime now = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                    String formattedTime = formatter.format(now);
-                    if(topic.equals(humidTopic)){
-                        cardController.updateHumid(msg.substring(0,2));
-                        float humidityLevel = Float.parseFloat(msg);
-                        if(humidityLevel > HUMIDITY_THRESHOLD){
-                            notificationController.addNotification(false, HUMIDITY_NOTIFICATION, formattedTime);
-                        }
-                    } else{
-                        float distance;
-                        if(Integer.parseInt(msg) > maxLength){
-                            distance = 0;
-                        } else {
-                            distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
-                        }
-                        cardController.updateFull(String.valueOf((int)distance));
-                        if(distance > FULLNESS_THRESHOLD){
-                            notificationController.addNotification(true, FULLNESS_NOTIFICATION, formattedTime);
-                        }
-                    }
-                });
-            }
+                    float value = Float.parseFloat(msg);
 
+                    if(topic.equals(HUMIDITY_TOPIC)){
+                        handleHumidityMessage(value);
+                    } else if(topic.equals(ULS_TOPIC)){
+                        handleUltrasonicMessage(value);
+                    } else{
+                        handleAlarmMessage();
+                    }});
+                }
+
+            @Override
             public void deliveryComplete(IMqttDeliveryToken token) {
                 System.out.println("Delivery complete: " + token.isComplete());
             }
@@ -100,5 +81,31 @@ public class MqttClientHandler {
 
     public void close() throws MqttException {
         client.close();
+    }
+
+    public void registerDataObserver(MQTTDataObserver obs){
+        mqttDataObservers.add(obs);
+    }
+
+    public void registerAlarmObserver(MQTTAlarmObserver obs){
+        mqttAlarmObservers.add(obs);
+    }
+
+    private void handleHumidityMessage(float value){
+        for(MQTTDataObserver obs : mqttDataObservers){
+            obs.onHumidityUpdate(value);
+        }
+    }
+
+    private void handleUltrasonicMessage(float value){
+        for(MQTTDataObserver obs : mqttDataObservers){
+            obs.onFullnessUpdate(value);
+        }
+    }
+
+    private void handleAlarmMessage(){
+        for(MQTTAlarmObserver obs : mqttAlarmObservers){
+            obs.onAlarmUpdate();
+        }
     }
 }

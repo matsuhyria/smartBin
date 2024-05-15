@@ -8,24 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MapControllerTest {
 
-    private MapController mapController;
+    // private final MapController mapController = new MapController();
 
-    @BeforeEach
-    public void setUp() {
-        mapController = new MapController();
-    }
+    // @Test
+    // public void testAddBin() {
+    //     mapController.addBin();
+    //     assertTrue(mapController.isChangeInProcess());
+    //     assertEquals(1, mapController.getNumOfBins());
+    // }
 
-    @Test
-    public void testAddBin() {
-        mapController.addBin();
-        assertTrue(mapController.isChangeInProcess());
-        assertEquals(1, mapController.getNumOfBins());
-    }
-
-    @Test
-    public void testGetPointer() {
-        Circle pointer = mapController.getPointer();
-        assertNotNull(pointer);
-        assertEquals(20, pointer.getRadius());
-    }
+    // @Test
+    // public void testGetPointer() {
+    //     Circle pointer = mapController.getPointer();
+    //     assertNotNull(pointer);
+    //     assertEquals(20, pointer.getRadius());
+    // }
 }

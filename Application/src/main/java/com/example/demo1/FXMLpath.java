@@ -7,7 +7,8 @@ public enum FXMLpath {
     MAIN_PAGE("mainPage.fxml"),
     NOTIFICATION_PAGE("notificationPage.fxml"),
     MAP_PAGE("map.fxml"),
-    BIN_CARD("bin1.fxml");
+    BIN_CARD("bin1.fxml"),
+    BIN_CARD_OTHER("binOther.fxml");
 
     private final String fxmlPath;
 

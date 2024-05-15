@@ -3,25 +3,26 @@ package com.example.demo1;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;
-import org.eclipse.paho.client.mqttv3.MqttException;
 
 
-public class BinApplication extends Application {
-    MqttClientHandler mqttClientHandler;
-
+    public class BinApplication extends Application {
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 800; 
 
     @Override
     public void start(Stage stage) throws IOException {
-        SceneManager.getInstance().setStage(stage, 800, 600);
-        setUpConnection();
-    }
-
-    public void setUpConnection() {
-        try {
-            mqttClientHandler = MqttClientHandler.getInstance();
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
+        NotificationController notificationController = new NotificationController();
+        CardController cardControllerMain = new CardController();
+        CardController cardControllerMap = new CardController();
+        MapController mapController = new MapController(cardControllerMap);
+        SceneManager sceneManager = new SceneManager(notificationController, cardControllerMain, mapController);
+        sceneManager.setStage(stage, HEIGHT, WIDTH);
+        stage.show();
+        MqttClientHandler mqttClientHandler = MqttClientHandler.getInstance();
+        mqttClientHandler.registerAlarmObserver(notificationController);
+        mqttClientHandler.registerDataObserver(cardControllerMain);
+        mqttClientHandler.registerDataObserver(cardControllerMap);
+        mqttClientHandler.registerDataObserver(notificationController);
     }
 
 

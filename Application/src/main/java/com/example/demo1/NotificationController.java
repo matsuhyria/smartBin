@@ -18,10 +18,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class NotificationController implements Initializable{
+public class NotificationController implements Initializable, MQTTAlarmObserver, MQTTDataObserver{
 
     @FXML
     private VBox notificationList;
+
+    private static final float HUMIDITY_THRESHOLD = 60.0f;
+    private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
+    private static final float FULLNESS_THRESHOLD = 80.0f;
+    private static final String FULLNESS_NOTIFICATION = "Bin fullness level is greater than 80%!";
+    private static final String ALARM_NOTIFICATION = "Fire detected! Call emergency!";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -31,23 +37,25 @@ public class NotificationController implements Initializable{
     }
 
     @FXML
-    public void addNotification(boolean isFullnessNotification, String message, String time) {
-        HBox notification = formatNotification(isFullnessNotification, message, time);
+    public void addNotification(NotificationType type, String message, String time) {
+        HBox notification = formatNotification(type, message, time);
         notificationList.getChildren().add(0, notification);
         String title;
-        if(isFullnessNotification) {
+        if(type == NotificationType.FULLNESS) {
            title  = "Fullness Sensor";
-        } else {
+        } else if (type == NotificationType.HUMIDITY){
            title = "Humidity Sensor";
+        } else{
+            title = "ALARM!!!";
         }
         Notifications notification1 = Notifications.create().title(title).text(message);
         notification1.showWarning();
     }
 
-    private HBox formatNotification(boolean isFullness, String text, String currentTime){
+    private HBox formatNotification(NotificationType type, String text, String currentTime){
         HBox notification = createNotificationContainer();
 
-        ImageView icon = createNotificationIcon(isFullness);
+        ImageView icon = createNotificationIcon(type);
 
         Label message = createNotificationText(text);
 
@@ -65,16 +73,18 @@ public class NotificationController implements Initializable{
         return notification;
     }
 
-    private ImageView createNotificationIcon(boolean isFullness){
+    private ImageView createNotificationIcon(NotificationType type){
         ImageView icon = new ImageView();
         icon.setFitHeight(79.0);
         icon.setFitWidth(91.0);
         icon.setPickOnBounds(true);
         icon.setPreserveRatio(true);
-        if(isFullness){
+        if(type == NotificationType.FULLNESS){
             icon.setImage(new Image(getClass().getResourceAsStream("binBackground.png")));
-        } else{
+        } else if (type == NotificationType.HUMIDITY){
             icon.setImage(new Image(getClass().getResourceAsStream("humidityBackground.png")));
+        } else{
+            System.out.println("ALARM!!!");
         }
         return icon;
     }
@@ -99,5 +109,29 @@ public class NotificationController implements Initializable{
         time.setStyle("-fx-background-color: #EBD9B4;");
         time.setFont(Font.font("Aldrich Regular", 30)); 
         return time;
+    }
+
+    //For testing purposes
+    public VBox getNotificationList() {
+        return notificationList;
+    }
+
+    @Override
+    public void onAlarmUpdate() {
+        addNotification(NotificationType.ALARM, ALARM_NOTIFICATION, Util.getFormattedTime());
+    }
+
+    @Override
+    public void onHumidityUpdate(float value) {
+        if(value > HUMIDITY_THRESHOLD){
+            addNotification(NotificationType.HUMIDITY, HUMIDITY_NOTIFICATION, Util.getFormattedTime());
+        }
+    }
+
+    @Override
+    public void onFullnessUpdate(float value) {
+        if(value > FULLNESS_THRESHOLD){
+            addNotification(NotificationType.FULLNESS, FULLNESS_NOTIFICATION, Util.getFormattedTime());
+        }
     }
 }
