@@ -1,9 +1,9 @@
 package com.example.demo1;
 
 public class BinDataPoint {
-    private String time;
-    private float humidity;
-    private float fullness;
+    private final String time;
+    private final float humidity;
+    private final float fullness;
 
     public BinDataPoint(String time, float humidity, float fullness) {
         this.time = time;
