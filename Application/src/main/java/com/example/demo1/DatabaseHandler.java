@@ -33,8 +33,14 @@ public class DatabaseHandler {
         }
         return instance;
     }
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnection() throws SQLException {
+        String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
+                "cloudSqlInstance=" + CONNECTION_NAME +
+                "&socketFactory=com.google.cloud.sql.postgres.SocketFactory" +
+                "&user=" + USERNAME +
+                "&password=" + USER_PASSWORD;
+
+        return DriverManager.getConnection(jdbcUrl);
     }
 
     public double[] getLocations(){

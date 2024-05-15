@@ -71,10 +71,9 @@ public class SceneManager {
 
     public void switchToStatsPage(){
         currentScene.getChildren().clear();
-        ChartBuilder chart = new ChartBuilder();
-        statPage.getChildren().add(chart.buildHumidityChart());
         currentScene.getChildren().addAll(statPage, header);
         stage.getScene().setRoot(currentScene);
+
     }
 
     public CardController getBinCardController(){

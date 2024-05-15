@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DataManager{
+public class DataManager {
 
     private DatabaseHandler databaseHandler;
 
-    public DataManager () {
+    public DataManager() {
         this.databaseHandler = DatabaseHandler.getInstance();
     }
 
@@ -61,5 +61,34 @@ public class DataManager{
             e.printStackTrace();
         }
         return 0.0;
+    }
+
+    public double getAverageHumiditySummary() {
+        String query = "SELECT AVG(avg_humidity) AS avg_humidity FROM daily_bin_summary";
+        try (Connection connection = databaseHandler.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getDouble("avg_humidity");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
+
+    public double getAverageFullnessSummary() {
+        String query = "SELECT AVG(avg_fullness_level) AS avg_fullness FROM daily_bin_summary";
+        try (Connection connection = databaseHandler.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getDouble("avg_fullness");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+
     }
 }

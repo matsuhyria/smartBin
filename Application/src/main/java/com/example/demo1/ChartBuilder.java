@@ -6,12 +6,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class ChartBuilder {
-    public Pane buildHumidityChart() {
+    public Pane buildDailyChart() {
         // Create axes
-        NumberAxis timeAxis = new NumberAxis();
-        timeAxis.setLabel("Levels in %");
-        CategoryAxis humidityAxis = new CategoryAxis();
-        humidityAxis.setLabel("time (hours)");
+        NumberAxis humidityAxis = new NumberAxis();
+        humidityAxis.setLabel("Levels in %");
+        CategoryAxis timeAxis = new CategoryAxis();
+        timeAxis.setLabel("time (hours)");
 
 //        timeAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(timeAxis) {
 //            @Override
@@ -22,7 +22,7 @@ public class ChartBuilder {
 //        });
 
         // Create the area chart
-        BarChart<String, Number> barChart = new BarChart<>(humidityAxis, timeAxis);
+        BarChart<String, Number> barChart = new BarChart<>(timeAxis, humidityAxis);
         barChart.setTitle("Fill & Humidity Levels");
 
         // Create sample data
@@ -60,4 +60,9 @@ public class ChartBuilder {
 
         return chartPane;
     }
+
+    public Pane buildWeeklyChart() {
+        return buildDailyChart();
+    }
+
 }
