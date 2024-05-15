@@ -3,6 +3,7 @@ package com.example.demo1;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 
 import java.util.concurrent.Executors;
@@ -34,6 +35,30 @@ public class StatisticsController {
         this.dataManager = new DataManager();
 
         showDaily();
+    }
+
+    @FXML
+    private void highlightDailyButton (){
+        ColorAdjust effect = new ColorAdjust();
+        effect.setBrightness(0.2);
+        showDaily.setEffect(effect);
+    }
+
+    @FXML
+    private void deHighlightDailyButton (){
+        showDaily.setEffect(null);
+    }
+
+    @FXML
+    private void highlightWeeklyButton (){
+        ColorAdjust effect = new ColorAdjust();
+        effect.setBrightness(0.2);
+        showWeekly.setEffect(effect);
+    }
+
+    @FXML
+    private void deHighlightWeeklyButton (){
+        showWeekly.setEffect(null);
     }
 
     private void updateAverages() {

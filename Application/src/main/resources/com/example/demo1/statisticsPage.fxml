@@ -28,7 +28,7 @@
             <Pane fx:id="chartPane" prefHeight="600.0" prefWidth="800.0" />
             <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="250.0" style="-fx-spacing: 60;">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#showDaily" prefHeight="70.0" prefWidth="195.0" style="-fx-background-color: #9DBC98;" text="Daily">
+                  <Button fx:id="showDaily" mnemonicParsing="false" onMouseEntered="#highlightDailyButton" onMouseExited="#deHighlightDailyButton" onMouseClicked="#showDaily" prefHeight="70.0" prefWidth="195.0" style="-fx-background-color: #9DBC98;" text="Daily">
                      <font>
                         <Font name="Aldrich Regular" size="34.0" />
                      </font>
@@ -62,7 +62,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="250.0" style="-fx-spacing: 60;">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#showWeekly" prefHeight="70.0" prefWidth="195.0" style="-fx-background-color: #9DBC98;" text="Weekly">
+                  <Button fx:id="showWeekly" mnemonicParsing="false" onMouseEntered="#highlightWeeklyButton" onMouseExited="#deHighlightWeeklyButton" onMouseClicked="#showWeekly" prefHeight="70.0" prefWidth="195.0" style="-fx-background-color: #9DBC98;" text="Weekly">
                      <font>
                         <Font name="Aldrich Regular" size="34.0" />
                      </font>
