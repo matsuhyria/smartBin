@@ -46,7 +46,7 @@ public class StatisticsController {
 
     @FXML
     private void showDaily() {
-        Pane dailyChart = chartBuilder.buildDailyChart();
+        Pane dailyChart = chartBuilder.buildDailyChart(dataManager.getDailyData());
 
         chartPane.getChildren().clear();
         chartPane.getChildren().add(dailyChart);

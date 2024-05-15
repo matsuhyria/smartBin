@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataManager {
 
@@ -90,5 +92,23 @@ public class DataManager {
         }
         return 0.0;
 
+    }
+
+    public List<BinDataPoint> getDailyData() {
+        List<BinDataPoint> dataPoints = new ArrayList<>();
+        String query = "SELECT record_time, bin_humidity, bin_fullness_level FROM bin_data WHERE record_time >= CURRENT_DATE";
+        try (Connection connection = databaseHandler.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String time = resultSet.getString("record_time");
+                float humidity = resultSet.getFloat("bin_humidity");
+                float fullness = resultSet.getFloat("bin_fullness_level");
+                dataPoints.add(new BinDataPoint(time, humidity, fullness));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataPoints;
     }
 }
