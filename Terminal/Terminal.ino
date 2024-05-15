@@ -5,6 +5,8 @@
 #include "buzzer.hpp"
 #include "secrets_template.hpp"
 #include "ui.hpp"
+#include <FreeRTOS.h>
+
  
 #define BUZZER_PIN D0
 //Humidity
@@ -37,37 +39,51 @@ UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 
-void setup(){
-  // Serial.begin(115200); //you need to open Serial Monitor for program to start
-  // while (!Serial);
+// Task handles
+TaskHandle_t showConnectionLoopTaskHandle = NULL;
+bool shouldRunConnectionLoop = false;
 
-  //button
-  pinMode(WIO_5S_PRESS, INPUT_PULLUP);
-  ui.setupWelcomeScreen();
+void showConnectionLoopTask(void* pvParameters) {
+    while (shouldRunConnectionLoop) {
+        ui.showConnectionLoop();
+    }
+    vTaskDelete(NULL);
+}
 
-  // Wait for button press to continue
-  while (true){
-    if (digitalRead(WIO_5S_PRESS) == LOW){
-      humidSensor.setup();
-      led.setup();
-      buzzer.setup();
-      ui.showConnectionTitle();
-      ui.showConnectionLoop();
-      //delay(20000);
 
-      mqttHandler.setup();
-      break;
-    } 
-  }
 
-  ui.showHeader();
-  ui.distanceHeader();
-  ui.humidityHeader();
-  
+
+
+void setup() {
+    // Serial.begin(115200);
+    // while (!Serial);
+    pinMode(WIO_5S_PRESS, INPUT_PULLUP);
+    ui.setupWelcomeScreen();
+
+    while (true) {
+        if (digitalRead(WIO_5S_PRESS) == LOW) {
+            humidSensor.setup();
+            led.setup();
+            buzzer.setup();
+            ui.showConnectionTitle();
+
+            shouldRunConnectionLoop = true;
+            xTaskCreate(showConnectionLoopTask, "ShowConnectionLoop", 128, NULL, 1, &showConnectionLoopTaskHandle);
+            mqttHandler.setup();
+            shouldRunConnectionLoop = false;
+
+            break;
+        }
+    }
+
+    delay(3000);
+    ui.showHeader();
+    ui.distanceHeader();
+    ui.humidityHeader();
 }
 
 void loop(){
- mqttHandler.loop();
+  mqttHandler.loop();
   float humidity = humidSensor.read();
   Serial.println(humidity);
   int distance = ulsSensor.measureDistance();

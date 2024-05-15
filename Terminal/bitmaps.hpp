@@ -2,7 +2,7 @@
 #define BITMAPS_HPP
 
 class Bitmaps {
-  
+
 public:
   
   static const unsigned char welcome150_153[];

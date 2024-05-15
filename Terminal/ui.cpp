@@ -89,6 +89,7 @@ void UserInterface::showConnectionLoop() {
   delay(1500);
   _tft.drawXBitmap(120, 100, Bitmaps::levelThree70_75, 70, 75, _textColor);
   delay(1500);
+  _tft.fillRoundRect(115, 95, 135, 125, 5, TFT_BLACK);
 }
 
 void UserInterface::clearScreen() {
