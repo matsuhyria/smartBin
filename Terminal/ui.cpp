@@ -39,21 +39,13 @@ void UserInterface::updateHumidity(float humidity) {
 
 }
 
-void UserInterface::updateDistance(int distance) {
-  float calculatedDistance = 0.0;
-  if (distance > 50){
-    calculatedDistance = 0.0;
-  }else{
-    calculatedDistance = 100.0 - ((distance/50.0) * 100.0);
-  }
-
+void UserInterface::updateDistance(int fullness) {
   _tft.fillRoundRect(_x2 + 20, _y2 + 120, _w2 - 20, _h2 + 20, 5, TFT_BLACK);
   _tft.setTextColor(_textColor);
   _tft.setCursor(_x2 + 20, _y2 + 130);
   _tft.setTextSize(5.5);
-  _tft.printf("%d", (int)calculatedDistance);
+  _tft.printf("%d", fullness);
   _tft.print("%");
-  //_tft.drawXBitmap(190, 100, gas100_67, 100, 67, _textColor);
   _tft.drawXBitmap(200, 95, Bitmaps::fullness_bin100_100, 70, 75, _textColor);
 }
 
@@ -93,7 +85,7 @@ void UserInterface::showHeader() {
 }
 
 void UserInterface::showConnectionTitle() {
-  _tft.fillScreen(TFT_BLACK);
+  clearScreen();
   _tft.setCursor(40, 60);
   _tft.setTextSize(4);
   _tft.println("Connection");

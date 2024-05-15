@@ -38,8 +38,8 @@ LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
 
 void setup(){
-  Serial.begin(115200); //you need to open Serial Monitor for program to start
-  while (!Serial);
+  // Serial.begin(115200); //you need to open Serial Monitor for program to start
+  // while (!Serial);
 
   //button
   pinMode(WIO_5S_PRESS, INPUT_PULLUP);
@@ -82,7 +82,8 @@ void loop(){
   buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
   
   ui.updateHumidity(humidity);
-  ui.updateDistance(distance);
+  int fullness = ulsSensor.calculateFullness();
+  ui.updateDistance(fullness);
 
 
   delay(500);
