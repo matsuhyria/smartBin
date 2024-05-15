@@ -12,6 +12,7 @@ public class MqttClientHandler {
     private CardController cardController;
     private MqttClient client;
     NotificationController notificationController;
+    private DataManager dataManager;
 
     private static final float HUMIDITY_THRESHOLD = 60.0f;
     private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
@@ -36,6 +37,7 @@ public class MqttClientHandler {
         }
         this.notificationController = SceneManager.getInstance().getNotificationController();
         this.cardController = SceneManager.getInstance().getBinCardController();
+        this.dataManager = new DataManager();
     }
 
     public static MqttClientHandler getInstance() throws MqttException {
@@ -68,9 +70,11 @@ public class MqttClientHandler {
                     LocalDateTime now = LocalDateTime.now();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                     String formattedTime = formatter.format(now);
+
                     if(topic.equals(humidTopic)){
                         cardController.updateHumid(msg.substring(0,2));
                         float humidityLevel = Float.parseFloat(msg);
+                        dataManager.addHumidityData(humidityLevel);
                         if(humidityLevel > HUMIDITY_THRESHOLD){
                             notificationController.addNotification(false, HUMIDITY_NOTIFICATION, formattedTime);
                         }
@@ -82,6 +86,7 @@ public class MqttClientHandler {
                             distance = 100 -((Integer.parseInt(msg) / maxLength) * 100);
                         }
                         cardController.updateFull(String.valueOf((int)distance));
+                        dataManager.addFullnessData(distance);
                         if(distance > FULLNESS_THRESHOLD){
                             notificationController.addNotification(true, FULLNESS_NOTIFICATION, formattedTime);
                         }
