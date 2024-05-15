@@ -3,63 +3,55 @@
 
 UserInterface::UserInterface(TFT_eSPI& tft)
     : _tft(tft), _boxColor(0x03EF), _textColor(0xC618),
-      _x1(5), _y1(50), _w1(150), _h1(40),
-      _x2(165), _y2(50), _w2(150), _h2(40) {
-}
-
-void UserInterface::setup() {
-    _tft.begin();
-    _tft.setRotation(3);
-    _tft.setTextSize(3);
+      _boxHumidityX1(5), _boxHumidityY1(50), _boxHumidityW1(150), _boxHumidityH1(40),
+      _boxFullnessX2(165), _boxFullnessY2(_boxHumidityY1), _boxFullnessW2(_boxHumidityW1), _boxFullnessH2(_boxHumidityH1) {
 }
 
 void UserInterface::humidityHeader() {
-  _tft.fillRoundRect(_x1, _y1, _w1, _h1, 5, _boxColor);
+  _tft.fillRoundRect(_boxHumidityX1, _boxHumidityY1, _boxHumidityW1, _boxHumidityH1, 5, _boxColor);
   _tft.setTextColor(_textColor, _boxColor);
-  _tft.setCursor(_x1 + 3, _y1 + 10);
+  _tft.setCursor(_boxHumidityX1 + 3, _boxHumidityY1 + 10);
   _tft.printf("Humidity");
 }
 
-
 void UserInterface::distanceHeader() {
-  _tft.fillRoundRect(_x2, _y2, _w2, _h2, 5, _boxColor);
+  _tft.fillRoundRect(_boxFullnessX2, _boxFullnessY2, _boxFullnessW2, _boxFullnessH2, 5, _boxColor);
   _tft.setTextColor(_textColor, _boxColor);
-  _tft.setCursor(_x2 + 3, _y2 + 10);
+  _tft.setCursor(_boxFullnessX2 + 3, _boxFullnessY2 + 10);
   _tft.printf("Fullness");
 }
 
 void UserInterface::updateHumidity(float humidity) {
-  _tft.fillRoundRect(_x1 + 20, _y1 + 120, _w1 - 20, _h1 + 20, 5, TFT_BLACK);
+  _tft.fillRoundRect(_boxHumidityX1 + 20, _boxHumidityY1 + 120, _boxHumidityW1 - 20, _boxHumidityH1 + 20, 5, TFT_BLACK);
   _tft.setTextColor(_textColor);
-  _tft.setCursor(_x1 + 20, _y1 + 130);
+  _tft.setCursor(_boxHumidityX1 + 20, _boxHumidityY1 + 130);
   _tft.setTextSize(5.5);
   _tft.printf("%d", (int)humidity);
   _tft.print("%");
   _tft.drawXBitmap(10, 100, Bitmaps::humidity120_70, 120, 70, _textColor);
-
 }
 
 void UserInterface::updateDistance(int fullness) {
-  _tft.fillRoundRect(_x2 + 20, _y2 + 120, _w2 - 20, _h2 + 20, 5, TFT_BLACK);
+  _tft.fillRoundRect(_boxFullnessX2 + 20, _boxFullnessY2 + 120, _boxFullnessW2 - 20, _boxFullnessH2 + 20, 5, TFT_BLACK);
   _tft.setTextColor(_textColor);
-  _tft.setCursor(_x2 + 20, _y2 + 130);
+  _tft.setCursor(_boxFullnessX2 + 20, _boxFullnessY2 + 130);
   _tft.setTextSize(5.5);
   _tft.printf("%d", fullness);
   _tft.print("%");
   _tft.drawXBitmap(200, 95, Bitmaps::fullness_bin100_100, 70, 75, _textColor);
 }
 
-void UserInterface::showWelcomeScreen() {
+void UserInterface::setupWelcomeScreen() {
   _tft.begin();
   _tft.setRotation(3);
-  
+  _tft.setTextSize(3); 
   _tft.fillScreen(TFT_BLACK);
+  _tft.setTextColor(_textColor);
+
   _tft.fillRoundRect(90, 75, 135, 125, 15, _boxColor);
   _tft.drawXBitmap(100, 75, Bitmaps::welcome150_153, 120, 120, _textColor);
   delay(1500);
   
-  _tft.setTextSize(3); 
-  _tft.setTextColor(_textColor);
   _tft.setCursor(70, 10);
   _tft.println("Welcome to");
   _tft.setCursor(85, 45);
@@ -75,7 +67,6 @@ void UserInterface::showWelcomeScreen() {
 
 void UserInterface::showHeader() {
   clearScreen();
-  _tft.setRotation(3);
   _tft.setTextSize(3);
   _tft.setCursor(85, 10);
   _tft.setTextColor(_boxColor);

@@ -2,12 +2,12 @@
 #include "bitmaps.hpp"
 
 class UserInterface {
+
 public:
     UserInterface(TFT_eSPI& tft);
-    void setup();
+    void setupWelcomeScreen();
     void updateHumidity(float humidity);
     void updateDistance(int distance);
-    void showWelcomeScreen();
     void clearScreen();
     void showHeader();
     void distanceHeader();
@@ -16,9 +16,10 @@ public:
     void showConnectionLoop();
 
 private:
+
     TFT_eSPI& _tft;
-    uint16_t _boxColor;
-    uint16_t _textColor;
-    int _x1, _y1, _w1, _h1;
-    int _x2, _y2, _w2, _h2;
+    const uint16_t _boxColor;
+    const uint16_t _textColor;
+    int _boxHumidityX1, _boxHumidityY1, _boxHumidityW1, _boxHumidityH1;
+    int _boxFullnessX2, _boxFullnessY2, _boxFullnessW2, _boxFullnessH2;
 };

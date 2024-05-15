@@ -2,13 +2,12 @@
 #define BITMAPS_HPP
 
 class Bitmaps {
+  
 public:
   
   static const unsigned char welcome150_153[];
 
   static const unsigned char humidity120_70[] ;
-
-  static const unsigned char gas100_67[] ;
 
   static const unsigned char fullness_bin100_100[];
 

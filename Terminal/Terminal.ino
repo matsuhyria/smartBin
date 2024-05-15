@@ -43,7 +43,7 @@ void setup(){
 
   //button
   pinMode(WIO_5S_PRESS, INPUT_PULLUP);
-  ui.showWelcomeScreen();
+  ui.setupWelcomeScreen();
 
   // Wait for button press to continue
   while (true){
