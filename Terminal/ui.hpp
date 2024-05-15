@@ -1,4 +1,5 @@
 #include "TFT_eSPI.h"
+#include "bitmaps.hpp"
 
 class UserInterface {
 public:
