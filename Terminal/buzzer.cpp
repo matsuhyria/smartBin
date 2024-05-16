@@ -15,18 +15,26 @@ void Buzzer::stopTone() {
     noTone(_pin);
 }
 
-void Buzzer::notify(int distance, int threshold) {
-    if (distance < threshold) {
-        playTone(2000, 500);
-        delay(1000);
-        stopTone();
+void Buzzer::notify(int fullness) {
+    if (fullness > 80) {
+      int frequencies[] = {2000, 3000, 4000, 5000};
+      int duration = 100;
+
+      for (int i = 0; i < 4; i++) { 
+          playTone(frequencies[i], duration);
+          delay(100); 
+      }
+      delay(2000);
+      stopTone();
     }
 }
 
-/*void Buzzer::alarm(bool fire) { //alarm sound skeleton
-    if (fire) {
-        playTone(2000, 100);
-        delay(1000);
-        stopTone();
-    }
-}*/
+void Buzzer::alarm() {
+    playTone(1800, 1100);
+    delay(1200); 
+
+    playTone(1700, 1000);
+    delay(1000); 
+
+    stopTone();
+}
