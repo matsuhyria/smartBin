@@ -8,6 +8,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class BinApplication extends Application {
     MqttClientHandler mqttClientHandler;
+    DatabaseHandler databaseHandler;
 
 
     @Override
@@ -18,6 +19,7 @@ public class BinApplication extends Application {
 
     public void setUpConnection() {
         try {
+            databaseHandler = DatabaseHandler.getInstance();
             mqttClientHandler = MqttClientHandler.getInstance();
         } catch (MqttException e) {
             e.printStackTrace();
