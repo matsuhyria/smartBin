@@ -7,7 +7,7 @@ public:
     void setup();
     void playTone(int frequency, int duration);
     void stopTone();
-    void notify(int distance, int threshold);
+    void notify(int distance);
     void alarm();
 
 private:

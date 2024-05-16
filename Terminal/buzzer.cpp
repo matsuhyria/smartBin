@@ -15,8 +15,8 @@ void Buzzer::stopTone() {
     noTone(_pin);
 }
 
-void Buzzer::notify(int distance, int threshold) {
-    if (distance < threshold) {
+void Buzzer::notify(int fullness) {
+    if (fullness > 80) {
       int frequencies[] = {2000, 3000, 4000, 5000};
       int duration = 100;
 

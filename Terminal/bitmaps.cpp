@@ -481,3 +481,4 @@ const unsigned char Bitmaps::welcome150_153[] = {
   0x00, 0x00, 0x00, };
 
 // Define other bitmaps here
+

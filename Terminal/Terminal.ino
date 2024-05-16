@@ -6,8 +6,9 @@
 #include "secrets_template.hpp"
 #include "ui.hpp"
 #include <FreeRTOS.h>
+#include "flame_detector.hpp"
 
- 
+#define FLAME_PIN D6 
 #define BUZZER_PIN D0
 //Humidity
 #define DHT_PIN D2
@@ -18,7 +19,7 @@
 #define NEOPIXEL_PIN PIN_WIRE_SCL //using I2C as a digital port
 #define NEOPIXEL_TYPE NEO_GRB + NEO_KHZ800
 const int PIXELS = 10;
-const int TURN_ON_DISTANCE_CM = 50;
+const int TURN_ON_DISTANCE_CM = 18;
 //wifi
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
@@ -26,6 +27,7 @@ const char* password = WIFI_PASSWORD;
 const char* ID = "Wio-Terminal-group11"; 
 const char* pubTopic1 = "Sensors/Humidity";
 const char* pubTopic2 = "Sensors/Ultrasonic";
+const char* pubTopic3 = "Sensors/Flame";
 const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
@@ -38,6 +40,7 @@ Humidity humidSensor(DHT_PIN, DHT_TYPE);
 UltrasonicRanger ulsSensor(ULS_PIN);
 LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, pubTopic1, subTopic, broker, port);
+FlameDetector flameDetector(FLAME_PIN);
 
 // Task handles
 TaskHandle_t showConnectionLoopTaskHandle = NULL;
@@ -50,29 +53,24 @@ void showConnectionLoopTask(void* pvParameters) {
     vTaskDelete(NULL);
 }
 
-
-
-
-
 void setup() {
-    // Serial.begin(115200);
-    // while (!Serial);
     pinMode(WIO_5S_PRESS, INPUT_PULLUP);
     ui.setupWelcomeScreen();
 
     while (true) {
         if (digitalRead(WIO_5S_PRESS) == LOW) {
-            humidSensor.setup();
-            led.setup();
-            buzzer.setup();
-            ui.showConnectionTitle();
+          flameDetector.setup();
+          humidSensor.setup();
+          led.setup();
+          buzzer.setup();
+          ui.showConnectionTitle();
 
-            shouldRunConnectionLoop = true;
-            xTaskCreate(showConnectionLoopTask, "ShowConnectionLoop", 128, NULL, 1, &showConnectionLoopTaskHandle);
-            mqttHandler.setup();
-            shouldRunConnectionLoop = false;
+          shouldRunConnectionLoop = true;
+          xTaskCreate(showConnectionLoopTask, "ShowConnectionLoop", 128, NULL, 1, &showConnectionLoopTaskHandle);
+          mqttHandler.setup();
+          shouldRunConnectionLoop = false;
 
-            break;
+          break;
         }
     }
 
@@ -89,18 +87,25 @@ void loop(){
   int distance = ulsSensor.measureDistance();
   Serial.println(distance);
   led.turnOn(distance);
+  
   std::string humidityStr = std::to_string(humidity);
   const char* humidityPayload = humidityStr.c_str();
   mqttHandler.publish(pubTopic1, humidityPayload);
-  std::string ultrasonicStr = std::to_string(distance);
+
+  int fullness = ulsSensor.calculateFullness();
+  std::string ultrasonicStr = std::to_string(fullness);
   const char* ultrasonicPayload = ultrasonicStr.c_str();
   mqttHandler.publish(pubTopic2, ultrasonicPayload);
-  buzzer.notify(distance, TURN_ON_DISTANCE_CM * 0.2);
   
   ui.updateHumidity(humidity);
-  int fullness = ulsSensor.calculateFullness();
   ui.updateDistance(fullness);
+  buzzer.notify(fullness);
 
+  if(flameDetector.detect()){
+    const char* flamePayload = "112";
+    mqttHandler.publish(pubTopic3, flamePayload);
+    buzzer.alarm();
+  }
 
-  delay(500);
+  delay(1500);
 }
