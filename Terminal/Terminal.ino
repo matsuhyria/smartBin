@@ -78,7 +78,7 @@ void loop(){
     tft.fillScreen(TFT_RED);
     ui.updateHumidity(humidity);
     ui.updateDistance(distance);
-    const char* flamePayload = "Alarm";
+    const int* flamePayload = 112;
     mqttHandler.publish(pubTopic3, flamePayload);
     buzzer.alarm();
   }
