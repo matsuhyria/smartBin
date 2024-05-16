@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 
@@ -29,6 +30,10 @@ public class Util {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return formatter.format(now);
+    }
+
+    public static Image load(ImagePath path) {
+        return new Image(path.getPath().toString());
     }
 
 }

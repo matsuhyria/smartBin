@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class NotificationController implements Initializable, MQTTAlarmObserver, MQTTDataObserver{
+public class NotificationController implements MQTTAlarmObserver, MQTTDataObserver{
 
     @FXML
     private VBox notificationList;
@@ -29,26 +29,32 @@ public class NotificationController implements Initializable, MQTTAlarmObserver,
     private static final String FULLNESS_NOTIFICATION = "Bin fullness level is greater than 80%!";
     private static final String ALARM_NOTIFICATION = "Fire detected! Call emergency!";
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if(notificationList == null){
-            System.out.println("NotificationList is not intialized");
-        }
-    }
+    private static final String TEXT_BACKGROUND_COLOR = "-fx-background-color: #EBD9B4;";
+    //Be careful when using not default font, install it on your machine first
+    private static final String FONT_NAME = "Aldrich Regular";
+    private static final int TEXT_FONT_SIZE = 40;
+    private static final int TIME_FONT_SIZE = 30;
+
+    private static final int TEXT_FRAME_WIDTH = 1720;
+    private static final int TEXT_FRAME_HEIGHT = 75;
+
+    private static final int TIME_FRAME_WIDTH = 830;
+    private static final int TIME_FRAME_HEIGHT = 75;
+
+    private static final int ICON_FIT_WIDTH = 80;
+    private static final int ICON_FIT_HEIGHT = 80;
+
+    //Notification container as a whole
+    private static final int CONTAINER_WIDTH = 1800;
+    private static final int CONTAINER_HEIGHT = 75;
+    private static final int CONTAINER_SPACING = 40;
+
 
     @FXML
     public void addNotification(NotificationType type, String message, String time) {
         HBox notification = formatNotification(type, message, time);
         notificationList.getChildren().add(0, notification);
-        String title;
-        if(type == NotificationType.FULLNESS) {
-           title  = "Fullness Sensor";
-        } else if (type == NotificationType.HUMIDITY){
-           title = "Humidity Sensor";
-        } else{
-            title = "ALARM!!!";
-        }
-        Notifications notification1 = Notifications.create().title(title).text(message);
+        Notifications notification1 = Notifications.create().title(type.toString()).text(message);
         notification1.showWarning();
     }
 
@@ -67,22 +73,20 @@ public class NotificationController implements Initializable, MQTTAlarmObserver,
 
     private HBox createNotificationContainer(){
         HBox notification = new HBox();
-        notification.setPrefHeight(75.0);
-        notification.setPrefWidth(1792.0);
-        notification.setSpacing(40.0);
+        notification.setPrefHeight(CONTAINER_HEIGHT);
+        notification.setPrefWidth(CONTAINER_WIDTH);
+        notification.setSpacing(CONTAINER_SPACING);
         return notification;
     }
 
     private ImageView createNotificationIcon(NotificationType type){
         ImageView icon = new ImageView();
-        icon.setFitHeight(79.0);
-        icon.setFitWidth(91.0);
-        icon.setPickOnBounds(true);
-        icon.setPreserveRatio(true);
+        icon.setFitHeight(ICON_FIT_HEIGHT);
+        icon.setFitWidth(ICON_FIT_WIDTH);
         if(type == NotificationType.FULLNESS){
-            icon.setImage(new Image(getClass().getResourceAsStream("binBackground.png")));
+            icon.setImage(Util.load(ImagePath.BIN_BACKGROUND));
         } else if (type == NotificationType.HUMIDITY){
-            icon.setImage(new Image(getClass().getResourceAsStream("humidityBackground.png")));
+            icon.setImage(Util.load(ImagePath.HUMIDITY_BACKGROUND));
         } else{
             System.out.println("ALARM!!!");
         }
@@ -91,23 +95,23 @@ public class NotificationController implements Initializable, MQTTAlarmObserver,
 
     private Label createNotificationText(String text){
         Label message = new Label(text);
-        message.setPrefHeight(75.0);
-        message.setPrefWidth(1719.0);
+        message.setPrefHeight(TEXT_FRAME_HEIGHT);
+        message.setPrefWidth(TEXT_FRAME_WIDTH);
         message.setAlignment(Pos.BOTTOM_LEFT);
         message.setTextAlignment(TextAlignment.CENTER);
-        message.setStyle("-fx-background-color: #EBD9B4;");
+        message.setStyle(TEXT_BACKGROUND_COLOR);
         message.setPadding(new Insets(5.0, 5.0, 15.0, 60.0));
-        message.setFont(Font.font("Aldrich Regular", 40));
+        message.setFont(Font.font(FONT_NAME, TEXT_FONT_SIZE));
         return message;
     }
 
     private Label createNotificationTime(String currentTime){
         Label time = new Label(currentTime);
-        time.setPrefHeight(75.0);
-        time.setPrefWidth(831.0);
+        time.setPrefHeight(TIME_FRAME_HEIGHT);
+        time.setPrefWidth(TIME_FRAME_WIDTH);
         time.setAlignment(Pos.CENTER);
-        time.setStyle("-fx-background-color: #EBD9B4;");
-        time.setFont(Font.font("Aldrich Regular", 30)); 
+        time.setStyle(TEXT_BACKGROUND_COLOR);
+        time.setFont(Font.font(FONT_NAME, TIME_FONT_SIZE)); 
         return time;
     }
 

@@ -12,7 +12,12 @@ public enum ImagePath {
     OVERVIEW_CLOSED("OverviewClosed.png"),
     NOTIFICATION_CLOSED("NotificationClosed.png"),
     MAP_CLOSED("MapClosed.png"),
-    STATISTICS_CLOSED("StatisticsClosed.png");
+    STATISTICS_CLOSED("StatisticsClosed.png"),
+
+    BIN_BACKGROUND("binBackground.png"),
+    HUMIDITY_BACKGROUND("humidityBackground.png");
+    
+
 
     private final String path;
 
@@ -20,7 +25,7 @@ public enum ImagePath {
         this.path = path;
     }
 
-    public URL getPath() {
-        return getClass().getResource(path);
+    public String getPath() {
+        return getClass().getResource(path).toString();
     }
 }

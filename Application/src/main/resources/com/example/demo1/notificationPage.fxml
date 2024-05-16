@@ -20,7 +20,7 @@
       </ImageView>
       <Label layoutX="44.0" layoutY="24.0" prefHeight="119.0" prefWidth="414.0" text="SMARTBIN+" textFill="#638889">
          <font>
-            <Font size="65.0" />
+            <Font size="65.0" name="Aldrich Regular"/>
          </font>
       </Label>
       <!-- <fx:include source="header.fxml" /> -->
@@ -30,7 +30,7 @@
                <children>
                   <HBox prefHeight="75.0" prefWidth="1792.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="79.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80" fitWidth="80" preserveRatio="false">
                            <image>
                               <Image url="@binBackground.png" />
                            </image>
@@ -53,14 +53,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="79.0" prefWidth="1750.0" spacing="40.0">
+                  <HBox prefHeight="80.0" prefWidth="1750.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="79.0" fitWidth="76.0">
+                        <ImageView fitHeight="80" fitWidth="80">
                            <image>
                               <Image url="@humidityBackground.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="BOTTOM_LEFT" prefHeight="79.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the bin is high! Empty the bin!" textAlignment="RIGHT">
+                        <Label alignment="BOTTOM_LEFT" prefHeight="80.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the bin is high! Empty the bin!" textAlignment="RIGHT">
                            <font>
                               <Font name="Aldrich Regular" size="40.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Insets bottom="15.0" left="60.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="79.0" prefWidth="376.0" style="-fx-background-color: #EBD9B4;" text="19:35">
+                        <Label alignment="CENTER" prefHeight="80.0" prefWidth="375.0" style="-fx-background-color: #EBD9B4;" text="19:35">
                            <font>
                               <Font name="Aldrich Regular" size="30.0" />
                            </font>
