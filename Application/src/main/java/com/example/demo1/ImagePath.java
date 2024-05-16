@@ -15,7 +15,8 @@ public enum ImagePath {
     STATISTICS_CLOSED("StatisticsClosed.png"),
 
     BIN_BACKGROUND("binBackground.png"),
-    HUMIDITY_BACKGROUND("humidityBackground.png");
+    HUMIDITY_BACKGROUND("humidityBackground.png"),
+    FIRE_BACKGROUND("fireBackground.png");
     
 
 

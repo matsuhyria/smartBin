@@ -28,9 +28,9 @@
          <content>
             <VBox fx:id="notificationList" prefHeight="695.0" prefWidth="1275.0" spacing="20.0" style="-fx-background-color: #F9EFDB;">
                <children>
-                  <HBox prefHeight="75.0" prefWidth="1792.0" spacing="40.0">
+                  <HBox prefHeight="80.0" prefWidth="1750.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="80" fitWidth="80" preserveRatio="false">
+                        <ImageView fitHeight="75" fitWidth="80" preserveRatio="false">
                            <image>
                               <Image url="@binBackground.png" />
                            </image>
@@ -55,12 +55,12 @@
                   </HBox>
                   <HBox prefHeight="80.0" prefWidth="1750.0" spacing="40.0">
                      <children>
-                        <ImageView fitHeight="80" fitWidth="80">
+                        <ImageView fitHeight="75" fitWidth="80">
                            <image>
                               <Image url="@humidityBackground.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="BOTTOM_LEFT" prefHeight="80.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the bin is high! Empty the bin!" textAlignment="RIGHT">
+                        <Label alignment="BOTTOM_LEFT" prefHeight="75.0" prefWidth="1266.0" style="-fx-background-color: #EBD9B4;" text="Humidity in the bin is high! Empty the bin!" textAlignment="RIGHT">
                            <font>
                               <Font name="Aldrich Regular" size="40.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Insets bottom="15.0" left="60.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="80.0" prefWidth="375.0" style="-fx-background-color: #EBD9B4;" text="19:35">
+                        <Label alignment="CENTER" prefHeight="75.0" prefWidth="375.0" style="-fx-background-color: #EBD9B4;" text="19:35">
                            <font>
                               <Font name="Aldrich Regular" size="30.0" />
                            </font>

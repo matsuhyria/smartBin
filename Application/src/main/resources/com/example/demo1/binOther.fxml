@@ -15,11 +15,11 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: D3BB88;-fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
                     <children>
-                        <Label layoutX="10.0" layoutY="-7.0" text="OTHER BIN" textFill="#638889">
-                            <font>
-                                <Font size="60.0" />
-                            </font>
-                        </Label>
+                        <Label text="OTHER BIN" textFill="#638889" layoutX="20.0" layoutY="10.0">
+                          <font>
+                              <Font size="50.0" name="Aldrich Regular" />
+                          </font>
+                      </Label>
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="317.0" style="-fx-background-color: EBD9B4;-fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
@@ -33,19 +33,19 @@
                             <children>
                                 <Label text="0" textFill="#638889">
                                     <font>
-                                        <Font size="70.0" />
+                                        <Font size="70.0" name="Aldrich Regular"/>
                                     </font>
                                 </Label>
                                 <Label text="\%" textFill="#638889">
                                     <font>
-                                        <Font size="70.0" />
+                                        <Font size="70.0" name="Aldrich Regular"/>
                                     </font>
                                 </Label>
                             </children>
                         </HBox>
                         <Label layoutX="182.0" layoutY="8.0" prefHeight="53.0" prefWidth="127.0" text="fullness" textFill="#638787b3">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="36.0" name="Aldrich Regular"/>
                             </font>
                         </Label>
                         <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="14.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
@@ -57,28 +57,21 @@
                             <children>
                                 <Label text="0" textFill="#638889">
                                     <font>
-                                        <Font size="70.0" />
+                                        <Font size="70.0" name="Aldrich Regular"/>
                                     </font>
                                 </Label>
                                 <Label text="\%" textFill="#638889">
                                     <font>
-                                        <Font size="70.0" />
+                                        <Font size="70.0" name="Aldrich Regular"/>
                                     </font>
                                 </Label>
                             </children>
                         </HBox>
                         <Label layoutX="160.0" layoutY="216.0" prefHeight="53.0" prefWidth="154.0" text="humidity" textFill="#638787b3">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="36.0" name="Aldrich Regular"/>
                             </font>
                         </Label>
-                        <!-- (USE AFTER REFACTORING)
-                        <Label layoutX="59.0" layoutY="286.0" prefHeight="53.0" prefWidth="232.0" text="see location &gt;" textFill="#638787b3">
-                            <font>
-                                <Font size="36.0" />
-                            </font>
-                        </Label>
-                        -->
                     </children>
                 </AnchorPane>
             </items>
