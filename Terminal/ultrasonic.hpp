@@ -4,12 +4,13 @@
 
 class UltrasonicRanger{
   public:
-    UltrasonicRanger(int pin);
+    UltrasonicRanger(int pin, int turnOnDistanceCM);
     int measureDistance();
     int calculateFullness();
 
   private:
     Ultrasonic _uls;
+    const int TURN_ON_DISTANCE_CM;
 };
 
 #endif

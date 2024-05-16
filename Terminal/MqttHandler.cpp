@@ -4,7 +4,7 @@ MqttHandler::MqttHandler(const char* ssid, const char* password, const char* ID,
 
 static void callback(char* topic, byte* payload, unsigned int length){
   Serial.print("Message arrived: ");
-  for (int i=0;i<length;i++) {
+  for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
   Serial.println();

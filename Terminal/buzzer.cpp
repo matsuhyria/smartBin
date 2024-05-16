@@ -36,5 +36,5 @@ void Buzzer::alarm() {
     playTone(1700, 1000);
     delay(1000); 
 
-    stopTone();
+    //stopTone();
 }
