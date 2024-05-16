@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F9EFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -42,6 +43,9 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <stylesheets>
+                              <URL value="@scrollbar.css" />
+                           </stylesheets>
                            <padding>
                               <Insets bottom="15.0" left="60.0" right="5.0" top="5.0" />
                            </padding>

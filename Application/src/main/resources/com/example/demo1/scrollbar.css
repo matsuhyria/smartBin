@@ -1,0 +1,3 @@
+.scroll-pane .vertical-scrollbar {
+    -fx-pref-width: 100px;
+  }

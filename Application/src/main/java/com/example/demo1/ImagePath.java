@@ -1,7 +1,5 @@
 package com.example.demo1;
 
-import java.net.URL;
-
 public enum ImagePath {
     
     OVERVIEW_ACTIVE("OverviewActive.png"),
