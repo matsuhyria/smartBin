@@ -15,6 +15,7 @@ public class SceneManager {
     private Pane mainPage;
     private Pane notificationPage;
     private Pane mapPage;
+    private Pane statPage;
     private Pane header;
     private SplitPane binCard;
     private NotificationController notificationController;
@@ -43,6 +44,8 @@ public class SceneManager {
         notificationController = notificationLoader.getController();
         FXMLLoader mapLoader = new FXMLLoader(FXMLpath.MAP_PAGE.getFxmlPath());
         mapPage = mapLoader.load();
+        FXMLLoader statLoader = new FXMLLoader(FXMLpath.STATISTICS_PAGE.getFxmlPath());
+        statPage = statLoader.load();
         currentScene.getChildren().addAll(mainPage, header, binCard);
         stage.setScene(new Scene(currentScene, height, width));
         stage.show();
@@ -67,7 +70,10 @@ public class SceneManager {
     }
 
     public void switchToStatsPage(){
-        //TO-DO
+        currentScene.getChildren().clear();
+        currentScene.getChildren().addAll(statPage, header);
+        stage.getScene().setRoot(currentScene);
+
     }
 
     public CardController getBinCardController(){

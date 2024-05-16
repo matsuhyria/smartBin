@@ -18,4 +18,3 @@ int UltrasonicRanger::calculateFullness(){
 
   return (int)calculatedDistance;
 }
-

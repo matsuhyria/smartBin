@@ -25,5 +25,4 @@ class MqttHandler{
   const int _port;
 };
 
-
 #endif
