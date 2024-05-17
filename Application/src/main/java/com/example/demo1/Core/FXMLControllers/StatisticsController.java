@@ -87,7 +87,6 @@ public class StatisticsController {
 
         String humid = Double.toString(dataManager.getAverageHumiditySummary());
         avgHumid.setText(humid.substring(0, 2));
-        System.out.println(humid);
 
         String fill = Double.toString(dataManager.getAverageFullnessSummary());
         avgFill.setText(fill.substring(0, 2));
