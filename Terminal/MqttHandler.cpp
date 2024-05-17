@@ -2,6 +2,7 @@
 
 MqttHandler::MqttHandler(const char* ssid, const char* password, const char* ID, const char* pubTopic, const char* subTopic, const char* broker, const int port): _wifiClient(), _mqtt(_wifiClient), _ssid(ssid), _password(password), _id(ID), _pubTopic(pubTopic), _subTopic(subTopic), _broker(broker), _port(port) {};
 
+//handles incoming MQTT messages
 static void callback(char* topic, byte* payload, unsigned int length){
   Serial.print("Message arrived: ");
   for (int i = 0; i < length; i++) {
@@ -41,6 +42,7 @@ void MqttHandler::setup(){
   reconnect();
 }
 
+// keeps the MQTT connection and processes incoming messages
 void MqttHandler::loop() {
   if (!_mqtt.connected()) {
     reconnect();

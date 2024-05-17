@@ -20,10 +20,12 @@
 #define NEOPIXEL_TYPE NEO_GRB + NEO_KHZ800
 const int PIXELS = 10;
 const int TURN_ON_DISTANCE_CM = 18;
-//wifi
+
+//WiFi credentials
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
-//mqtt
+
+//MQTT configuration
 const char* ID = "Wio-Terminal-group11"; 
 const char* PUB_TOPIC_HUMIDITY = "Sensors/Humidity";
 const char* PUB_TOPIC_ULTRASONIC = "Sensors/Ultrasonic";
@@ -32,8 +34,8 @@ const char* subTopic = "WioTerminal";
 const char* broker = "test.mosquitto.org";
 const int port = 1883;
 
+// Instantiate display and sensor/actuator objects
 TFT_eSPI tft;
-
 UserInterface ui(tft);
 Buzzer buzzer (BUZZER_PIN);
 Humidity humidSensor(DHT_PIN, DHT_TYPE);
@@ -42,10 +44,11 @@ LedIndicator led(PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE, TURN_ON_DISTANCE_CM);
 MqttHandler mqttHandler(ssid, password, ID, PUB_TOPIC_HUMIDITY, subTopic, broker, port);
 FlameDetector flameDetector(FLAME_PIN);
 
-// Task handles
+// FreeRTOS task handle and flag for managing connection animalion
 TaskHandle_t showConnectionLoopTaskHandle = NULL;
 bool shouldRunConnectionLoop = false;
 
+// Task to display connection animation on the UI
 void showConnectionLoopTask(void* pvParameters) {
     while (shouldRunConnectionLoop) {
         ui.showConnectionLoop();
@@ -61,18 +64,19 @@ void setupSensors() {
 }
 
 void setup() {
-    pinMode(WIO_5S_PRESS, INPUT_PULLUP);
+    pinMode(WIO_5S_PRESS, INPUT_PULLUP); // Set up button
     ui.setupWelcomeScreen();
 
+    // Wait for button press to initialize sensors and connect to MQTT
     while (true) {
         if (digitalRead(WIO_5S_PRESS) == LOW) {
           setupSensors();
           ui.showConnectionTitle();
 
-          shouldRunConnectionLoop = true;
+          shouldRunConnectionLoop = true; // Start connection animation task
           xTaskCreate(showConnectionLoopTask, "ShowConnectionLoop", 128, NULL, 1, &showConnectionLoopTaskHandle);
           mqttHandler.setup();
-          shouldRunConnectionLoop = false;
+          shouldRunConnectionLoop = false; // Start connection animation task
 
           break;
         }

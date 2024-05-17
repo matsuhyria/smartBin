@@ -1,5 +1,6 @@
 #ifndef indicat_h
 #define indicat_h
+
 #include <Adafruit_NeoPixel.h>
 
 class LedIndicator{
@@ -7,6 +8,7 @@ class LedIndicator{
     LedIndicator(uint16_t pixels, int16_t pin, neoPixelType type, int turnOnDistanceCM);
     void setup();
     void turnOn(int on_distance_cm);
+    
   private:
     int calculateLedsToLight(int curr_distance_cm);
     int getColor(int leds_on);
