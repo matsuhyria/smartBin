@@ -10,9 +10,9 @@ public class DatabaseHandler {
     private static final String USERNAME = "postgres";
     private static final String USER_PASSWORD = "postgres";
     private static final String DATABASE_NAME = "postgres";
-    private Connection connection;
     private static final int MAX_BIN_COUNT = 5;
-    
+    private Connection connection;
+
     private DatabaseHandler() {
         try {
             String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
@@ -25,6 +25,7 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
     public static DatabaseHandler getInstance() {
         if (instance == null) {
@@ -32,8 +33,14 @@ public class DatabaseHandler {
         }
         return instance;
     }
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnection() throws SQLException {
+        String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
+                "cloudSqlInstance=" + CONNECTION_NAME +
+                "&socketFactory=com.google.cloud.sql.postgres.SocketFactory" +
+                "&user=" + USERNAME +
+                "&password=" + USER_PASSWORD;
+
+        return DriverManager.getConnection(jdbcUrl);
     }
 
     public double[] getLocations(){

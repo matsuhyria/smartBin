@@ -10,7 +10,6 @@ import com.example.demo1.Core.MqttClientHandler;
 import com.example.demo1.Core.NotificationController;
 import com.example.demo1.UI.SceneManager;
 
-
     public class BinApplication extends Application {
     private static final int HEIGHT = 1920; 
     private static final int WIDTH = 1080;
@@ -21,7 +20,8 @@ import com.example.demo1.UI.SceneManager;
         CardController cardControllerMain = new CardController();
         CardController cardControllerMap = new CardController();
         MapController mapController = new MapController(cardControllerMap);
-        SceneManager sceneManager = new SceneManager(notificationController, cardControllerMain, mapController);
+        StatisticsController statsController = new StatisticsController();
+        SceneManager sceneManager = new SceneManager(notificationController, cardControllerMain, mapController, statsController);
         sceneManager.setStage(stage, HEIGHT, WIDTH);
         stage.show();
         MqttClientHandler mqttClientHandler = MqttClientHandler.getInstance();

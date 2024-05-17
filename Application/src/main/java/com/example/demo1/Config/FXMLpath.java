@@ -11,6 +11,7 @@ public enum FXMLpath {
     MAP_PAGE("mapPage.fxml"),
     BIN_CARD("bin1.fxml"),
     BIN_CARD_OTHER("binOther.fxml"),
+    STATISTICS_PAGE("statisticsPage.fxml"),
     POP_OUT_LIGHT("popOutLight.fxml");
 
     private final String fxmlPath;

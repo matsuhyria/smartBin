@@ -5,12 +5,14 @@
 #include <string>
 
 class MqttHandler{
+  
   public:
   MqttHandler(const char* ssid, const char* password, const char* ID, const char* pubTopic, const char* subTopic, const char* broker, const int port);
   void setup();
   void publish(const char* topic, const char* payload);
   void reconnect();
   void loop();
+
   private:
   WiFiClient _wifiClient;
   PubSubClient _mqtt;
@@ -22,6 +24,5 @@ class MqttHandler{
   const char* _broker;
   const int _port;
 };
-
 
 #endif

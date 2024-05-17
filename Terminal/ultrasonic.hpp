@@ -6,6 +6,8 @@ class UltrasonicRanger{
   public:
     UltrasonicRanger(int pin);
     int measureDistance();
+    int calculateFullness();
+
   private:
     Ultrasonic _uls;
 };

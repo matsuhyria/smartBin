@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.demo1.StatisticsController;
 import com.example.demo1.Config.CSSPath;
 import com.example.demo1.Config.FXMLpath;
 import com.example.demo1.Core.CardController;
@@ -24,11 +25,13 @@ public class SceneManager implements SceneSwitcher{
     private CardController cardController;
     private HeaderController headerController;
     private MapController mapController;
+    private StatisticsController statController;
 
-    public SceneManager(NotificationController nController, CardController cController, MapController mController) {
+    public SceneManager(NotificationController nController, CardController cController, MapController mController, StatisticsController sController) {
         notificationController = nController;
         cardController = cController;
         mapController = mController;
+        statController = sController;
         headerController = new HeaderController(this);
     }
 
@@ -62,7 +65,7 @@ public class SceneManager implements SceneSwitcher{
 
     @Override
     public void switchToStatsPage(){
-        //TO-DO
+        switchScene(FXMLpath.STATISTICS_PAGE);
     }
 
     private void switchScene(FXMLpath path) {
@@ -94,6 +97,9 @@ public class SceneManager implements SceneSwitcher{
 
         Pane mapPage = Util.load(FXMLpath.MAP_PAGE, mapController);
         sceneCache.put(FXMLpath.MAP_PAGE, mapPage);
+
+        Pane statPage = Util.load(FXMLpath.STATISTICS_PAGE, statController);
+        sceneCache.put(FXMLpath.STATISTICS_PAGE, statPage);
     }
 
     public Pane getCurrentPane(){
