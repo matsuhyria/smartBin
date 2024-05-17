@@ -1,4 +1,4 @@
-package com.example.demo1.Core;
+package com.example.demo1.Core.FXMLControllers;
 
 import java.net.URL;
 import java.util.HashMap;

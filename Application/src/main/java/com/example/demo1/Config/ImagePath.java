@@ -25,7 +25,6 @@ public enum ImagePath {
     }
 
     public String getPath() {
-        System.out.println(BinApplication.class.getResource(path));
         return BinApplication.class.getResource(path).toExternalForm();
     }
 }

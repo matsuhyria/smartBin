@@ -1,4 +1,6 @@
-package com.example.demo1.Core;
+package com.example.demo1.Core.FXMLControllers;
+
+import com.example.demo1.Core.MQTTDataObserver;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

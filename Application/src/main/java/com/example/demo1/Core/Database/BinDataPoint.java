@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core.Database;
 
 public class BinDataPoint {
     private final String time;

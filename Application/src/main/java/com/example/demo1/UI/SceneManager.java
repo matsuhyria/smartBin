@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.demo1.StatisticsController;
 import com.example.demo1.Config.CSSPath;
 import com.example.demo1.Config.FXMLpath;
-import com.example.demo1.Core.CardController;
-import com.example.demo1.Core.HeaderController;
-import com.example.demo1.Core.MapController;
-import com.example.demo1.Core.NotificationController;
+import com.example.demo1.Core.FXMLControllers.CardController;
+import com.example.demo1.Core.FXMLControllers.HeaderController;
+import com.example.demo1.Core.FXMLControllers.MapController;
+import com.example.demo1.Core.FXMLControllers.NotificationController;
+import com.example.demo1.Core.FXMLControllers.StatisticsController;
 import com.example.demo1.Util.Util;
 
 import javafx.scene.Scene;

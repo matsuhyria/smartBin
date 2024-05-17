@@ -1,4 +1,4 @@
-package com.example.demo1.Core;
+package com.example.demo1.Core.Database;
 
 
 import javax.persistence.*;

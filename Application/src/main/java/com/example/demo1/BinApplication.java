@@ -4,10 +4,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-import com.example.demo1.Core.CardController;
-import com.example.demo1.Core.MapController;
 import com.example.demo1.Core.MqttClientHandler;
-import com.example.demo1.Core.NotificationController;
+import com.example.demo1.Core.FXMLControllers.CardController;
+import com.example.demo1.Core.FXMLControllers.MapController;
+import com.example.demo1.Core.FXMLControllers.NotificationController;
+import com.example.demo1.Core.FXMLControllers.StatisticsController;
 import com.example.demo1.UI.SceneManager;
 
     public class BinApplication extends Application {

@@ -1,4 +1,7 @@
-package com.example.demo1;
+package com.example.demo1.Core.FXMLControllers;
+
+import com.example.demo1.Core.ChartBuilder;
+import com.example.demo1.Core.Database.DataManager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

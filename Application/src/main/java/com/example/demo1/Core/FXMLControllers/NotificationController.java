@@ -1,4 +1,4 @@
-package com.example.demo1.Core;
+package com.example.demo1.Core.FXMLControllers;
 
 
 import java.net.URL;
@@ -9,6 +9,8 @@ import org.controlsfx.control.Notifications;
 
 import com.example.demo1.Config.CSSPath;
 import com.example.demo1.Config.ImagePath;
+import com.example.demo1.Core.MQTTAlarmObserver;
+import com.example.demo1.Core.MQTTDataObserver;
 import com.example.demo1.Util.Util;
 
 import javafx.animation.KeyFrame;

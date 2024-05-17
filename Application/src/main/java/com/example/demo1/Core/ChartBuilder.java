@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 import javafx.scene.chart.*;
 import javafx.scene.layout.Pane;
@@ -6,6 +6,10 @@ import javafx.scene.layout.StackPane;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import com.example.demo1.Config.CSSPath;
+import com.example.demo1.Core.Database.BinDataPoint;
+import com.example.demo1.Util.Util;
 
 public class ChartBuilder {
 
@@ -27,8 +31,6 @@ public class ChartBuilder {
         XYChart.Series<String, Number> humidity = new XYChart.Series<>();
         humidity.setName("Humidity");
 
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
         // Populate the series with data points
         for (BinDataPoint dataPoint : dataPoints) {
             String time = dataPoint.getTime().substring(11, 16); // Extract the hour and minute from the timestamp
@@ -40,7 +42,7 @@ public class ChartBuilder {
         barChart.getData().add(fullness);
         barChart.getData().add(humidity);
 
-        String css = getClass().getResource("chartStyle.css").toExternalForm();
+        String css = CSSPath.CHART.getCssPath().toExternalForm();
         barChart.getStylesheets().add(css);
 
         // Create a Pane to hold the chart
@@ -78,7 +80,7 @@ public class ChartBuilder {
         barChart.getData().add(fullness);
         barChart.getData().add(humidity);
 
-        String css = getClass().getResource("chartStyle.css").toExternalForm();
+        String css = CSSPath.CHART.getCssPath().toExternalForm();
         barChart.getStylesheets().add(css);
 
         // Create a Pane to hold the chart

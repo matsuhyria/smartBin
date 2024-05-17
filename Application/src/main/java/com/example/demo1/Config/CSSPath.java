@@ -6,7 +6,8 @@ import com.example.demo1.BinApplication;
 
 public enum CSSPath {
     SCROLLBAR("scrollbar.css"),
-    POP_UP("notificationPopUp.css");
+    POP_UP("notificationPopUp.css"),
+    CHART("chartStyle.css");
 
     private final String cssPath;
 
@@ -15,7 +16,6 @@ public enum CSSPath {
     }
 
     public URL getCssPath() {
-        System.out.println(BinApplication.class.getResource(cssPath));
         return BinApplication.class.getResource(cssPath);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.demo1.Core.DatabaseHandler;
 
 public class DataManager {
     final static String CURRENT_FULLNESS = "bin_fullness_level";

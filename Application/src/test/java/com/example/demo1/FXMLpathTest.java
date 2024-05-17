@@ -3,7 +3,6 @@ package com.example.demo1;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.Test;

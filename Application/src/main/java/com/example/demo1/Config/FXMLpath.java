@@ -21,7 +21,6 @@ public enum FXMLpath {
     }
 
     public URL getFxmlPath() {
-        System.out.println(BinApplication.class.getResource(fxmlPath));
         return BinApplication.class.getResource(fxmlPath);
     }
 }
