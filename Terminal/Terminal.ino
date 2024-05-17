@@ -1,12 +1,12 @@
-#include "humidity.hpp"
-#include "ultrasonic.hpp"
-#include "led_indicator.hpp"
-#include "MqttHandler.hpp"
-#include "buzzer.hpp"
-#include "secrets_template.hpp"
-#include "ui.hpp"
+#include "includes/humidity.hpp"
+#include "includes/ultrasonic.hpp"
+#include "includes/led_indicator.hpp"
+#include "includes/MqttHandler.hpp"
+#include "includes/buzzer.hpp"
+#include "includes/secrets_template.hpp"
+#include "includes/ui.hpp"
 #include <FreeRTOS.h>
-#include "flame_detector.hpp"
+#include "includes/flame_detector.hpp"
 
 #define FLAME_PIN D6 
 #define BUZZER_PIN D0

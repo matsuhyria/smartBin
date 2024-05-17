@@ -1,4 +1,4 @@
-#include "led_indicator.hpp"
+#include "includes/led_indicator.hpp"
 
 LedIndicator::LedIndicator(uint16_t pixels, int16_t pin, neoPixelType type, int turnOnDistanceCM): _led(pixels, pin, type), PIXELS(pixels), TURN_ON_DISTANCE_CM(turnOnDistanceCM) {};
 
@@ -10,6 +10,9 @@ int LedIndicator::calculateLedsToLight(int curr_distance_cm){
   if(curr_distance_cm > TURN_ON_DISTANCE_CM){
     return 0;
   }
+  //we scale the current distance by a factor of 10 to adjust the sensitivity of LED activation. 
+  //This ratio is subtracted from the total number of LEDs, determining the number of LEDs to light up.
+  //The scaled distance is then divided by the threshold distance for LED activation to get a ratio representing the object's proximity relative to the threshold.
   return PIXELS - ((curr_distance_cm * 10) / TURN_ON_DISTANCE_CM);
 }
 

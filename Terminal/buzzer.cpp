@@ -1,4 +1,4 @@
-#include "buzzer.hpp"
+#include "includes/buzzer.hpp"
 
 Buzzer::Buzzer(int pin) : _pin(pin) {}
 
