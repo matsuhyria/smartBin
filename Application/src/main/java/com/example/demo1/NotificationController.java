@@ -43,10 +43,10 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
     private static final int TEXT_FONT_SIZE = 40;
     private static final int TIME_FONT_SIZE = 30;
 
-    private static final int TEXT_FRAME_WIDTH = 1720;
+    private static final int TEXT_FRAME_WIDTH = 1000;
     private static final int TEXT_FRAME_HEIGHT = 75;
 
-    private static final int TIME_FRAME_WIDTH = 830;
+    private static final int TIME_FRAME_WIDTH = 125;
     private static final int TIME_FRAME_HEIGHT = 75;
 
     private static final int ICON_FIT_WIDTH = 80;
@@ -55,7 +55,7 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
     //Notification container as a whole
     private static final int CONTAINER_WIDTH = 1800;
     private static final int CONTAINER_HEIGHT = 75;
-    private static final int CONTAINER_SPACING = 40;
+    private static final int CONTAINER_SPACING = 30;
 
     //Text padding
     private static final int PADDING_TOP = 5;
