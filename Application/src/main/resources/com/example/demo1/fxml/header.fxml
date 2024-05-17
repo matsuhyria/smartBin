@@ -11,7 +11,7 @@
          <graphic>
             <ImageView fx:id="mainPageImage" fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@OverviewClosed.png" />
+                  <Image url="@../images/OverviewClosed.png" />
                </image>
             </ImageView>
          </graphic>
@@ -23,7 +23,7 @@
          <graphic>
             <ImageView fx:id="notificationPageImage" fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@NotificationClosed.png" />
+                  <Image url="@../images/NotificationClosed.png" />
                </image>
             </ImageView>
          </graphic>
@@ -35,7 +35,7 @@
          <graphic>
             <ImageView fx:id="mapPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@MapClosed.png" />
+                  <Image url="@../images/MapClosed.png" />
                </image>
             </ImageView>
          </graphic>
@@ -47,7 +47,7 @@
          <graphic>
             <ImageView fx:id="statsPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@StatisticsClosed.png" />
+                  <Image url="@../images/StatisticsClosed.png" />
                </image>
             </ImageView>
          </graphic>

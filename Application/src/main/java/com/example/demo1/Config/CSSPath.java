@@ -5,9 +5,9 @@ import java.net.URL;
 import com.example.demo1.BinApplication;
 
 public enum CSSPath {
-    SCROLLBAR("scrollbar.css"),
-    POP_UP("notificationPopUp.css"),
-    CHART("chartStyle.css");
+    SCROLLBAR("stylesheets/scrollbar.css"),
+    POP_UP("stylesheets/notificationPopUp.css"),
+    CHART("stylesheets/chartStyle.css");
 
     private final String cssPath;
 

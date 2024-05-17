@@ -4,19 +4,19 @@ import com.example.demo1.BinApplication;
 
 public enum ImagePath {
     
-    OVERVIEW_ACTIVE("OverviewActive.png"),
-    NOTIFICATION_ACTIVE("NotificationActive.png"),
-    MAP_ACTIVE("MapActive.png"),
-    STATISTICS_ACTIVE("StatisticsActive.png"),
+    OVERVIEW_ACTIVE("images/OverviewActive.png"),
+    NOTIFICATION_ACTIVE("images/NotificationActive.png"),
+    MAP_ACTIVE("images/MapActive.png"),
+    STATISTICS_ACTIVE("images/StatisticsActive.png"),
     
-    OVERVIEW_CLOSED("OverviewClosed.png"),
-    NOTIFICATION_CLOSED("NotificationClosed.png"),
-    MAP_CLOSED("MapClosed.png"),
-    STATISTICS_CLOSED("StatisticsClosed.png"),
+    OVERVIEW_CLOSED("images/OverviewClosed.png"),
+    NOTIFICATION_CLOSED("images/NotificationClosed.png"),
+    MAP_CLOSED("images/MapClosed.png"),
+    STATISTICS_CLOSED("images/StatisticsClosed.png"),
 
-    FULLNESS("binBackground.png"),
-    HUMIDITY("humidityBackground.png"),
-    ALARM("fireBackground.png");
+    FULLNESS("images/binBackground.png"),
+    HUMIDITY("images/humidityBackground.png"),
+    ALARM("images/fireBackground.png");
     
     private final String path;
 
