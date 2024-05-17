@@ -20,7 +20,7 @@
       </ImageView>
       <Label layoutX="44.0" layoutY="24.0" prefHeight="119.0" prefWidth="414.0" text="SMARTBIN+" textFill="#638889">
          <font>
-            <Font size="65.0" />
+            <Font name="Aldrich Regular" size="65.0" />
          </font>
       </Label>
       <HBox layoutX="123.0" layoutY="198.0" prefHeight="600.0" prefWidth="1649.0" style="-fx-spacing: 60;">

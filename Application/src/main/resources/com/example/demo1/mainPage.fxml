@@ -19,7 +19,6 @@
             <Font size="65.0" name="Aldrich Regular" />
          </font>
       </Label>
-      <!-- <fx:include source="header.fxml" /> -->
       <HBox layoutX="112.0" layoutY="252.0" prefHeight="420.0" spacing="80.0">
           <fx:include source="bin1.fxml"/>
           <fx:include source="binOther.fxml"/>

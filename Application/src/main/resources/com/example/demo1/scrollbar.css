@@ -1,7 +1,6 @@
 .scroll-bar:vertical {
     -fx-padding: 5px;
     -fx-background-color: #ecdcb4;
-    /* -fx-background-color: #a6ca82; */
     -fx-background-radius: 4;
 }
 
@@ -23,13 +22,6 @@
     -fx-background-radius: 3;
     -fx-padding: 5px;
 }
-
-/* .scroll-bar .increment-arrow,
-.scroll-bar .decrement-arrow {
-    -fx-background-color: #658591;
-    -fx-padding: 5px;
-    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
-} */
 
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button {

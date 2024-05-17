@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.example.demo1.Config.CSSPath;
 import com.example.demo1.Core.Database.BinDataPoint;
+import javafx.scene.text.Font;
 
 public class ChartBuilder {
 
@@ -22,6 +23,7 @@ public class ChartBuilder {
 
         BarChart<String, Number> barChart = new BarChart<>(timeAxis, humidityAxis);
         barChart.setTitle("Daily Fill & Humidity Levels");
+        barChart.setStyle("-fx-font-family: 'Aldrich'; -fx-font-size: 14;");
 
         XYChart.Series<String, Number> fullness = new XYChart.Series<>();
         fullness.setName("Fullness");
@@ -60,6 +62,7 @@ public class ChartBuilder {
 
         BarChart<String, Number> barChart = new BarChart<>(dayAxis, humidityAxis);
         barChart.setTitle("Weekly Fill & Humidity Levels");
+        barChart.setStyle("-fx-font-family: 'Aldrich'; -fx-font-size: 14;");
 
         XYChart.Series<String, Number> fullness = new XYChart.Series<>();
         fullness.setName("Fullness");
