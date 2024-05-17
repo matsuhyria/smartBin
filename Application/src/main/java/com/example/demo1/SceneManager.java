@@ -80,7 +80,7 @@ public class SceneManager implements SceneSwitcher{
         Pane binCard = Util.load(FXMLpath.BIN_CARD, cardController);
         sceneCache.put(FXMLpath.BIN_CARD, binCard);
 
-        Pane notificationPage = Util.load(FXMLpath.NOTIFICATION_PAGE, notificationController);
+        Pane notificationPage = Util.load(FXMLpath.NOTIFICATION_PAGE, CSSPath.SCROLLBAR, notificationController);
         sceneCache.put(FXMLpath.NOTIFICATION_PAGE, notificationPage);
 
         Pane mapPage = Util.load(FXMLpath.MAP_PAGE, mapController);

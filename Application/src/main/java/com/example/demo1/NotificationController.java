@@ -21,13 +21,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 public class NotificationController implements MQTTAlarmObserver, MQTTDataObserver{
 
     @FXML
     private VBox notificationList;
-
-    private static final int NOTIFICATION_TIMEOUT_MS = 5000;
 
     private static final float HUMIDITY_THRESHOLD = 60.0f;
     private static final String HUMIDITY_NOTIFICATION = "Bin humidity level is greater than 60%!";
@@ -63,17 +62,20 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
     private static final int PADDING_LEFT = 60;
     private static final int PADDING_RIGHT = 5;
 
+    private final Stage owner;
 
+    public NotificationController(Stage stage){
+        owner = stage;
+    }
 
     @FXML
     public void addNotification(NotificationType type, String message, String time) {
         HBox notification = formatNotification(type, message, time);
         notificationList.getChildren().add(0, notification);
-        Notifications notification1 = Notifications.create().title(type.toString()).text(message);
-        notification1.showWarning();
-
-        Timeline delayTimeline = new Timeline(NOTIFICATION_TIMEOUT_MS);
-        delayTimeline.play();
+        Notifications notificationBuilder = Notifications.create().title(type.toString()).text(message).owner(owner);
+        owner.getScene().getStylesheets().add(CSSPath.POP_UP.getCssPath().toExternalForm());
+        System.out.println(notificationBuilder.getStyleClass().toString());
+        notificationBuilder.showWarning();
     }
 
     private HBox formatNotification(NotificationType type, String text, String currentTime){

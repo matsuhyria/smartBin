@@ -23,9 +23,16 @@ public class Util {
             loader.setController(controller);
         }
         Pane pane = loader.load();
-        if (path == FXMLpath.NOTIFICATION_PAGE) {
-            pane.getStylesheets().add(Util.class.getResource("scrollbar.css").toExternalForm());
+        return pane;
+    }
+
+    public static Pane load(FXMLpath path, CSSPath cssFile, Object controller) throws IOException{
+        FXMLLoader loader = new FXMLLoader(path.getFxmlPath());
+        if(controller != null){
+            loader.setController(controller);
         }
+        Pane pane = loader.load();
+        pane.getStylesheets().add(cssFile.getCssPath().toExternalForm());
         return pane;
     }
 

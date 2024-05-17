@@ -1,0 +1,5 @@
+.notification-bar > .pane {
+    -fx-background-color: red !important;
+    -fx-padding: 10 10 10 10 !important;
+}
+

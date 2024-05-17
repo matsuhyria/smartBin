@@ -11,7 +11,7 @@ import java.io.IOException;
 
     @Override
     public void start(Stage stage) throws IOException {
-        NotificationController notificationController = new NotificationController();
+        NotificationController notificationController = new NotificationController(stage);
         CardController cardControllerMain = new CardController();
         CardController cardControllerMap = new CardController();
         MapController mapController = new MapController(cardControllerMap);
