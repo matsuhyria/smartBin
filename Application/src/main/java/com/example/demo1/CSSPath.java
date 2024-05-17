@@ -4,7 +4,7 @@ import java.net.URL;
 
 public enum CSSPath {
     SCROLLBAR("scrollbar.css"),
-    POP_UP("1.css");
+    POP_UP("notificationPopUp.css");
 
     private final String cssPath;
 

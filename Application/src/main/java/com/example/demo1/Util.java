@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
@@ -36,14 +38,21 @@ public class Util {
         return pane;
     }
 
+    public static Image load(ImagePath path) {
+        return new Image(path.getPath().toString());
+    }
+
     public static String getFormattedTime() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return formatter.format(now);
     }
 
-    public static Image load(ImagePath path) {
-        return new Image(path.getPath().toString());
+    public static Node loadNotificationIcon(ImagePath icon){
+        ImageView image = new ImageView(icon.getPath());
+        image.setFitHeight(60);
+        image.setFitWidth(60);
+        return image;
     }
 
 }

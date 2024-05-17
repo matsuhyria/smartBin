@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -69,23 +70,22 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
     }
 
     @FXML
-    public void addNotification(NotificationType type, String message, String time) {
+    public void addNotification(ImagePath type, String message, String time) {
         HBox notification = formatNotification(type, message, time);
         notificationList.getChildren().add(0, notification);
-        Notifications notificationBuilder = Notifications.create().title(type.toString()).text(message).owner(owner);
+        Notifications notificationBuilder = Notifications.create().title(type.toString()).text(message).owner(owner).graphic(Util.loadNotificationIcon(type));
         owner.getScene().getStylesheets().add(CSSPath.POP_UP.getCssPath().toExternalForm());
-        System.out.println(notificationBuilder.getStyleClass().toString());
-        notificationBuilder.showWarning();
+        notificationBuilder.show();
     }
 
-    private HBox formatNotification(NotificationType type, String text, String currentTime){
+    private HBox formatNotification(ImagePath type, String text, String currentTime){
         HBox notification = createNotificationContainer();
 
         ImageView icon = createNotificationIcon(type);
 
         Label message = createNotificationText(type, text);
 
-        Label time = createNotificationTime(type, currentTime);
+        Label time = createNotificationTime(currentTime);
 
         notification.getChildren().addAll(icon, message, time);
         return notification;
@@ -99,28 +99,22 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
         return notification;
     }
 
-    private ImageView createNotificationIcon(NotificationType type){
+    private ImageView createNotificationIcon(ImagePath type){
         ImageView icon = new ImageView();
         icon.setFitHeight(ICON_FIT_HEIGHT);
         icon.setFitWidth(ICON_FIT_WIDTH);
-        if(type == NotificationType.FULLNESS){
-            icon.setImage(Util.load(ImagePath.BIN_BACKGROUND));
-        } else if (type == NotificationType.HUMIDITY){
-            icon.setImage(Util.load(ImagePath.HUMIDITY_BACKGROUND));
-        } else{
-            icon.setImage(Util.load(ImagePath.FIRE_BACKGROUND));
-        }
+        icon.setImage(Util.load(type));
         return icon;
     }
 
-    private Label createNotificationText(NotificationType type, String text){
+    private Label createNotificationText(ImagePath type, String text){
         Label message = new Label(text);
         message.setPrefHeight(TEXT_FRAME_HEIGHT);
         message.setPrefWidth(TEXT_FRAME_WIDTH);
         message.setAlignment(Pos.BOTTOM_LEFT);
         message.setTextAlignment(TextAlignment.CENTER);
         message.setStyle(TEXT_BACKGROUND_COLOR + TEXT_COLOR);
-        if(type == NotificationType.ALARM){
+        if(type == ImagePath.ALARM){
             message.setStyle(TEXT_BACKGROUND_COLOR + TEXT_ALARM_COLOR);
         }
         message.setPadding(new Insets(PADDING_TOP, PADDING_RIGHT, PADDING_BOTTOM, PADDING_LEFT));
@@ -128,7 +122,7 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
         return message;
     }
 
-    private Label createNotificationTime(NotificationType type, String currentTime){
+    private Label createNotificationTime(String currentTime){
         Label time = new Label(currentTime);
         time.setPrefHeight(TIME_FRAME_HEIGHT);
         time.setPrefWidth(TIME_FRAME_WIDTH);
@@ -146,20 +140,20 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
 
     @Override
     public void onAlarmUpdate() {
-        addNotification(NotificationType.ALARM, ALARM_NOTIFICATION, Util.getFormattedTime());
+        addNotification(ImagePath.ALARM, ALARM_NOTIFICATION, Util.getFormattedTime());
     }
 
     @Override
     public void onHumidityUpdate(float value) {
         if(value > HUMIDITY_THRESHOLD){
-            addNotification(NotificationType.HUMIDITY, HUMIDITY_NOTIFICATION, Util.getFormattedTime());
+            addNotification(ImagePath.HUMIDITY, HUMIDITY_NOTIFICATION, Util.getFormattedTime());
         }
     }
 
     @Override
     public void onFullnessUpdate(float value) {
         if(value > FULLNESS_THRESHOLD){
-            addNotification(NotificationType.FULLNESS, FULLNESS_NOTIFICATION, Util.getFormattedTime());
+            addNotification(ImagePath.FULLNESS, FULLNESS_NOTIFICATION, Util.getFormattedTime());
         }
     }
 }

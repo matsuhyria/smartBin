@@ -12,9 +12,9 @@ public enum ImagePath {
     MAP_CLOSED("MapClosed.png"),
     STATISTICS_CLOSED("StatisticsClosed.png"),
 
-    BIN_BACKGROUND("binBackground.png"),
-    HUMIDITY_BACKGROUND("humidityBackground.png"),
-    FIRE_BACKGROUND("fireBackground.png");
+    FULLNESS("binBackground.png"),
+    HUMIDITY("humidityBackground.png"),
+    ALARM("fireBackground.png");
     
 
 
