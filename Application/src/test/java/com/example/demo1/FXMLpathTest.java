@@ -41,7 +41,7 @@ public class FXMLpathTest{
         FXMLpath path = FXMLpath.MAP_PAGE;
         URL url = path.getFxmlPath();
         assertNotNull(url);
-        assertTrue(url.getPath().contains("map.fxml"));
+        assertTrue(url.getPath().contains("mapPage.fxml"));
     }
 
     @Test
@@ -50,6 +50,14 @@ public class FXMLpathTest{
         URL url = path.getFxmlPath();
         assertNotNull(url);
         assertTrue(url.getPath().contains("notificationPage.fxml"));
+    }
+
+    @Test
+    public void testGetStatsFxmlPath_ReturnsCorrectPath() {
+        FXMLpath path = FXMLpath.STATISTICS_PAGE;
+        URL url = path.getFxmlPath();
+        assertNotNull(url);
+        assertTrue(url.getPath().contains("statisticsPage.fxml"));
     }
 
 }
