@@ -1,10 +1,5 @@
 package com.example.demo1.Core.FXMLControllers;
 
-
-import java.net.URL;
-import java.time.Duration;
-import java.util.ResourceBundle;
-
 import org.controlsfx.control.Notifications;
 
 import com.example.demo1.Config.CSSPath;
@@ -13,19 +8,13 @@ import com.example.demo1.Core.MQTTAlarmObserver;
 import com.example.demo1.Core.MQTTDataObserver;
 import com.example.demo1.Util.Util;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;

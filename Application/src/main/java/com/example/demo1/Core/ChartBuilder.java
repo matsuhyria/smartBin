@@ -4,12 +4,10 @@ import javafx.scene.chart.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.example.demo1.Config.CSSPath;
 import com.example.demo1.Core.Database.BinDataPoint;
-import com.example.demo1.Util.Util;
 
 public class ChartBuilder {
 
