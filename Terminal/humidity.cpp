@@ -1,4 +1,4 @@
-#include "humidity.hpp"
+#include "includes/humidity.hpp"
 
 Humidity::Humidity(int pin, int type):_dht(pin, type){};
 

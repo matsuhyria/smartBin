@@ -1,0 +1,8 @@
+#ifndef SECRETS_H_TEMPLATE
+#define SECRETS_H_TEMPLATE
+
+#define WIFI_SSID "YOUR ID"
+#define WIFI_PASSWORD "YOUR PASSWORD"
+
+#endif
+

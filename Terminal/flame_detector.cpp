@@ -1,4 +1,4 @@
-#include "flame_detector.hpp"
+#include "includes/flame_detector.hpp"
 
 FlameDetector::FlameDetector(int pin) : _pin(pin) {}
 
