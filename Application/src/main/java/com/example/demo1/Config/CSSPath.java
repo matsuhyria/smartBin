@@ -1,6 +1,8 @@
-package com.example.demo1;
+package com.example.demo1.Config;
 
 import java.net.URL;
+
+import com.example.demo1.BinApplication;
 
 public enum CSSPath {
     SCROLLBAR("scrollbar.css"),
@@ -13,6 +15,7 @@ public enum CSSPath {
     }
 
     public URL getCssPath() {
-        return getClass().getResource(cssPath);
+        System.out.println(BinApplication.class.getResource(cssPath));
+        return BinApplication.class.getResource(cssPath);
     }
 }

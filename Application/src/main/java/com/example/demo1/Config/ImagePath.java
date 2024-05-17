@@ -1,4 +1,6 @@
-package com.example.demo1;
+package com.example.demo1.Config;
+
+import com.example.demo1.BinApplication;
 
 public enum ImagePath {
     
@@ -16,8 +18,6 @@ public enum ImagePath {
     HUMIDITY("humidityBackground.png"),
     ALARM("fireBackground.png");
     
-
-
     private final String path;
 
     ImagePath(String path) {
@@ -25,6 +25,7 @@ public enum ImagePath {
     }
 
     public String getPath() {
-        return getClass().getResource(path).toString();
+        System.out.println(BinApplication.class.getResource(path));
+        return BinApplication.class.getResource(path).toExternalForm();
     }
 }

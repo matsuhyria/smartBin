@@ -1,14 +1,17 @@
-package com.example.demo1;
+package com.example.demo1.Config;
 
 import java.net.URL;
+
+import com.example.demo1.BinApplication;
 
 public enum FXMLpath {
     HEADER("header.fxml"),
     MAIN_PAGE("mainPage.fxml"),
     NOTIFICATION_PAGE("notificationPage.fxml"),
-    MAP_PAGE("map.fxml"),
+    MAP_PAGE("mapPage.fxml"),
     BIN_CARD("bin1.fxml"),
-    BIN_CARD_OTHER("binOther.fxml");
+    BIN_CARD_OTHER("binOther.fxml"),
+    POP_OUT_LIGHT("popOutLight.fxml");
 
     private final String fxmlPath;
 
@@ -17,6 +20,7 @@ public enum FXMLpath {
     }
 
     public URL getFxmlPath() {
-        return getClass().getResource(fxmlPath);
+        System.out.println(BinApplication.class.getResource(fxmlPath));
+        return BinApplication.class.getResource(fxmlPath);
     }
 }

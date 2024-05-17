@@ -2,6 +2,8 @@ package com.example.demo1;
 
 import org.junit.jupiter.api.Test;
 
+import com.example.demo1.Config.ImagePath;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;

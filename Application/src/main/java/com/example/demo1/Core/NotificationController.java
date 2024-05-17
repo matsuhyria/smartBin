@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 
 import java.net.URL;
@@ -6,6 +6,10 @@ import java.time.Duration;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.Notifications;
+
+import com.example.demo1.Config.CSSPath;
+import com.example.demo1.Config.ImagePath;
+import com.example.demo1.Util.Util;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 import javafx.application.Platform;
 import org.eclipse.paho.client.mqttv3.*;

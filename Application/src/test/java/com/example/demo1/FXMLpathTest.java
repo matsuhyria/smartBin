@@ -3,9 +3,12 @@ package com.example.demo1;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.jupiter.api.Test;
+
+import com.example.demo1.Config.FXMLpath;
 
 public class FXMLpathTest{
 
@@ -18,7 +21,7 @@ public class FXMLpathTest{
     }
 
     @Test
-    public void testGetBinCardFxmlPath_ReturnsCorrectPath() {
+    public void testGetBinCardFxmlPath_ReturnsCorrectPath()  {
         FXMLpath path = FXMLpath.BIN_CARD;
         URL url = path.getFxmlPath();
         assertNotNull(url);

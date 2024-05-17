@@ -7,7 +7,9 @@ module com.example.demo1 {
     requires org.controlsfx.controls;
     requires javafx.graphics;
 
-
     opens com.example.demo1;
+    opens com.example.demo1.Config;
+    opens com.example.demo1.Core;
+    opens com.example.demo1.UI;
     exports com.example.demo1 to javafx.graphics;
 }

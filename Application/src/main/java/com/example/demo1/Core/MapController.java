@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+
+import com.example.demo1.Config.FXMLpath;
+import com.example.demo1.Util.Util;
 
 
 public class MapController {
@@ -86,8 +89,8 @@ public class MapController {
         Pane infoPop = loadBinInfo(numOfBins);
         infoPop.setVisible(false);
 
-        double xCoordLayout = BinUtil.getX(x);
-        double yCoordLayout = BinUtil.getY(y);
+        double xCoordLayout = Util.getBinX(x);
+        double yCoordLayout = Util.getBinY(y);
         infoPop.setLayoutX(xCoordLayout);
         infoPop.setLayoutY(yCoordLayout);
 
@@ -100,8 +103,7 @@ public class MapController {
     }
 
     private AnchorPane loadPopOutLight() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("popOutLight.fxml"));
-        AnchorPane popOut = loader.load();
+        AnchorPane popOut = (AnchorPane) Util.load(FXMLpath.POP_OUT_LIGHT);
         Label name = (Label) popOut.lookup("#name");
         if (name != null) {
             name.setText(numOfBins == 1 ? "Bin 1" : "OTHER BIN");

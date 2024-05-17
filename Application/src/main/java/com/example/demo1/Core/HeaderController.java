@@ -1,9 +1,12 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import com.example.demo1.Config.ImagePath;
+import com.example.demo1.UI.SceneSwitcher;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

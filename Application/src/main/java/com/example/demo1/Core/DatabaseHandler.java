@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.example.demo1.Core;
 
 import java.sql.*;
 import java.util.Arrays;

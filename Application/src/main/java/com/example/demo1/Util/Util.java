@@ -1,8 +1,12 @@
-package com.example.demo1;
+package com.example.demo1.Util;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import com.example.demo1.Config.CSSPath;
+import com.example.demo1.Config.FXMLpath;
+import com.example.demo1.Config.ImagePath;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -53,6 +57,34 @@ public class Util {
         image.setFitHeight(60);
         image.setFitWidth(60);
         return image;
+    }
+
+    public static double getBinX(double x) {
+        double gridStart = 0.0;
+        double gridEnd = 1450.0;
+
+        double xLayout;
+        if (x < gridStart+gridEnd/2){
+            xLayout = x + 30.0;
+        } else {
+            xLayout = x - 360.0;
+        }
+
+        return xLayout;
+    }
+
+    public static double getBinY(double y) {
+        double gridStart = 0.0;
+        double gridEnd = 630.0;;
+
+        double yLayout;
+        if (y < gridStart+gridEnd/2){
+            yLayout = y - 50.0;
+        } else {
+            yLayout = y - 270.0;
+        }
+
+        return yLayout;
     }
 
 }
