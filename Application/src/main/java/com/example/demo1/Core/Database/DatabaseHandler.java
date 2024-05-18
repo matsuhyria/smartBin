@@ -6,6 +6,9 @@ import java.util.Arrays;
 public class DatabaseHandler {
 
     private static DatabaseHandler instance;
+    //GoogleCloud database SQL ID: avian-cosmos-421323
+    //Server location: europe-north1
+    //Project ID: smartbin
     private static final String CONNECTION_NAME = "avian-cosmos-421323:europe-north1:smartbin";
     private static final String USERNAME = "postgres";
     private static final String USER_PASSWORD = "postgres";
@@ -13,6 +16,7 @@ public class DatabaseHandler {
     private static final int MAX_BIN_COUNT = 5;
     private Connection connection;
 
+    //Connection through Java Database Connectivity API
     private DatabaseHandler() {
         try {
             String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
@@ -33,6 +37,7 @@ public class DatabaseHandler {
         }
         return instance;
     }
+
     public Connection getConnection() throws SQLException {
         String jdbcUrl = "jdbc:postgresql:///" + DATABASE_NAME + "?" +
                 "cloudSqlInstance=" + CONNECTION_NAME +
@@ -43,9 +48,12 @@ public class DatabaseHandler {
         return DriverManager.getConnection(jdbcUrl);
     }
 
+    //Retrieve coordinates of all bins as an array.
+    //Coordinates are recorded in the appropriate order (important)
+    //bin_location table has columns id, x_coord (double), y_coord (double)
     public double[] getLocations(){
         double[] coordinates = new double[MAX_BIN_COUNT * 2];
-        int index = 0;
+        int index = 0; // Track position in the array
         try {
             Statement statement = connection.createStatement();
 
@@ -55,8 +63,8 @@ public class DatabaseHandler {
             while (resultSet.next()) {
                 double x = resultSet.getDouble("x_coord");
                 double y = resultSet.getDouble("y_coord");
-                coordinates[index] = x;
-                coordinates[index+1] = y;
+                coordinates[index] = x; //Even indices record x-coordinates
+                coordinates[index+1] = y; //Odd indices record y-coordinates
                 index = index + 2;
             }
             resultSet.close();
@@ -68,6 +76,7 @@ public class DatabaseHandler {
         return Arrays.copyOf(coordinates, index);
     }
 
+    //Delete bin from bin_locations table if the location was deleted from the map
     public void deleteLocation(double x, double y){
         int id = getId(x, y);
         try {
@@ -80,6 +89,7 @@ public class DatabaseHandler {
         }
     }
 
+    //add bin to bin_locations if new point was registered on the map
     public void addLocation(double x, double y){
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -93,6 +103,7 @@ public class DatabaseHandler {
         }
     }
 
+    //Retrieve ID of the bin from bin_location table based on the coordinates
     private int getId(double x, double y){
         int id = -1;
         try {

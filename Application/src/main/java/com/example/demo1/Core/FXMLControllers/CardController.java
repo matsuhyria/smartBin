@@ -14,10 +14,12 @@ public class CardController implements MQTTDataObserver{
 
     @FXML
     private void initialize() {
+        //Default when WioTerminal is offline
         bin1_humid.setText("55");
         bin1_full.setText("11");
     }
 
+    //Updates information on the bin card. Triggered by MQTT message arrival
     @FXML
     public void updateHumid(String newValue) {
         bin1_humid.setText(newValue);

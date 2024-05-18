@@ -69,7 +69,7 @@ public class NotificationController implements MQTTAlarmObserver, MQTTDataObserv
         HBox notification = formatNotification(type, message, time);
         notificationList.getChildren().add(0, notification);
         Notifications notificationBuilder = Notifications.create().title(type.toString()).text(message).owner(owner).graphic(Util.loadNotificationIcon(type));
-        owner.getScene().getStylesheets().add(CSSPath.POP_UP.getCssPath().toExternalForm());
+        owner.getScene().getStylesheets().add(CSSPath.POP_UP.getCssPath().toExternalForm()); //Important: stylesheet for notifications must be applied to the owner in order to work
         notificationBuilder.show();
     }
 

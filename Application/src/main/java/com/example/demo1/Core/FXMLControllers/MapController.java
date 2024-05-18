@@ -75,20 +75,25 @@ public class MapController {
         numOfBins++;
     }
 
+    //Adding point to the map
     @FXML
     public void placePointer(double x, double y) throws IOException {
         numOfBins++;
+        //Graphical representation
         Circle pointer = getPointer();
         pointer.setLayoutX(x);
         pointer.setLayoutY(y);
         grid.getChildren().add(pointer);
 
+        //Adds location adjustment popup, invisible by default
         AnchorPane popOut = loadPopOutLight();
         popOut.setVisible(false);
 
+        //Adds bin overview card popup, invisible by default
         Pane infoPop = loadBinInfo(numOfBins);
         infoPop.setVisible(false);
 
+        //Adjusts location of the bin overview popup
         double xCoordLayout = Util.getBinX(x);
         double yCoordLayout = Util.getBinY(y);
         infoPop.setLayoutX(xCoordLayout);
@@ -126,6 +131,7 @@ public class MapController {
         return infoPop;
     }
 
+    //popups become visible when bin point is clicked on
     private void setPointerClickBehavior(Circle pointer, AnchorPane popOut, Pane infoPop) {
         pointer.setOnMouseClicked(event -> {
             popOut.setVisible(!popOut.isVisible());
@@ -135,8 +141,10 @@ public class MapController {
 
     private void setChangeLocationBehavior(AnchorPane popOut, double x, double y) {
         Label change = (Label) popOut.lookup("#changeLocation");
+        //highlight effect
         change.setOnMouseEntered(event -> change.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;"));
         change.setOnMouseExited(event -> change.setStyle(""));
+        //Trigger location change on click
         change.setOnMouseClicked(event -> {
             change.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
@@ -150,8 +158,10 @@ public class MapController {
 
     private void setDeleteLocationBehavior(AnchorPane popOut, double x, double y) {
         Label delete = (Label) popOut.lookup("#delete");
+        //Highlight effect
         delete.setOnMouseEntered(event -> delete.setStyle("-fx-background-color: #7ebc59; -fx-text-fill: white;"));
         delete.setOnMouseExited(event -> delete.setStyle(""));
+        //Trigger bin deletion on click
         delete.setOnMouseClicked(event -> {
             delete.setStyle("-fx-background-color: #588889; -fx-text-fill: white;");
             try {
@@ -170,6 +180,7 @@ public class MapController {
 
     public void deleteLocation(double x, double y) throws IOException {
         pane.getChildren().clear();
+        //deletes bin record from the database
         DatabaseHandler.getInstance().deleteLocation(x, y);
         grid.getChildren().clear();
         initialize();

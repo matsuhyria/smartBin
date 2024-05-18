@@ -60,6 +60,7 @@ public class StatisticsController {
         showWeekly.setEffect(null);
     }
 
+    //Updates average values showed on the right of the chart according to the data recorded in the database when daily chart is opened
     private void updateAverages() {
         String humid = Double.toString(dataManager.getAverageHumidity());
         avgHumid.setText(humid.substring(0, 2));

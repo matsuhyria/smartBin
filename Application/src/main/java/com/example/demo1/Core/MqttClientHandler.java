@@ -13,12 +13,12 @@ public class MqttClientHandler {
     private final List<MQTTDataObserver> mqttDataObservers = new ArrayList<>();
     private final List<MQTTAlarmObserver> mqttAlarmObservers = new ArrayList<>();
 
+    //Online MQTT broker is used
     public static final String broker = "tcp://test.mosquitto.org:1883";
     public static final String clientId = "SmartBinPlusMain";
-    public static final String HUMIDITY_TOPIC = "Sensors/Humidity";
-    public static final String ULS_TOPIC = "Sensors/Ultrasonic";
+    public static final String HUMIDITY_TOPIC = "Sensors/Humidity"; //Humidity percentage
+    public static final String ULS_TOPIC = "Sensors/Ultrasonic"; //Fullness percentage
     public static final String ALARM_TOPIC = "Sensors/Flame";
-    public static final float BIN_MAX_LENGTH = 50;
     public static final int qos = 1;
 
     private MqttClientHandler() { 
@@ -36,6 +36,7 @@ public class MqttClientHandler {
         return instance;
     }
 
+    //Standard MQTT client handler class
     public void connect() throws MqttException {
         MqttConnectOptions options = new MqttConnectOptions();
         client.connect(options);
@@ -81,6 +82,7 @@ public class MqttClientHandler {
         client.close();
     }
 
+    //Observer design pattern, add unregister methods if needed
     public void registerDataObserver(MQTTDataObserver obs){
         mqttDataObservers.add(obs);
     }
