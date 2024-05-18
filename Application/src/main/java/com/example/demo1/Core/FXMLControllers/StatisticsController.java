@@ -25,15 +25,12 @@ public class StatisticsController {
 
     @FXML
     private Button showWeekly;
-    private ChartBuilder chartBuilder;
-    private DataManager dataManager;
+    private final ChartBuilder chartBuilder;
+    private final DataManager dataManager;
 
-    @FXML
-    public void initialize() {
-        this.chartBuilder = new ChartBuilder();
-        this.dataManager = new DataManager();
-
-        showDaily();
+    public StatisticsController(ChartBuilder chartBuilder, DataManager dataManager){
+        this.chartBuilder = chartBuilder;
+        this.dataManager = dataManager;
     }
 
     @FXML
@@ -70,7 +67,7 @@ public class StatisticsController {
     }
 
     @FXML
-    private void showDaily() {
+    public void showDaily() {
         Pane dailyChart = chartBuilder.buildDailyChart(dataManager.getDailyData());
 
         chartPane.getChildren().clear();
@@ -80,7 +77,7 @@ public class StatisticsController {
     }
 
     @FXML
-    private void showWeekly() {
+    public void showWeekly() {
         Pane weeklyChart = chartBuilder.buildWeeklyChart(dataManager.getWeeklyData());
 
         chartPane.getChildren().clear();

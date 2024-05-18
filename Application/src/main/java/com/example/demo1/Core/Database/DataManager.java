@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataManager {
+import com.example.demo1.Core.MQTTDataObserver;
+
+public class DataManager implements MQTTDataObserver{
     //Two tables are used to record statistics: bin_data and daily_bin_summary
     //Table bin_data has three columns: record_time (timestamp), bin_fullness_level (int), bin_humidity (int)
     //Table daily_bin_summary has four columns: day_of_week (varchar), avg_fullness_level (int), avg_humidity (int), id (serial) (used within SQL procedure)
@@ -107,5 +109,15 @@ public class DataManager {
     public List<BinDataPoint> getWeeklyData() {
         String query = "SELECT day_of_week, AVG(avg_humidity) AS avg_humidity, AVG(avg_fullness_level) AS avg_fullness_level FROM daily_bin_summary GROUP BY day_of_week";
         return getData(query, AVG_HUMIDITY, AVG_FULLNESS, DAY);
+    }
+
+    @Override
+    public void onHumidityUpdate(float value) {
+        addHumidityData(value);
+    }
+
+    @Override
+    public void onFullnessUpdate(float value) {
+        addFullnessData(value);
     }
 }

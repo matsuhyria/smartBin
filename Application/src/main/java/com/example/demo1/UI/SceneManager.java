@@ -32,24 +32,22 @@ public class SceneManager implements SceneSwitcher{
     private MapController mapController;
     private StatisticsController statController;
 
-    public SceneManager(NotificationController nController, CardController cController, MapController mController, StatisticsController sController) {
+    public SceneManager(NotificationController nController, CardController cController, MapController mController, StatisticsController sController) throws IOException {
         notificationController = nController;
         cardController = cController;
         mapController = mController;
         statController = sController;
         headerController = new HeaderController(this);
         lightModeOn = true;
+        initializeSceneCache();
     }
 
-    public void setStage(Stage stage, int height, int width) throws IOException{
-        initializeSceneCache();
+    public void setStage(Stage stage, int height, int width) {
         if(stage != null){
             this.stage = stage;
         } else{
             throw new IllegalArgumentException("Stage cannot be null");
         }
-        
-        //initializeSceneCache();
 
         //Default starting page
         rootPane.getChildren().addAll(sceneCache.get(FXMLpath.MAIN_PAGE), sceneCache.get(FXMLpath.HEADER), sceneCache.get(FXMLpath.BIN_CARD)); //Main page (Bin overview page is opened by default)
