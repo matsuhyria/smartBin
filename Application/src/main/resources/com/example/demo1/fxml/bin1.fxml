@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" layoutX="112.0" layoutY="252.0">
+   <children>
+      <SplitPane dividerPositions="0.18181818181818182" orientation="VERTICAL" prefHeight="420.0" prefWidth="321.0">
+          <items>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: D3BB88; -fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
+                  <children>
+                      <Label text="BIN 1" textFill="#638889" layoutX="100.0" layoutY="10.0">
+                          <font>
+                              <Font size="50.0" name="Aldrich Regular" />
+                          </font>
+                      </Label>
+                  </children>
+              </AnchorPane>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="317.0" style="-fx-background-color: EBD9B4;-fx-border-style: solid; -fx-border-color: A6CA82; -fx-border-width: 2px;">
+                  <children>
+                      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../images/bin.png" />
+                          </image>
+                      </ImageView>
+                      <HBox alignment="CENTER_RIGHT" layoutX="114.0" layoutY="45.0" prefHeight="100.0" prefWidth="191.0">
+                          <children>
+                              <Label fx:id="bin1_full" textFill="#638889">
+                                  <font>
+                                      <Font size="65.0" name="Aldrich Regular"/>
+                                  </font>
+                              </Label>
+                              <Label text="\%" textFill="#638889">
+                                  <font>
+                                      <Font size="65.0" name="Aldrich Regular"/>
+                                  </font>
+                              </Label>
+                          </children>
+                      </HBox>
+                      <Label layoutX="185.0" layoutY="15.0" prefHeight="53.0" prefWidth="127.0" text="fullness" textFill="#638787b3">
+                          <font>
+                              <Font size="30.0" name="Aldrich Regular"/>
+                          </font>
+                      </Label>
+                      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="14.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../images/humidity.png" />
+                          </image>
+                      </ImageView>
+                      <HBox alignment="CENTER_RIGHT" layoutX="114.0" layoutY="156.0" prefHeight="100.0" prefWidth="191.0">
+                          <children>
+                              <Label fx:id="bin1_humid" textFill="#638889">
+                                  <font>
+                                      <Font size="65.0" name="Aldrich Regular"/>
+                                  </font>
+                              </Label>
+                              <Label text="\%" textFill="#638889">
+                                  <font>
+                                      <Font size="65.0" name="Aldrich Regular"/>
+                                  </font>
+                              </Label>
+                          </children>
+                      </HBox>
+                      <Label layoutX="170.0" layoutY="230.0" prefHeight="53.0" prefWidth="154.0" text="humidity" textFill="#638787b5">
+                          <font>
+                              <Font size="30.0" name="Aldrich Regular"/>
+                          </font>
+                      </Label>
+                  </children>
+              </AnchorPane>
+          </items>
+      </SplitPane>
+   </children>
+</Pane>

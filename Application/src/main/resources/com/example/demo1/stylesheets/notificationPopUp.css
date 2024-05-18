@@ -1,0 +1,38 @@
+.notification-bar>.pane {
+    -fx-background-color: #aac982, #EBD9B4;
+    -fx-padding: 5 5 5 5;
+    -fx-background-insets: 0, 1, 2;
+}
+
+.notification-bar>.pane .label {
+    -fx-font-size: 1.33em;
+    -fx-font-family: Aldrich Regular;
+    -fx-text-fill: #000000;
+}
+
+.notification-bar>.pane .close-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0 0 0 0;
+    -fx-alignment: center;
+}
+
+.notification-bar>.pane .close-button>.graphic {
+     -fx-background-color: #638889;
+     -fx-scale-shape: false;
+     -fx-padding: 4.5 4.5 4.5 4.5;
+}
+
+.notification-bar>.pane .close-button:hover>.graphic {
+     -fx-background-color: #638889;
+}
+
+.notification-bar>.pane .close-button:pressed>.graphic {
+     -fx-background-color: #638889;
+}
+
+.notification-bar>.pane .close-button>.graphic {
+     -fx-shape:
+    "M395.992,296.758l1.794-1.794l7.292,7.292l-1.795,1.794 L395.992,296.758z M403.256,294.992l1.794,1.794l-7.292,7.292l-1.794-1.795 L403.256,294.992z";
+}
