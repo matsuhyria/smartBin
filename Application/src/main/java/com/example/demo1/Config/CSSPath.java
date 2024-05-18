@@ -4,6 +4,7 @@ import java.net.URL;
 
 import com.example.demo1.BinApplication;
 
+//Change path to the stylesheets here in case of changes in the folder structure
 public enum CSSPath {
     SCROLLBAR("stylesheets/scrollbar.css"),
     POP_UP("stylesheets/notificationPopUp.css"),

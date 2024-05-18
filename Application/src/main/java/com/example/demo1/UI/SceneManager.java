@@ -21,6 +21,7 @@ public class SceneManager implements SceneSwitcher{
     private Stage stage;
     private final Pane rootPane = new Pane();
     private final Map<FXMLpath, Pane> sceneCache = new HashMap<>();
+
     private NotificationController notificationController;
     private CardController cardController;
     private HeaderController headerController;
@@ -44,7 +45,8 @@ public class SceneManager implements SceneSwitcher{
         
         initializeSceneCache();
 
-        rootPane.getChildren().addAll(sceneCache.get(FXMLpath.MAIN_PAGE), sceneCache.get(FXMLpath.HEADER), sceneCache.get(FXMLpath.BIN_CARD));
+        //Default starting page
+        rootPane.getChildren().addAll(sceneCache.get(FXMLpath.MAIN_PAGE), sceneCache.get(FXMLpath.HEADER), sceneCache.get(FXMLpath.BIN_CARD)); //Main page (Bin overview page is opened by default)
         stage.setScene(new Scene(rootPane, height, width));
     }
 
@@ -82,6 +84,7 @@ public class SceneManager implements SceneSwitcher{
         stage.getScene().setRoot(rootPane);
     }
 
+    //Scene cache is used for retrieval and reuse of scenes, improves performance
     private void initializeSceneCache() throws IOException{
         Pane header = Util.load(FXMLpath.HEADER, headerController);
         sceneCache.put(FXMLpath.HEADER, header);

@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 
 
 public class Util {
-    
+    //Overloaded method to set a custom controller and stylesheet if needed
     public static Pane load(FXMLpath path) throws IOException{
         FXMLLoader loader = new FXMLLoader(path.getFxmlPath());
         Pane pane = loader.load();
@@ -59,9 +59,10 @@ public class Util {
         return image;
     }
 
+    //Used to determine X coordinate of the popup with bin information (doesn't block the view of location adjustment pane)
     public static double getBinX(double x) {
         double gridStart = 0.0;
-        double gridEnd = 1450.0;
+        double gridEnd = 1450.0; //Length of the map pane
 
         double xLayout;
         if (x < gridStart+gridEnd/2){
@@ -73,9 +74,10 @@ public class Util {
         return xLayout;
     }
 
+    //Used to determine Y coordinate of the popup with bin information (doesn't block the view of location adjustment pane)
     public static double getBinY(double y) {
         double gridStart = 0.0;
-        double gridEnd = 630.0;;
+        double gridEnd = 630.0;; //Height of the map pane
 
         double yLayout;
         if (y < gridStart+gridEnd/2){

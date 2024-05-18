@@ -4,6 +4,7 @@ import java.net.URL;
 
 import com.example.demo1.BinApplication;
 
+//Change path to the xml files here in case of changes in the folder structure
 public enum FXMLpath {
     HEADER("fxml/header.fxml"),
     MAIN_PAGE("fxml/mainPage.fxml"),
