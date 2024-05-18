@@ -24,5 +24,10 @@
           <fx:include source="binOther.fxml"/>
           <fx:include source="binOther.fxml"/>
       </HBox>
+      <Label fx:id="changeMode" layoutX="44.0" layoutY="1023.0" text="change mode" textFill="#416566">
+         <font>
+            <Font size="30.0" name="Aldrich Regular" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

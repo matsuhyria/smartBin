@@ -22,11 +22,11 @@
             <Font size="65.0" name="Aldrich Regular"/>
          </font>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" layoutX="289.0" layoutY="195.0" prefHeight="675.0" prefWidth="1320.0" style="-fx-background-color: #F9EFDB; -fx-viewport-fill: #F9EFDB;">
+      <ScrollPane hbarPolicy="NEVER" layoutX="289.0" layoutY="195.0" prefHeight="675.0" prefWidth="1320.0" style="-fx-background-color: transparent;">
          <content>
             <VBox fx:id="notificationList" prefHeight="695.0" prefWidth="1285.0" spacing="20.0" style="-fx-background-color: #F9EFDB;">
                <children>
-                  <HBox prefHeight="80.0" prefWidth="1750.0" spacing="30.0" style="-fx-background-color: #F9EFDB;">
+                  <HBox fx:id="notificationHorizontal" prefHeight="80.0" prefWidth="1750.0" spacing="30.0" style="-fx-background-color: #F9EFDB;">
                      <children>
                         <ImageView fitHeight="75" fitWidth="80" preserveRatio="false">
                            <image>
@@ -51,7 +51,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="80.0" prefWidth="1750.0" spacing="30.0" style="-fx-background-color: #F9EFDB;">
+                  <HBox prefHeight="80.0" prefWidth="1750.0" spacing="30.0" style="-fx-background-color: transparent;">
                      <children>
                         <ImageView fitHeight="75" fitWidth="80">
                            <image>

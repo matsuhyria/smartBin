@@ -7,7 +7,7 @@
 
 <HBox layoutX="1360.0" layoutY="33.0" prefHeight="88.0" prefWidth="383.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="mainPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+      <Button fx:id="mainPage" mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fx:id="mainPageImage" fitHeight="94.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,7 +19,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="notificationPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+      <Button fx:id="notificationPage" mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fx:id="notificationPageImage" fitHeight="91.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="mapPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+      <Button fx:id="mapPage" mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fx:id="mapPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="statsPage" mnemonicParsing="false" style="-fx-background-color: F9EFDB;">
+      <Button fx:id="statsPage" mnemonicParsing="false" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fx:id="statsPageImage" fitHeight="93.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
