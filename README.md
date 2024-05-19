@@ -1,5 +1,5 @@
 # SmartBin+ 
-![image](Resources/bin.jpg)
+![image](Resources/bin.JPG)
 
 ## Description
 
