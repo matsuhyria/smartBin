@@ -16,7 +16,7 @@ In summary, SmartBin+ transforms waste management in fast food restaurants, offe
 
 ## Link to demo video 
 Here you can have a look at the full functionality of the SmartBin+ project:
-https://youtu.be/nEBGqGX3CHQ
+[![image](Resources/youtube_butt.png)](https://youtu.be/nEBGqGX3CHQ)
 
 ## Components you need in order to use SmartBin+
 
