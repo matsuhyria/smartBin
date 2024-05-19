@@ -1,4 +1,5 @@
-# SmartBin+
+# SmartBin+ 
+![image](Resources/bin.jpg)
 
 ## Description
 
