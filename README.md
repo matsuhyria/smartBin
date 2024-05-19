@@ -154,6 +154,14 @@ Project Management: introduced Milestones, created issues and edited Wiki and Re
 
 - Victoria Yurevich (gusyurevi@student.gu.se)
 
+Hardware: Light indicationg: integration of RGB LED stick.
+
+Software: MQTT connection, overview page, map page, statistics page, database connection.
+
+Database: setup, creation of tables, inserting data, creating procedure for automatic update. 
+
+Project Management: edited Wiki, prototype design, use case diagram, Gantt chart.
+
 ## License
 
 Copyright 2024 Developer Group 11
