@@ -89,8 +89,8 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 - For the Flame Sensor:
 
-  - SIG connected to - (which is -) on the Wio
-  - GND can be connected to any GND port, VCC connected to -
+  - SIG connected to D6 port on the Wio
+  - GND can be connected to any GND port, VCC connected to any 3V3 or 5V port
 
 ### Software Setup
 
