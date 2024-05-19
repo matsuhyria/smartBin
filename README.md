@@ -132,16 +132,23 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ![image](Resources/updatedSysArchFinal__1_.jpg)
 
-## Authors and acknowledgment
+## Authors, acknowledgment and contributions
 
 Software Engineering and Management / DIT113 V24 Mini Project: System Development
 
 Developer Group 11
 
 - Andre Ibrahim (gusibraan@student.gu.se)
+
 - Maksym Matsuhyria (gusmaksyma@student.gu.se)
+
 - Gulbadanbegim Muzaffarova (gusmuzgu@student.gu.se)
+
 - Yaroslav Ursul (gusursya@student.gu.se)
+More focus on hardware part: Coded the Wio Terminal component, set up humidity and flame sensors and speaker actuator. Implemented visual appearance on Wio Terminal’s screen and transitions.
+Software: Created the initial JavaFX main page and enhanced it over time. Coded the map feature of the application, wrote tests for various classes, and refactored the C++ code for the Wio Terminal.
+Project Management: introduced Milestones, created issues and edited Wiki and Readme
+
 - Victoria Yurevich (gusyurevi@student.gu.se)
 
 ## License
