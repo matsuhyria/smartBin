@@ -146,6 +146,10 @@ Developer Group 11
 
 - Maksym Matsuhyria (gusmaksyma@student.gu.se)
 
+Hardware: ultrasonic, humidity, MQTT
+
+Software: requirements, issues, class diagram, figma prototype, notifications, CI/CD pipeline, refactoring, bug fixing, tests
+
 - Gulbadanbegim Muzaffarova (gusmuzgu@student.gu.se)
 
 - Yaroslav Ursul (gusursya@student.gu.se)
