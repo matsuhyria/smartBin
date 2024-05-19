@@ -1,5 +1,7 @@
 # SmartBin+ 
+<p align="center">
 ![image](Resources/bin.JPG)
+</p>
 
 ## Description
 
