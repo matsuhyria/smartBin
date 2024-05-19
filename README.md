@@ -15,7 +15,7 @@ But that's not all. SmartBin+ goes beyond basic monitoring. It enhances restaura
 In summary, SmartBin+ transforms waste management in fast food restaurants, offering a data-driven approach that streamlines operations and ensures compliance with safety standards. Are you ready to revolutionize your restaurant's waste management?
 
 ## Link to demo video 
-Here you can have a look at the full functionality of the SmartBin+ project:
+Press the button and take a look at the full functionality of the SmartBin+ project:
 [![image](Resources/youtube_butt.png)](https://youtu.be/nEBGqGX3CHQ)
 
 ## Components you need in order to use SmartBin+
