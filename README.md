@@ -14,6 +14,10 @@ But that's not all. SmartBin+ goes beyond basic monitoring. It enhances restaura
 
 In summary, SmartBin+ transforms waste management in fast food restaurants, offering a data-driven approach that streamlines operations and ensures compliance with safety standards. Are you ready to revolutionize your restaurant's waste management?
 
+## Link to demo video 
+Here you can have a look at the full functionality of the SmartBin+ project:
+https://youtu.be/nEBGqGX3CHQ
+
 ## Components you need in order to use SmartBin+
 
 1.  [Wio Seeed Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html)
@@ -140,7 +144,17 @@ Developer Group 11
 
 - Andre Ibrahim (gusibraan@student.gu.se)
 
+Hardware: Integrated the ultrasonic and speaker sensors with the terminal and designed the physical appearance of the bin. 3D printing of the Arduino terminal case.
+
+Software: Developed the statistics screen bar charts and helped create the UI according to the Figma designs. Enhanced the Git repository’s README and contributed diagrams. 
+
+Project Management: Contributed to the Wiki with weekly challenges, achievements, and meeting reflections throughout the project. Created the project video and business cases.
+
 - Maksym Matsuhyria (gusmaksyma@student.gu.se)
+
+Hardware: ultrasonic, humidity, MQTT
+
+Software: requirements, issues, class diagram, figma prototype, notifications, CI/CD pipeline, refactoring, bug fixing, tests
 
 - Gulbadanbegim Muzaffarova (gusmuzgu@student.gu.se)
 
