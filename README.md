@@ -144,6 +144,12 @@ Developer Group 11
 
 - Andre Ibrahim (gusibraan@student.gu.se)
 
+Hardware: Integrated the ultrasonic and speaker sensors with the terminal and designed the physical appearance of the bin. 3D printing of the Arduino terminal case.
+
+Software: Developed the statistics screen bar charts and helped create the UI according to the Figma designs. Enhanced the Git repository’s README and contributed diagrams. 
+
+Project Management: Contributed to the Wiki with weekly challenges, achievements, and meeting reflections throughout the project. Created the project video and business cases.
+
 - Maksym Matsuhyria (gusmaksyma@student.gu.se)
 
 Hardware: ultrasonic, humidity, MQTT
