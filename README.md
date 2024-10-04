@@ -110,22 +110,12 @@ Connect the sensors to the Wio Terminal following the pin-out instructions:
 
 ## Used Technologies
 
-- GIT (GITLAB & GIT BASH)
+- GitLab
 - C++
 - Java / JavaFX
 - Google Cloud CLI
-- INTELLIJ IDE
 - FIGMA
-- GOOGLE DOCS
 - TINKERCAD
-- MIRO
-- DRAW.IO
-- WIO SEEED TERMINAL
-- ULTRASONIC SENSOR
-- HUMIDITY AND TEMPERATURE SENSOR
-- FLAME SENSOR
-- SPEAKER ACTUATOR
-- RGB LED STICK
 
 ## Use Case Diagram
 
